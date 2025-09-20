@@ -646,7 +646,6 @@ export function Home() {
 							<motion.div
 								whileHover={{ scale: 1.05, y: -5 }}
 								whileTap={{ scale: 0.95 }}
-								ß
 								className="group"
 							>
 								<Button className="bg-gradient-to-r from-[#FFCB05] to-[#FFD700] text-[#00274C] hover:from-[#FFD700] hover:to-[#FFCB05] px-12 py-8 text-xl font-bold shadow-2xl shadow-[#FFCB05]/30 border-0 transition-all duration-500 rounded-2xl">
