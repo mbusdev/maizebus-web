@@ -1,0 +1,663 @@
+import { Button } from "@/components/button";
+import SpotlightCard from "@/components/SpotlightCard";
+import { CardContent } from "@/components/CardContent";
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from "@/components/accordion";
+import { Badge } from "@/components/badge";
+import {
+	Smartphone,
+	MapPin,
+	Clock,
+	Users,
+	Route,
+	Building,
+	Sparkles,
+	Apple,
+	Newspaper,
+} from "lucide-react";
+import { motion } from "motion/react";
+import exampleImage from "@/assets/maizebus-app-screens.jpg";
+import { useEffect, useState } from "react";
+
+export function Home() {
+	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+	useEffect(() => {
+		const handleMouseMove = (e: MouseEvent) => {
+			setMousePosition({ x: e.clientX, y: e.clientY });
+		};
+		window.addEventListener("mousemove", handleMouseMove);
+		return () => window.removeEventListener("mousemove", handleMouseMove);
+	}, []);
+
+	const features = [
+		{
+			icon: <MapPin className="h-8 w-8" />,
+			title: "Real-Time Tracking",
+			description:
+				"See live bus locations and arrival times with pinpoint accuracy. Never wonder when your bus will arrive again.",
+			highlight: "Live GPS tracking",
+		},
+		{
+			icon: <Building className="h-8 w-8" />,
+			title: "Campus Navigation",
+			description:
+				"Find any building instantly with our comprehensive campus directory and smart search functionality.",
+			highlight: "250+ locations",
+		},
+		{
+			icon: <Route className="h-8 w-8" />,
+			title: "Smart Routes",
+			description:
+				"Get optimal route suggestions with multiple options and real-time adjustments for delays.",
+			highlight: "Accurate routing",
+		},
+		{
+			icon: <Clock className="h-8 w-8" />,
+			title: "Arrival Predictions",
+			description:
+				"Precise arrival times for every stop and bus based on real-time data.",
+			highlight: "95% accuracy",
+		},
+	];
+
+	const stats = [
+		{
+			number: "600+",
+			label: "Active Users",
+			sublabel: "and growing daily",
+		},
+		{ number: "12", label: "Bus Routes", sublabel: "fully covered" },
+		{
+			number: "100+",
+			label: "Bus Stops",
+			sublabel: "tracked in real-time",
+		},
+		{ number: "5★", label: "App Rating", sublabel: "on both platforms" },
+	];
+
+	const faqs = [
+		{
+			question: "How accurate is the real-time tracking?",
+			answer: "Our app uses official UofM GPS data from the actual buses to provide real-time updates with 95% accuracy. Location data is updated every 5 seconds for the most current information.",
+		},
+		{
+			question: "Does the app work offline?",
+			answer: "The app currently works only with an internet connection or service to fetch real-time data. However, we are currently working on implementing offline features with stored bus and building data in a future update.",
+		},
+		{
+			question: "Is MaizeBus free to use?",
+			answer: "Yes! MaizeBus is completely free for all University of Michigan students, faculty, and staff. There are no premium features or subscriptions.",
+		},
+		{
+			question: "How do I report issues or suggest features?",
+			answer: "You can contact us through the app's feedback feature or email us at hello@maizebus.org. We actively respond to all user feedback within 24 hours.",
+		},
+	];
+
+	return (
+		<div
+			className="min-h-screen bg-white"
+			style={{ fontFamily: "Urbanist, system-ui, sans-serif" }}
+		>
+			<div className="fixed inset-0 overflow-hidden pointer-events-none">
+				<motion.div
+					className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-[#FFCB05]/20 to-[#FFD700]/10 rounded-full blur-3xl"
+					animate={{
+						x: mousePosition.x * 0.02,
+						y: mousePosition.y * 0.02,
+					}}
+					transition={{ type: "spring", stiffness: 50, damping: 20 }}
+				/>
+				<motion.div
+					className="absolute top-1/2 right-20 w-80 h-80 bg-gradient-to-r from-[#00274C]/10 to-[#003366]/20 rounded-full blur-3xl"
+					animate={{
+						x: mousePosition.x * -0.015,
+						y: mousePosition.y * -0.015,
+					}}
+					transition={{ type: "spring", stiffness: 50, damping: 20 }}
+				/>
+			</div>
+
+			<section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden pt-24">
+				<div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/50 to-[#FFCB05]/5" />
+
+				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16 z-10">
+					<motion.div
+						initial={{ opacity: 0, y: 50 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ duration: 1, ease: [0.25, 0.4, 0.25, 1] }}
+						className="max-w-6xl mx-auto"
+					>
+						<motion.div
+							initial={{ opacity: 0, y: 30 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.8, delay: 0.2 }}
+							className="mb-8"
+						>
+							<h1
+								className="text-6xl lg:text-8xl font-bold mb-6 leading-tight text-[#00274C]"
+								style={{ fontWeight: 700 }}
+							>
+								MaizeBus
+							</h1>
+							<p
+								className="text-3xl lg:text-5xl font-normal mb-6 text-gray-600"
+								style={{ fontWeight: 400 }}
+							>
+								Never miss a bus again.
+							</p>
+							<p
+								className="text-xl lg:text-2xl text-gray-500 max-w-4xl mx-auto leading-relaxed mb-8"
+								style={{ fontWeight: 400 }}
+							>
+								Real-time bus tracking, smart route planning,
+								and campus navigation designed specifically for
+								University of Michigan students.
+							</p>
+						</motion.div>
+
+						<motion.div
+							className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
+							initial={{ opacity: 0, y: 30 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.8, delay: 0.4 }}
+						>
+							<motion.div
+								whileHover={{ scale: 1.05, y: -2 }}
+								whileTap={{ scale: 0.95 }}
+								className="group"
+							>
+								<Button className="bg-gradient-to-r from-[#FFCB05] to-[#FFD700] text-[#00274C] hover:from-[#FFD700] hover:to-[#FFCB05] px-10 py-6 text-lg font-bold rounded-2xl shadow-xl shadow-[#FFCB05]/30 border-0 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-[#FFCB05]/40">
+									<Apple className="mr-3 h-6 w-6" />
+									Download for iOS
+								</Button>
+							</motion.div>
+							<motion.div
+								whileHover={{ scale: 1.05, y: -2 }}
+								whileTap={{ scale: 0.95 }}
+								className="group"
+							>
+								<Button className="bg-[#00274C] text-white hover:bg-[#003366] px-10 py-6 text-lg font-bold rounded-2xl shadow-xl shadow-[#00274C]/20 border-0 transition-all duration-300 group-hover:shadow-2xl">
+									<Smartphone className="mr-3 h-6 w-6" />
+									Download for Android
+								</Button>
+							</motion.div>
+						</motion.div>
+
+						<motion.div
+							initial={{ opacity: 0, y: 50, scale: 0.95 }}
+							animate={{ opacity: 1, y: 0, scale: 1 }}
+							transition={{ duration: 1, delay: 0.6 }}
+							className="flex justify-center relative"
+						>
+							<motion.div
+								className="relative"
+								whileHover={{ y: -10, scale: 1.02 }}
+								transition={{
+									type: "spring",
+									stiffness: 300,
+									damping: 30,
+								}}
+							>
+								<div className="absolute inset-0 bg-gradient-to-r from-[#FFCB05]/20 to-[#00274C]/20 rounded-3xl blur-2xl scale-110" />
+
+								<div className="relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-white/30 shadow-2xl">
+									<img
+										src={exampleImage}
+										alt="MaizeBus App Screenshots"
+										className="max-w-full h-auto rounded-2xl shadow-2xl ring-1 ring-black/5"
+									/>
+
+									<motion.div
+										className="absolute -top-6 -right-6 bg-gradient-to-r from-[#FFCB05] to-[#FFD700] text-[#00274C] px-6 py-3 rounded-full font-bold shadow-2xl shadow-[#FFCB05]/40 border-4 border-white/30"
+										animate={{
+											rotate: [0, 5, 0, -5, 0],
+											scale: [1, 1.05, 1],
+										}}
+										transition={{
+											rotate: {
+												duration: 4,
+												repeat: Infinity,
+												ease: "easeInOut",
+											},
+											scale: {
+												duration: 2,
+												repeat: Infinity,
+												ease: "easeInOut",
+											},
+										}}
+									>
+										<Sparkles className="w-4 h-4 inline mr-2" />
+										Free
+									</motion.div>
+
+									<motion.div
+										className="absolute -top-8 -left-8 bg-gradient-to-r from-white via-gray-50 to-white text-[#00274C] px-6 py-4 rounded-2xl font-bold shadow-2xl border-2 border-[#FFCB05]/30 backdrop-blur-sm"
+										initial={{
+											opacity: 0,
+											scale: 0.85,
+											rotate: -8,
+											y: 20,
+										}}
+										animate={{
+											opacity: 1,
+											scale: 1,
+											rotate: -3,
+											y: 0,
+										}}
+										transition={{
+											duration: 1.2,
+											delay: 1.2,
+											ease: [0.25, 0.4, 0.25, 1],
+											type: "spring",
+											stiffness: 100,
+											damping: 15,
+										}}
+										whileHover={{
+											scale: 1.05,
+											rotate: 0,
+											y: -3,
+											transition: {
+												type: "spring",
+												stiffness: 400,
+												damping: 25,
+												mass: 0.8,
+											},
+										}}
+									>
+										<div className="flex items-center space-x-3">
+											<div className="w-8 h-8 bg-gradient-to-br from-[#FFCB05] to-[#FFD700] rounded-lg flex items-center justify-center">
+												<Newspaper className="w-4 h-4 text-[#00274C]" />
+											</div>
+											<div>
+												<div
+													className="text-xs text-gray-600 uppercase tracking-wide"
+													style={{ fontWeight: 400 }}
+												>
+													Featured in
+												</div>
+												<div
+													className="text-sm font-bold"
+													style={{ fontWeight: 700 }}
+												>
+													The Michigan Daily
+												</div>
+											</div>
+										</div>
+
+										<motion.div
+											className="absolute -top-1 -right-1 w-3 h-3 bg-[#FFCB05] rounded-full"
+											animate={{
+												scale: [1, 1.3, 1],
+												opacity: [0.7, 1, 0.7],
+											}}
+											transition={{
+												duration: 3,
+												repeat: Infinity,
+												ease: [0.4, 0, 0.6, 1],
+												repeatType: "mirror",
+											}}
+										/>
+									</motion.div>
+								</div>
+							</motion.div>
+						</motion.div>
+					</motion.div>
+				</div>
+			</section>
+
+			<section className="py-32 relative overflow-hidden">
+				<div className="absolute inset-0 bg-gray-50" />
+
+				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+					<motion.div
+						initial={{ opacity: 0, y: 50 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 1 }}
+						viewport={{ once: true }}
+						className="text-center mb-20"
+					>
+						<h2
+							className="text-5xl lg:text-7xl font-bold text-[#00274C] mb-6"
+							style={{ fontWeight: 700 }}
+						>
+							By the numbers
+						</h2>
+						<p
+							className="text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto"
+							style={{ fontWeight: 400 }}
+						>
+							Trusted by thousands of Michigan students every day.
+						</p>
+					</motion.div>
+
+					<div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+						{stats.map((stat, index) => (
+							<motion.div
+								key={stat.label}
+								initial={{ opacity: 0, y: 30 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								transition={{
+									duration: 0.8,
+									delay: index * 0.15,
+								}}
+								viewport={{ once: true }}
+								className="text-center"
+							>
+								<div
+									className="text-5xl lg:text-6xl font-bold text-[#00274C] mb-3"
+									style={{ fontWeight: 700 }}
+								>
+									{stat.number}
+								</div>
+								<div
+									className="text-xl font-bold text-gray-700 mb-1"
+									style={{ fontWeight: 700 }}
+								>
+									{stat.label}
+								</div>
+								<div
+									className="text-lg text-gray-500"
+									style={{ fontWeight: 400 }}
+								>
+									{stat.sublabel}
+								</div>
+							</motion.div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section className="py-32 relative overflow-hidden">
+				<div className="absolute inset-0 bg-white" />
+
+				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+					<motion.div
+						initial={{ opacity: 0, y: 50 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 1 }}
+						viewport={{ once: true }}
+						className="text-center mb-20"
+					>
+						<h2
+							className="text-5xl lg:text-7xl font-bold text-[#00274C] mb-6"
+							style={{ fontWeight: 700 }}
+						>
+							Designed for students.
+						</h2>
+						<p
+							className="text-xl lg:text-2xl text-gray-600 max-w-4xl mx-auto"
+							style={{ fontWeight: 400 }}
+						>
+							Every feature is thoughtfully crafted to make your
+							campus travel effortless and reliable.
+						</p>
+					</motion.div>
+
+					<div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+						{features.map((feature, index) => (
+							<motion.div
+								key={feature.title}
+								initial={{ opacity: 0, y: 50 }}
+								whileInView={{ opacity: 1, y: 0 }}
+								transition={{
+									duration: 0.8,
+									delay: index * 0.15,
+								}}
+								viewport={{ once: true }}
+								className="group"
+							>
+								<SpotlightCard
+									className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 bg-gray-50/80 backdrop-blur-sm rounded-3xl overflow-hidden"
+									spotlightColor="rgba(0, 229, 255, 0.2)"
+								>
+									<CardContent className="p-10">
+										<div className="flex items-center mb-6">
+											<div className="w-16 h-16 bg-gradient-to-br from-[#FFCB05] to-[#FFD700] rounded-2xl flex items-center justify-center text-[#00274C] shadow-lg mr-4">
+												{feature.icon}
+											</div>
+											<Badge
+												className="bg-[#00274C]/10 text-[#00274C] px-3 py-1 rounded-full border-0"
+												style={{ fontWeight: 700 }}
+											>
+												{feature.highlight}
+											</Badge>
+										</div>
+										<h3
+											className="text-2xl font-bold text-[#00274C] mb-4"
+											style={{ fontWeight: 700 }}
+										>
+											{feature.title}
+										</h3>
+										<p
+											className="text-lg text-gray-600 leading-relaxed"
+											style={{ fontWeight: 400 }}
+										>
+											{feature.description}
+										</p>
+									</CardContent>
+								</SpotlightCard>
+							</motion.div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section className="py-32 relative overflow-hidden">
+				<div className="absolute inset-0 bg-gradient-to-br from-[#00274C] to-[#003366]" />
+
+				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
+					<motion.div
+						initial={{ opacity: 0, y: 50 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 1 }}
+						viewport={{ once: true }}
+						className="max-w-5xl mx-auto"
+					>
+						<h2
+							className="text-5xl lg:text-7xl font-bold mb-8"
+							style={{ fontWeight: 700 }}
+						>
+							Built by students,{" "}
+							<span className="bg-gradient-to-r from-[#FFCB05] via-[#FFD700] to-[#FFCB05] bg-clip-text text-transparent">
+								for students.
+							</span>
+						</h2>
+
+						<p
+							className="text-xl lg:text-2xl text-gray-200 mb-12 leading-relaxed max-w-4xl mx-auto"
+							style={{ fontWeight: 400 }}
+						>
+							We're a passionate team of University of Michigan
+							students who were tired of missing buses and getting
+							lost on campus. MaizeBus is our solution to make
+							campus navigation effortless for every Wolverine.
+						</p>
+
+						<motion.div
+							className="flex justify-center items-center space-x-6"
+							initial={{ opacity: 0, y: 30 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.8, delay: 0.3 }}
+							viewport={{ once: true }}
+						>
+							<div className="flex -space-x-3">
+								{[1, 2, 3, 4, 5].map((i) => (
+									<motion.div
+										key={i}
+										className="w-14 h-14 bg-gradient-to-br from-[#FFCB05] to-[#FFD700] rounded-full border-4 border-white flex items-center justify-center shadow-lg"
+										whileHover={{
+											scale: 1.1,
+											y: -2,
+											transition: {
+												type: "spring",
+												stiffness: 300,
+												damping: 20,
+											},
+										}}
+										initial={{ opacity: 0, scale: 0 }}
+										whileInView={{ opacity: 1, scale: 1 }}
+										transition={{
+											duration: 0.5,
+											delay: 0.5 + i * 0.1,
+										}}
+										viewport={{ once: true }}
+									>
+										<Users className="h-6 w-6 text-[#00274C]" />
+									</motion.div>
+								))}
+							</div>
+							<span
+								className="text-lg font-bold"
+								style={{ fontWeight: 700 }}
+							>
+								25+ Student Developers
+							</span>
+						</motion.div>
+					</motion.div>
+				</div>
+			</section>
+
+			<section className="py-32 relative overflow-hidden">
+				<div className="absolute inset-0 bg-gray-50" />
+
+				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
+					<motion.div
+						initial={{ opacity: 0, y: 50 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 1 }}
+						viewport={{ once: true }}
+						className="text-center mb-20"
+					>
+						<h2
+							className="text-5xl lg:text-7xl font-bold text-[#00274C] mb-6"
+							style={{ fontWeight: 700 }}
+						>
+							Questions?
+						</h2>
+						<p
+							className="text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto"
+							style={{ fontWeight: 400 }}
+						>
+							Here are the answers to the most common questions
+							about MaizeBus.
+						</p>
+					</motion.div>
+
+					<motion.div
+						initial={{ opacity: 0, y: 50 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 0.8, delay: 0.2 }}
+						viewport={{ once: true }}
+						className="max-w-4xl mx-auto"
+					>
+						<Accordion
+							type="single"
+							collapsible
+							className="space-y-6"
+						>
+							{faqs.map((faq, index) => (
+								<motion.div
+									key={index}
+									initial={{ opacity: 0, x: -20 }}
+									whileInView={{ opacity: 1, x: 0 }}
+									transition={{
+										duration: 0.6,
+										delay: index * 0.1,
+									}}
+									viewport={{ once: true }}
+									className="group"
+								>
+									<AccordionItem
+										value={`item-${index}`}
+										className="border-0 bg-white/80 backdrop-blur-sm rounded-2xl px-8 py-2 shadow-lg hover:shadow-xl transition-all duration-500"
+									>
+										<AccordionTrigger
+											className="text-[#00274C] hover:text-[#FFCB05] transition-all duration-300 text-left text-xl py-6"
+											style={{ fontWeight: 700 }}
+										>
+											{faq.question}
+										</AccordionTrigger>
+										<AccordionContent
+											className="text-gray-600 leading-relaxed text-lg pb-6"
+											style={{ fontWeight: 400 }}
+										>
+											{faq.answer}
+										</AccordionContent>
+									</AccordionItem>
+								</motion.div>
+							))}
+						</Accordion>
+					</motion.div>
+				</div>
+			</section>
+
+			<section className="py-32 relative overflow-hidden">
+				<div className="absolute inset-0 bg-white" />
+
+				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+					<motion.div
+						initial={{ opacity: 0, y: 50 }}
+						whileInView={{ opacity: 1, y: 0 }}
+						transition={{ duration: 1 }}
+						viewport={{ once: true }}
+						className="max-w-5xl mx-auto"
+					>
+						<h2
+							className="text-5xl lg:text-7xl font-bold text-[#00274C] mb-8"
+							style={{ fontWeight: 700 }}
+						>
+							Ready to revolutionize{" "}
+							<span className="bg-gradient-to-r from-[#FFCB05] via-[#FFD700] to-[#FFCB05] bg-clip-text text-transparent">
+								your commute?
+							</span>
+						</h2>
+
+						<p
+							className="text-xl lg:text-2xl text-gray-600 mb-16 max-w-4xl mx-auto"
+							style={{ fontWeight: 400 }}
+						>
+							Join thousands of Michigan students who never miss a
+							bus. Download MaizeBus today.
+						</p>
+
+						<motion.div
+							className="flex flex-col sm:flex-row gap-6 justify-center"
+							initial={{ opacity: 0, y: 30 }}
+							whileInView={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.8, delay: 0.3 }}
+							viewport={{ once: true }}
+						>
+							<motion.div
+								whileHover={{ scale: 1.05, y: -5 }}
+								whileTap={{ scale: 0.95 }}
+								className="group"
+							>
+								<Button className="bg-gradient-to-r from-[#FFCB05] to-[#FFD700] text-[#00274C] hover:from-[#FFD700] hover:to-[#FFCB05] px-12 py-8 text-xl font-bold shadow-2xl shadow-[#FFCB05]/30 border-0 transition-all duration-500 rounded-2xl">
+									<Apple className="mr-3 h-6 w-6" />
+									Download for iOS
+								</Button>
+							</motion.div>
+							<motion.div
+								whileHover={{ scale: 1.05, y: -5 }}
+								whileTap={{ scale: 0.95 }}
+								ß
+								className="group"
+							>
+								<Button className="bg-gradient-to-r from-[#FFCB05] to-[#FFD700] text-[#00274C] hover:from-[#FFD700] hover:to-[#FFCB05] px-12 py-8 text-xl font-bold shadow-2xl shadow-[#FFCB05]/30 border-0 transition-all duration-500 rounded-2xl">
+									<Smartphone className="mr-3 h-6 w-6" />
+									Download for Android
+								</Button>
+							</motion.div>
+						</motion.div>
+					</motion.div>
+				</div>
+			</section>
+		</div>
+	);
+}

@@ -1,0 +1,266 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  transition: all 0.5s ease;
+  border-bottom: 1px solid transparent;
+}
+
+.navbar-scrolled {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+}
+
+.logo-icon {
+  background: linear-gradient(135deg, var(--maize), #FFD700);
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px -5px rgba(255, 203, 5, 0.25);
+  transition: all 0.3s ease;
+}
+
+.navbar-logo:hover .logo-icon {
+  box-shadow: 0 10px 25px -5px rgba(255, 203, 5, 0.4);
+}
+
+.logo-text {
+  transition: transform 0.3s ease;
+}
+
+.navbar-logo:hover .logo-text {
+  transform: translateX(0.25rem);
+}
+
+.logo-maize {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--michigan-blue), #003366);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.logo-bus {
+  font-size: 1.25rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--maize), #FFD700);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Navigation Items */
+.nav-item {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.nav-item-active {
+  color: white;
+  background: linear-gradient(135deg, var(--michigan-blue), #003366);
+  box-shadow: 0 10px 25px -5px rgba(0, 39, 76, 0.25);
+}
+
+.nav-item-inactive {
+  color: var(--michigan-blue);
+}
+
+.nav-item-inactive:hover {
+  color: white;
+  background: linear-gradient(135deg, var(--maize), #FFD700);
+  box-shadow: 0 10px 25px -5px rgba(255, 203, 5, 0.25);
+}
+
+.nav-item-background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 203, 5, 0), rgba(255, 215, 0, 0));
+  border-radius: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.nav-item:hover .nav-item-background {
+  background: linear-gradient(135deg, var(--maize), #FFD700);
+}
+
+/* User Avatar */
+.user-avatar {
+  height: 2.5rem;
+  width: 2.5rem;
+  cursor: pointer;
+  ring: 2px solid rgba(255, 203, 5, 0.3);
+  transition: all 0.3s ease;
+}
+
+.user-avatar:hover {
+  ring: 2px solid rgba(255, 203, 5, 0.6);
+}
+
+.user-avatar-fallback {
+  background: linear-gradient(135deg, var(--maize), #FFD700);
+  color: var(--michigan-blue);
+  font-weight: 700;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  width: 14rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Auth Buttons */
+.auth-button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.auth-button-login {
+  color: var(--michigan-blue);
+}
+
+.auth-button-login:hover {
+  color: white;
+  background: linear-gradient(135deg, var(--maize), #FFD700);
+}
+
+.auth-button-signup {
+  background: linear-gradient(135deg, var(--michigan-blue), #003366);
+  color: white;
+  box-shadow: 0 10px 25px -5px rgba(0, 39, 76, 0.25);
+}
+
+.auth-button-signup:hover {
+  background: linear-gradient(135deg, #003366, var(--michigan-blue));
+}
+
+/* Mobile Styles */
+.mobile-menu-button {
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, rgba(255, 203, 5, 0.1), rgba(255, 215, 0, 0.1));
+  border: 1px solid rgba(255, 203, 5, 0.2);
+  transition: all 0.3s ease;
+}
+
+.mobile-menu-button:hover {
+  background: linear-gradient(135deg, rgba(255, 203, 5, 0.2), rgba(255, 215, 0, 0.2));
+  border: 1px solid rgba(255, 203, 5, 0.4);
+}
+
+.mobile-sheet {
+  width: 20rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(16px);
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.mobile-user-info {
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(255, 203, 5, 0.1), rgba(255, 215, 0, 0.1));
+  border-radius: 0.75rem;
+  border: 1px solid rgba(255, 203, 5, 0.2);
+}
+
+.mobile-nav-item {
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  text-align: left;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.mobile-nav-item-active {
+  color: white;
+  background: linear-gradient(135deg, var(--michigan-blue), #003366);
+  box-shadow: 0 10px 25px -5px rgba(0, 39, 76, 0.25);
+}
+
+.mobile-nav-item-inactive {
+  color: var(--michigan-blue);
+}
+
+.mobile-nav-item-inactive:hover {
+  color: white;
+  background: linear-gradient(135deg, var(--maize), #FFD700);
+  box-shadow: 0 10px 25px -5px rgba(255, 203, 5, 0.25);
+}
+
+.mobile-auth-button {
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  text-align: left;
+  font-weight: 500;
+  color: var(--michigan-blue);
+  transition: all 0.3s ease;
+}
+
+.mobile-auth-button:hover {
+  color: white;
+  background: linear-gradient(135deg, var(--maize), #FFD700);
+}
+
+.mobile-logout-button {
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  text-align: left;
+  font-weight: 500;
+  color: #dc2626;
+  transition: all 0.3s ease;
+}
+
+.mobile-logout-button:hover {
+  background: #fee2e2;
+}
+
+.mobile-auth-button-full {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.mobile-login-button {
+  color: var(--michigan-blue);
+}
+
+.mobile-login-button:hover {
+  color: white;
+  background: linear-gradient(135deg, var(--maize), #FFD700);
+}
+
+.mobile-signup-button {
+  background: linear-gradient(135deg, var(--michigan-blue), #003366);
+  color: white;
+  box-shadow: 0 10px 25px -5px rgba(0, 39, 76, 0.25);
+}
+
+.mobile-signup-button:hover {
+  background: linear-gradient(135deg, #003366, var(--michigan-blue));
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .logo-maize,
+  .logo-bus {
+    font-size: 1.125rem;
+  }
+}
