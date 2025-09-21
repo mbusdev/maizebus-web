@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;700;800&display=swap');
 @import "tailwindcss";
 @import "tw-animate-css";
 
@@ -7,19 +7,19 @@
 :root {
   --font-size: 16px;
   --background: #ffffff;
-  --foreground: #00274C;
+  --foreground: #0b5394;
   --card: #ffffff;
-  --card-foreground: #00274C;
+  --card-foreground: #0b5394;
   --popover: #ffffff;
-  --popover-foreground: #00274C;
-  --primary: #00274C;
+  --popover-foreground: #0b5394;
+  --primary: #0b5394;
   --primary-foreground: #ffffff;
-  --secondary: #FFCB05;
-  --secondary-foreground: #00274C;
+  --secondary: #F1C232;
+  --secondary-foreground: #0b5394;
   --muted: #f8f9fa;
   --muted-foreground: #6c757d;
-  --accent: #FFCB05;
-  --accent-foreground: #00274C;
+  --accent: #F1C232;
+  --accent-foreground: #0b5394;
   --destructive: #dc3545;
   --destructive-foreground: #ffffff;
   --border: rgba(0, 39, 76, 0.15);
@@ -28,24 +28,25 @@
   --switch-background: #dee2e6;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: #FFCB05;
-  --chart-1: #00274C;
-  --chart-2: #FFCB05;
+  --ring: #F1C232;
+  --chart-1: #0b5394;
+  --chart-2: #F1C232;
   --chart-3: #007bff;
   --chart-4: #6f42c1;
   --chart-5: #20c997;
   --radius: 0.625rem;
   --sidebar: #f8f9fa;
-  --sidebar-foreground: #00274C;
-  --sidebar-primary: #00274C;
+  --sidebar-foreground: #0b5394;
+  --sidebar-primary: #0b5394;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #FFCB05;
-  --sidebar-accent-foreground: #00274C;
+  --sidebar-accent: #F1C232;
+  --sidebar-accent-foreground: #0b5394;
   --sidebar-border: rgba(0, 39, 76, 0.15);
-  --sidebar-ring: #FFCB05;
+  --sidebar-ring: #F1C232;
   
-  --maize: #FFCB05;
+  --maize: #F1C232;
   --michigan-blue: #00274C;
+  --maizebus-blue: #0b5394;
   --light-blue: #007bff;
 }
 
@@ -209,25 +210,25 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #FFCB05, #FFD700);
+  background: linear-gradient(to bottom, #F1C232, #FFD700);
   border-radius: 6px;
   border: 2px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 2px 4px rgba(0, 39, 76, 0.1);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, #FFD700, #FFCB05);
+  background: linear-gradient(to bottom, #FFD700, #F1C232);
   border: 2px solid rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 8px rgba(0, 39, 76, 0.15);
 }
 
 ::-webkit-scrollbar-thumb:active {
-  background: linear-gradient(to bottom, #E6B800, #FFCB05);
+  background: linear-gradient(to bottom, #E6B800, #F1C232);
 }
 
 html {
   scrollbar-width: auto;
-  scrollbar-color: #FFCB05 rgba(0, 39, 76, 0.08);
+  scrollbar-color: #F1C232 rgba(0, 39, 76, 0.08);
 }
 
 .glass {

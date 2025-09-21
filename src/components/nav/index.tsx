@@ -111,9 +111,9 @@ export function Navbar({ user }: NavbarProps) {
 							>
 								<MapPin className="h-6 w-6 text-[#00274C]" />
 							</motion.div>
-							<div className="logo-text">
-								<span className="logo-maize">Maize</span>
-								<span className="logo-bus">Bus</span>
+							<div className="logo-text font-extrabold">
+								<span className="text-[#f1c232]">maize</span> 
+								<span className="text-[#0b5394]">bus</span> 
 							</div>
 						</motion.div>
 					</Link>

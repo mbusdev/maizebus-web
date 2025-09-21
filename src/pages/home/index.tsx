@@ -106,7 +106,7 @@ export function Home() {
 		>
 			<div className="fixed inset-0 overflow-hidden pointer-events-none">
 				<motion.div
-					className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-[#FFCB05]/20 to-[#FFD700]/10 rounded-full blur-3xl"
+					className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-[#f1c232]/20 to-[#FFD700]/10 rounded-full blur-3xl"
 					animate={{
 						x: mousePosition.x * 0.02,
 						y: mousePosition.y * 0.02,
@@ -114,7 +114,7 @@ export function Home() {
 					transition={{ type: "spring", stiffness: 50, damping: 20 }}
 				/>
 				<motion.div
-					className="absolute top-1/2 right-20 w-80 h-80 bg-gradient-to-r from-[#00274C]/10 to-[#003366]/20 rounded-full blur-3xl"
+					className="absolute top-1/2 right-20 w-80 h-80 bg-gradient-to-r from-[#0b5394]/10 to-[#003366]/20 rounded-full blur-3xl"
 					animate={{
 						x: mousePosition.x * -0.015,
 						y: mousePosition.y * -0.015,
@@ -124,7 +124,7 @@ export function Home() {
 			</div>
 
 			<section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden pt-24">
-				<div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/50 to-[#FFCB05]/5" />
+				<div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/50 to-[#f1c232]/5" />
 
 				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16 z-10">
 					<motion.div
@@ -140,24 +140,16 @@ export function Home() {
 							className="mb-8"
 						>
 							<h1
-								className="text-6xl lg:text-8xl font-bold mb-6 leading-tight text-[#00274C]"
+								className="text-6xl lg:text-7xl font-bold mb-6 leading-tight text-[#0b5394]"
 								style={{ fontWeight: 700 }}
 							>
-								MaizeBus
+								introducing maizebus
 							</h1>
-							<p
-								className="text-3xl lg:text-5xl font-normal mb-6 text-gray-600"
-								style={{ fontWeight: 400 }}
-							>
-								Never miss a bus again.
-							</p>
 							<p
 								className="text-xl lg:text-2xl text-gray-500 max-w-4xl mx-auto leading-relaxed mb-8"
 								style={{ fontWeight: 400 }}
 							>
-								Real-time bus tracking, smart route planning,
-								and campus navigation designed specifically for
-								University of Michigan students.
+								Real-time buses, buildings, directions, bus stops - all a search away.
 							</p>
 						</motion.div>
 
@@ -172,7 +164,7 @@ export function Home() {
 								whileTap={{ scale: 0.95 }}
 								className="group"
 							>
-								<Button className="bg-gradient-to-r from-[#FFCB05] to-[#FFD700] text-[#00274C] hover:from-[#FFD700] hover:to-[#FFCB05] px-10 py-6 text-lg font-bold rounded-2xl shadow-xl shadow-[#FFCB05]/30 border-0 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-[#FFCB05]/40">
+								<Button className="bg-gradient-to-r from-[#f1c232] to-[#FFD700] text-[#0b5394] hover:from-[#FFD700] hover:to-[#f1c232] px-10 py-6 text-lg font-bold rounded-2xl shadow-xl shadow-[#f1c232]/30 border-0 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-[#f1c232]/40">
 									<Apple className="mr-3 h-6 w-6" />
 									Download for iOS
 								</Button>
@@ -182,7 +174,7 @@ export function Home() {
 								whileTap={{ scale: 0.95 }}
 								className="group"
 							>
-								<Button className="bg-[#00274C] text-white hover:bg-[#003366] px-10 py-6 text-lg font-bold rounded-2xl shadow-xl shadow-[#00274C]/20 border-0 transition-all duration-300 group-hover:shadow-2xl">
+								<Button className="bg-[#0b5394] text-white hover:bg-[#003366] px-10 py-6 text-lg font-bold rounded-2xl shadow-xl shadow-[#0b5394]/20 border-0 transition-all duration-300 group-hover:shadow-2xl">
 									<Smartphone className="mr-3 h-6 w-6" />
 									Download for Android
 								</Button>
@@ -204,7 +196,7 @@ export function Home() {
 									damping: 30,
 								}}
 							>
-								<div className="absolute inset-0 bg-gradient-to-r from-[#FFCB05]/20 to-[#00274C]/20 rounded-3xl blur-2xl scale-110" />
+								<div className="absolute inset-0 bg-gradient-to-r from-[#f1c232]/20 to-[#0b5394]/20 rounded-3xl blur-2xl scale-110" />
 
 								<div className="relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-white/30 shadow-2xl">
 									<img
@@ -214,7 +206,7 @@ export function Home() {
 									/>
 
 									<motion.div
-										className="absolute -top-6 -right-6 bg-gradient-to-r from-[#FFCB05] to-[#FFD700] text-[#00274C] px-6 py-3 rounded-full font-bold shadow-2xl shadow-[#FFCB05]/40 border-4 border-white/30"
+										className="absolute -top-6 -right-6 bg-gradient-to-r from-[#f1c232] to-[#FFD700] text-[#0b5394] px-6 py-3 rounded-full font-bold shadow-2xl shadow-[#f1c232]/40 border-4 border-white/30"
 										animate={{
 											rotate: [0, 5, 0, -5, 0],
 											scale: [1, 1.05, 1],
@@ -237,7 +229,7 @@ export function Home() {
 									</motion.div>
 
 									<motion.div
-										className="absolute -top-8 -left-8 bg-gradient-to-r from-white via-gray-50 to-white text-[#00274C] px-6 py-4 rounded-2xl font-bold shadow-2xl border-2 border-[#FFCB05]/30 backdrop-blur-sm"
+										className="absolute -top-8 -left-8 bg-gradient-to-r from-white via-gray-50 to-white text-[#0b5394] px-6 py-4 rounded-2xl font-bold shadow-2xl border-2 border-[#f1c232]/30 backdrop-blur-sm"
 										initial={{
 											opacity: 0,
 											scale: 0.85,
@@ -271,8 +263,8 @@ export function Home() {
 										}}
 									>
 										<div className="flex items-center space-x-3">
-											<div className="w-8 h-8 bg-gradient-to-br from-[#FFCB05] to-[#FFD700] rounded-lg flex items-center justify-center">
-												<Newspaper className="w-4 h-4 text-[#00274C]" />
+											<div className="w-8 h-8 bg-gradient-to-br from-[#f1c232] to-[#FFD700] rounded-lg flex items-center justify-center">
+												<Newspaper className="w-4 h-4 text-[#0b5394]" />
 											</div>
 											<div>
 												<div
@@ -291,7 +283,7 @@ export function Home() {
 										</div>
 
 										<motion.div
-											className="absolute -top-1 -right-1 w-3 h-3 bg-[#FFCB05] rounded-full"
+											className="absolute -top-1 -right-1 w-3 h-3 bg-[#f1c232] rounded-full"
 											animate={{
 												scale: [1, 1.3, 1],
 												opacity: [0.7, 1, 0.7],
@@ -323,7 +315,7 @@ export function Home() {
 						className="text-center mb-20"
 					>
 						<h2
-							className="text-5xl lg:text-7xl font-bold text-[#00274C] mb-6"
+							className="text-5xl lg:text-7xl font-bold text-[#0b5394] mb-6"
 							style={{ fontWeight: 700 }}
 						>
 							By the numbers
@@ -350,7 +342,7 @@ export function Home() {
 								className="text-center"
 							>
 								<div
-									className="text-5xl lg:text-6xl font-bold text-[#00274C] mb-3"
+									className="text-5xl lg:text-6xl font-bold text-[#0b5394] mb-3"
 									style={{ fontWeight: 700 }}
 								>
 									{stat.number}
@@ -385,7 +377,7 @@ export function Home() {
 						className="text-center mb-20"
 					>
 						<h2
-							className="text-5xl lg:text-7xl font-bold text-[#00274C] mb-6"
+							className="text-5xl lg:text-7xl font-bold text-[#0b5394] mb-6"
 							style={{ fontWeight: 700 }}
 						>
 							Designed for students.
@@ -418,18 +410,18 @@ export function Home() {
 								>
 									<CardContent className="p-10">
 										<div className="flex items-center mb-6">
-											<div className="w-16 h-16 bg-gradient-to-br from-[#FFCB05] to-[#FFD700] rounded-2xl flex items-center justify-center text-[#00274C] shadow-lg mr-4">
+											<div className="w-16 h-16 bg-gradient-to-br from-[#f1c232] to-[#FFD700] rounded-2xl flex items-center justify-center text-[#0b5394] shadow-lg mr-4">
 												{feature.icon}
 											</div>
 											<Badge
-												className="bg-[#00274C]/10 text-[#00274C] px-3 py-1 rounded-full border-0"
+												className="bg-[#0b5394]/10 text-[#0b5394] px-3 py-1 rounded-full border-0"
 												style={{ fontWeight: 700 }}
 											>
 												{feature.highlight}
 											</Badge>
 										</div>
 										<h3
-											className="text-2xl font-bold text-[#00274C] mb-4"
+											className="text-2xl font-bold text-[#0b5394] mb-4"
 											style={{ fontWeight: 700 }}
 										>
 											{feature.title}
@@ -449,7 +441,7 @@ export function Home() {
 			</section>
 
 			<section className="py-32 relative overflow-hidden">
-				<div className="absolute inset-0 bg-gradient-to-br from-[#00274C] to-[#003366]" />
+				<div className="absolute inset-0 bg-gradient-to-br from-[#0b5394] to-[#003366]" />
 
 				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
 					<motion.div
@@ -464,7 +456,7 @@ export function Home() {
 							style={{ fontWeight: 700 }}
 						>
 							Built by students,{" "}
-							<span className="bg-gradient-to-r from-[#FFCB05] via-[#FFD700] to-[#FFCB05] bg-clip-text text-transparent">
+							<span className="bg-gradient-to-r from-[#f1c232] via-[#FFD700] to-[#f1c232] bg-clip-text text-transparent">
 								for students.
 							</span>
 						</h2>
@@ -490,7 +482,7 @@ export function Home() {
 								{[1, 2, 3, 4, 5].map((i) => (
 									<motion.div
 										key={i}
-										className="w-14 h-14 bg-gradient-to-br from-[#FFCB05] to-[#FFD700] rounded-full border-4 border-white flex items-center justify-center shadow-lg"
+										className="w-14 h-14 bg-gradient-to-br from-[#f1c232] to-[#FFD700] rounded-full border-4 border-white flex items-center justify-center shadow-lg"
 										whileHover={{
 											scale: 1.1,
 											y: -2,
@@ -508,7 +500,7 @@ export function Home() {
 										}}
 										viewport={{ once: true }}
 									>
-										<Users className="h-6 w-6 text-[#00274C]" />
+										<Users className="h-6 w-6 text-[#0b5394]" />
 									</motion.div>
 								))}
 							</div>
@@ -535,7 +527,7 @@ export function Home() {
 						className="text-center mb-20"
 					>
 						<h2
-							className="text-5xl lg:text-7xl font-bold text-[#00274C] mb-6"
+							className="text-5xl lg:text-7xl font-bold text-[#0b5394] mb-6"
 							style={{ fontWeight: 700 }}
 						>
 							Questions?
@@ -578,7 +570,7 @@ export function Home() {
 										className="border-0 bg-white/80 backdrop-blur-sm rounded-2xl px-8 py-2 shadow-lg hover:shadow-xl transition-all duration-500"
 									>
 										<AccordionTrigger
-											className="text-[#00274C] hover:text-[#FFCB05] transition-all duration-300 text-left text-xl py-6"
+											className="text-[#0b5394] hover:text-[#f1c232] transition-all duration-300 text-left text-xl py-6"
 											style={{ fontWeight: 700 }}
 										>
 											{faq.question}
@@ -609,11 +601,11 @@ export function Home() {
 						className="max-w-5xl mx-auto"
 					>
 						<h2
-							className="text-5xl lg:text-7xl font-bold text-[#00274C] mb-8"
+							className="text-5xl lg:text-7xl font-bold text-[#0b5394] mb-8"
 							style={{ fontWeight: 700 }}
 						>
 							Ready to revolutionize{" "}
-							<span className="bg-gradient-to-r from-[#FFCB05] via-[#FFD700] to-[#FFCB05] bg-clip-text text-transparent">
+							<span className="bg-gradient-to-r from-[#f1c232] via-[#FFD700] to-[#f1c232] bg-clip-text text-transparent">
 								your commute?
 							</span>
 						</h2>
@@ -638,7 +630,7 @@ export function Home() {
 								whileTap={{ scale: 0.95 }}
 								className="group"
 							>
-								<Button className="bg-gradient-to-r from-[#FFCB05] to-[#FFD700] text-[#00274C] hover:from-[#FFD700] hover:to-[#FFCB05] px-12 py-8 text-xl font-bold shadow-2xl shadow-[#FFCB05]/30 border-0 transition-all duration-500 rounded-2xl">
+								<Button className="bg-gradient-to-r from-[#f1c232] to-[#FFD700] text-[#0b5394] hover:from-[#FFD700] hover:to-[#f1c232] px-12 py-8 text-xl font-bold shadow-2xl shadow-[#f1c232]/30 border-0 transition-all duration-500 rounded-2xl">
 									<Apple className="mr-3 h-6 w-6" />
 									Download for iOS
 								</Button>
@@ -648,7 +640,7 @@ export function Home() {
 								whileTap={{ scale: 0.95 }}
 								className="group"
 							>
-								<Button className="bg-gradient-to-r from-[#FFCB05] to-[#FFD700] text-[#00274C] hover:from-[#FFD700] hover:to-[#FFCB05] px-12 py-8 text-xl font-bold shadow-2xl shadow-[#FFCB05]/30 border-0 transition-all duration-500 rounded-2xl">
+								<Button className="bg-gradient-to-r from-[#f1c232] to-[#FFD700] text-[#0b5394] hover:from-[#FFD700] hover:to-[#f1c232] px-12 py-8 text-xl font-bold shadow-2xl shadow-[#f1c232]/30 border-0 transition-all duration-500 rounded-2xl">
 									<Smartphone className="mr-3 h-6 w-6" />
 									Download for Android
 								</Button>
