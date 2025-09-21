@@ -59,7 +59,7 @@ export function Navbar({ user }: NavbarProps) {
 	const navItems = [
 		{ name: "Home", path: "/" },
 		// { name: "Bus Tracker", path: "/tracker" },
-		{ name: "About", path: "/about" },
+		{ name: "Team", path: "/team" },
 		{ name: "Join", path: "/join" },
 		{ name: "Contact", path: "/contact" },
 	];

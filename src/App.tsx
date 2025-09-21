@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router";
 import { AnimatePresence } from "motion/react";
 
 import { Home } from "@/pages/home";
-import About from "@/pages/about";
+import { Team } from "@/pages/team";
 import Contact from "@/pages/contact";
 import { Navbar } from "@/components/nav";
 import Dashboard from "@/pages/dashboard";
@@ -46,7 +46,7 @@ function AppContent() {
 				<AnimatePresence mode="wait">
 					<Routes location={location} key={location.pathname}>
 						<Route path="/" element={<Home />} />
-						<Route path="/about" element={<About />} />
+						<Route path="/team" element={<Team />} />
 						<Route path="/contact" element={<Contact />} />
 						<Route path="/dashboard" element={<Dashboard />} />
 						<Route path="/join" element={<Join />} />
