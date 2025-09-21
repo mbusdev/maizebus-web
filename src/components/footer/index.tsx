@@ -29,11 +29,11 @@ const Footer = () => {
 								<MapPin className="h-6 w-6 text-[#00274C]" />
 							</motion.div>
 							<div>
-								<span className="text-2xl font-bold">
-									Maize
+								<span className="text-2xl font-extrabold">
+									maize
 								</span>
-								<span className="text-2xl font-bold bg-gradient-to-r from-[#FFCB05] to-[#FFD700] bg-clip-text text-transparent">
-									Bus
+								<span className="text-2xl font-extrabold bg-gradient-to-r from-[#FFCB05] to-[#FFD700] bg-clip-text text-transparent">
+									bus
 								</span>
 							</div>
 						</div>

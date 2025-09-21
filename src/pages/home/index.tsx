@@ -143,7 +143,7 @@ export function Home() {
 								className="text-6xl lg:text-7xl font-bold mb-6 leading-tight text-[#0b5394]"
 								style={{ fontWeight: 700 }}
 							>
-								introducing maizebus
+								never miss a bus again
 							</h1>
 							<p
 								className="text-xl lg:text-2xl text-gray-500 max-w-4xl mx-auto leading-relaxed mb-8"
