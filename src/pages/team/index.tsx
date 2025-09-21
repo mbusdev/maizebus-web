@@ -135,10 +135,9 @@ export function Team() {
 				>
 					<div className="about-hero-icon">
 						<motion.div
-							className="about-logo-icon"
+							className=""
 							whileHover={{ scale: 1.05, rotate: 5 }}
 						>
-							<MapPin className="h-8 w-8 text-[#00274C]" />
 						</motion.div>
 						<div className="about-logo-text">
 							<span className="about-logo-maize">Maize</span>

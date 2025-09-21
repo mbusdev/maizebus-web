@@ -80,14 +80,14 @@
 
 .about-logo-text {
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
 	align-items: flex-start;
 }
 
 .about-logo-maize {
 	font-size: 2.5rem;
 	font-weight: 700;
-	background: linear-gradient(135deg, var(--michigan-blue), #003366);
+	background: linear-gradient(135deg, var(--maize), #ffd700);
 	background-clip: text;
 	-webkit-background-clip: text;
 	color: transparent;
@@ -97,7 +97,7 @@
 .about-logo-bus {
 	font-size: 2.5rem;
 	font-weight: 700;
-	background: linear-gradient(135deg, var(--maize), #ffd700);
+	background: linear-gradient(135deg, var(--michigan-blue), #003366);
 	background-clip: text;
 	-webkit-background-clip: text;
 	color: transparent;

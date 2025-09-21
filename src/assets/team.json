@@ -12,19 +12,6 @@
 			"type": "lead"
 		},
 		{
-			"id": "andrew-yu",
-			"name": "Andrew Yu",
-			"role": "Web Services Lead",
-			"major": "Computer Science",
-			"year": "W27",
-			"image": "/assets/profiles/Andrew_Yu_Headshot.jpg",
-			"github": "https://github.com/sirquackyy",
-            "instagram": "https://instagram.com/yua.priv",
-			"linkedin": "https://linkedin.com/in/andrewyyu",
-            "web": "https://andrewyu.dev",
-			"type": "lead"
-		},
-		{
 			"id": "harvey-kyllonen",
 			"name": "Harvey Kyllonen",
 			"role": "Frontend Lead",
@@ -45,14 +32,16 @@
 			"type": "lead"
 		},
 		{
-			"id": "francisco-yan",
-			"name": "Francisco Yan",
-			"role": "-",
-			"major": "Computer Engineering",
+			"id": "andrew-yu",
+			"name": "Andrew Yu",
+			"role": "Web Services Lead",
+			"major": "Computer Science",
 			"year": "W27",
-			"image": "/assets/profiles/Francisco_Yan_Headshot.jpg",
-			"github": "https://github.com/Cheddar629",
-			"linkedin": "https://www.linkedin.com/in/franciscoyan/",
+			"image": "/assets/profiles/Andrew_Yu_Headshot.jpg",
+			"github": "https://github.com/sirquackyy",
+            "instagram": "https://instagram.com/yua.priv",
+			"linkedin": "https://linkedin.com/in/andrewyyu",
+            "web": "https://andrewyu.dev",
 			"type": "lead"
 		}
 	],
