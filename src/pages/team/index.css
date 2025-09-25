@@ -1,11 +1,6 @@
 .about-page {
 	min-height: 100vh;
-	background: linear-gradient(
-		135deg,
-		#f8fafc 0%,
-		#ffffff 50%,
-		rgba(255, 203, 5, 0.03) 100%
-	);
+	background: #ffffff;
 	font-family: "Urbanist", system-ui, sans-serif;
 	position: relative;
 	overflow-x: hidden;
@@ -71,7 +66,7 @@
 }
 
 .about-logo-icon {
-	background: linear-gradient(135deg, var(--maize), #ffd700);
+	background: #f1c232;
 	padding: 1.25rem;
 	border-radius: 1.25rem;
 	box-shadow: 0 15px 35px -5px rgba(255, 203, 5, 0.3);
@@ -87,7 +82,7 @@
 .about-logo-maize {
 	font-size: 2.5rem;
 	font-weight: 700;
-	background: linear-gradient(135deg, var(--maize), #ffd700);
+	background: #f1c232;
 	background-clip: text;
 	-webkit-background-clip: text;
 	color: transparent;
@@ -97,7 +92,7 @@
 .about-logo-bus {
 	font-size: 2.5rem;
 	font-weight: 700;
-	background: linear-gradient(135deg, var(--michigan-blue), #003366);
+	background: #0b5394;
 	background-clip: text;
 	-webkit-background-clip: text;
 	color: transparent;
@@ -137,7 +132,7 @@
 }
 
 .about-stat-icon {
-	background: linear-gradient(135deg, var(--maize), #ffd700);
+	background: #ffd700;
 	color: var(--michigan-blue);
 	padding: 1rem;
 	border-radius: 1rem;
@@ -186,7 +181,7 @@
 	transform: translateX(-50%);
 	width: 5rem;
 	height: 4px;
-	background: linear-gradient(135deg, var(--maize), #ffd700);
+	background: #f1c232;
 	border-radius: 2px;
 }
 
@@ -221,14 +216,14 @@
 }
 
 .team-grid-members::-webkit-scrollbar-thumb {
-	background: linear-gradient(to bottom, var(--maize), #ffd700);
+	background: #f1c232;
 	border-radius: 6px;
 	border: 2px solid rgba(255, 255, 255, 0.3);
 	box-shadow: 0 2px 6px rgba(0, 39, 76, 0.1);
 }
 
 .team-grid-members::-webkit-scrollbar-thumb:hover {
-	background: linear-gradient(to bottom, #ffd700, var(--maize));
+	background: linear-gradient(to bottom, #f1c232, var(--maize));
 	border: 2px solid rgba(255, 255, 255, 0.4);
 }
 
@@ -264,7 +259,7 @@
 	left: 0;
 	right: 0;
 	height: 3px;
-	background: linear-gradient(135deg, var(--maize), #ffd700);
+	background: #f1c232;
 	opacity: 0;
 	transition: opacity 0.3s ease;
 }
@@ -496,7 +491,7 @@
 
 .about-cta-card {
 	border: 0;
-	background: linear-gradient(135deg, var(--michigan-blue), #003366);
+	background: linear-gradient(135deg, #003366, #00274C);
 	box-shadow: 0 25px 50px -10px rgba(0, 39, 76, 0.35);
 	max-width: 56rem;
 	margin: 0 auto;
@@ -512,7 +507,7 @@
 	left: 0;
 	right: 0;
 	height: 4px;
-	background: linear-gradient(90deg, var(--maize), #ffd700, var(--maize));
+	background: #f1c232;
 }
 
 .about-cta-content {
@@ -577,15 +572,13 @@
 }
 
 .cta-button-primary {
-	background: linear-gradient(135deg, var(--maize), #ffd700);
-	color: var(--michigan-blue);
+	background: #f1c232;
+	color: black;
 	border: 0;
-	box-shadow: 0 10px 20px -4px rgba(255, 203, 5, 0.4);
 }
 
 .cta-button-primary:hover {
-	background: linear-gradient(135deg, #ffd700, var(--maize));
-	box-shadow: 0 15px 30px -4px rgba(255, 203, 5, 0.6);
+	background: #f1c232;
 	transform: translateY(-3px);
 }
 

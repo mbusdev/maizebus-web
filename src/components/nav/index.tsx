@@ -7,7 +7,6 @@ import {
 	SheetTrigger,
 	SheetHeader,
 	SheetTitle,
-	SheetDescription,
 } from "@/components/sheet";
 // import { Avatar, AvatarFallback } from "@/components/avatar";
 // import {
@@ -17,7 +16,7 @@ import {
 // 	DropdownMenuSeparator,
 // 	DropdownMenuTrigger,
 // } from "@/components/dropdown-menu";
-import { Menu, MapPin, User } from "lucide-react";
+import { Menu, User } from "lucide-react";
 // import { Settings, LogOut, BarChart3 } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import "./index.css";
@@ -44,9 +43,8 @@ export function Navbar({ user }: NavbarProps) {
 	const navbarBackground = useTransform(
 		scrollY,
 		[0, 100],
-		["rgba(255, 255, 255, 0.8)", "rgba(255, 255, 255, 0.95)"]
+		["rgba(255, 255, 255, 1)", "rgba(255, 255, 255, 1)"]
 	);
-	const navbarBlur = useTransform(scrollY, [0, 100], [8, 16]);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -60,7 +58,6 @@ export function Navbar({ user }: NavbarProps) {
 		{ name: "Home", path: "/" },
 		// { name: "Bus Tracker", path: "/tracker" },
 		{ name: "Team", path: "/team" },
-		{ name: "Join", path: "/join" },
 		{ name: "Contact", path: "/contact" },
 	];
 
@@ -83,43 +80,22 @@ export function Navbar({ user }: NavbarProps) {
 
 	return (
 		<motion.nav
-			initial={{ y: -20, opacity: 0 }}
-			animate={{ y: 0, opacity: 1 }}
-			transition={{ duration: 0.8, ease: [0.25, 0.4, 0.25, 1] }}
 			style={{
 				backgroundColor: navbarBackground,
-				backdropFilter: `blur(${navbarBlur}px)`,
 			}}
 			className={`navbar ${scrolled ? "navbar-scrolled" : ""}`}
 		>
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex h-16 items-center justify-between">
 					<Link to="/">
-						<motion.div
-							className="navbar-logo"
-							whileHover={{ scale: 1.05, x: 2 }}
-							whileTap={{ scale: 0.95 }}
-							transition={{
-								type: "spring",
-								stiffness: 300,
-								damping: 20,
-							}}
-						>
-							<motion.div
-								className="logo-icon"
-								whileHover={{ rotate: 5 }}
-							>
-								<MapPin className="h-6 w-6 text-[#00274C]" />
-							</motion.div>
-							<div className="logo-text font-extrabold">
-								<span className="text-[#f1c232]">maize</span> 
-								<span className="text-[#0b5394]">bus</span> 
-							</div>
-						</motion.div>
+						<div className="logo-text font-extrabold text-3xl">
+							<span className="text-[#f1c232]">maize</span>
+							<span className="text-[#0b5394]">bus</span>
+						</div>
 					</Link>
 
 					<div className="hidden md:flex items-center space-x-2">
-						{navItems.map((item, index) => (
+						{navItems.map((item) => (
 							<Link key={item.path} to={item.path}>
 								<motion.button
 									className={`nav-item ${
@@ -127,22 +103,6 @@ export function Navbar({ user }: NavbarProps) {
 											? "nav-item-active"
 											: "nav-item-inactive"
 									}`}
-									whileHover={{
-										scale: 1.05,
-										y: -2,
-										transition: {
-											type: "spring",
-											stiffness: 300,
-											damping: 20,
-										},
-									}}
-									whileTap={{ scale: 0.95 }}
-									initial={{ opacity: 0, y: -20 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{
-										duration: 0.5,
-										delay: index * 0.1,
-									}}
 								>
 									<motion.div
 										className="nav-item-background"
@@ -154,6 +114,15 @@ export function Navbar({ user }: NavbarProps) {
 								</motion.button>
 							</Link>
 						))}
+						<div className="ml-4">
+							<Link to="/join">
+								<motion.div>
+									<Button className="join-nav-button">
+										Join the Team
+									</Button>
+								</motion.div>
+							</Link>
+						</div>
 
 						{/* {user ? (
 							<DropdownMenu>
@@ -263,14 +232,20 @@ export function Navbar({ user }: NavbarProps) {
 							</SheetTrigger>
 							<SheetContent side="right" className="mobile-sheet">
 								<SheetHeader>
-									<SheetTitle className="text-[#00274C] font-bold text-xl">
-										Navigation Menu
+									<SheetTitle className="flex items-center justify-center ">
+										<Link to="/">
+											<div className="logo-text font-extrabold text-3xl">
+												<span className="text-[#f1c232]">
+													maize
+												</span>
+												<span className="text-[#0b5394]">
+													bus
+												</span>
+											</div>
+										</Link>
 									</SheetTitle>
-									<SheetDescription className="text-gray-600">
-										Access all pages and account features
-									</SheetDescription>
 								</SheetHeader>
-								<div className="flex flex-col space-y-6 mt-6">
+								<div className="flex flex-col space-y-6">
 									{user && (
 										<div className="mobile-user-info">
 											<p className="font-medium text-[#00274C]">
@@ -287,7 +262,7 @@ export function Navbar({ user }: NavbarProps) {
 										</div>
 									)}
 
-									{navItems.map((item, index) => (
+									{navItems.map((item) => (
 										<Link
 											key={item.path}
 											to={item.path}
@@ -299,19 +274,22 @@ export function Navbar({ user }: NavbarProps) {
 														? "mobile-nav-item-active"
 														: "mobile-nav-item-inactive"
 												}`}
-												initial={{ opacity: 0, x: 20 }}
-												animate={{ opacity: 1, x: 0 }}
-												transition={{
-													duration: 0.3,
-													delay: index * 0.1,
-												}}
-												whileHover={{ x: 5 }}
-												whileTap={{ scale: 0.95 }}
 											>
 												{item.name}
 											</motion.button>
 										</Link>
 									))}
+
+									<Link
+										to="/join"
+										onClick={() => setIsOpen(false)}
+									>
+										<motion.button
+											className="mobile-join-button"
+										>
+											Join the Team
+										</motion.button>
+									</Link>
 
 									{/* {user ? (
 										<>

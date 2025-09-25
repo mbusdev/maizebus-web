@@ -1,38 +1,21 @@
-import { MapPin, Mail, Instagram, Twitter, Github } from "lucide-react";
+import { Mail, Instagram, Github, Youtube } from "lucide-react";
 import { motion } from "motion/react";
 
 const Footer = () => {
 	return (
-		<footer className="relative bg-gradient-to-br from-[#00274C] via-[#003366] to-[#00274C] text-white overflow-hidden">
-			<div className="absolute inset-0 opacity-10">
-				<div className="absolute top-20 left-20 w-64 h-64 bg-[#FFCB05] rounded-full blur-3xl" />
-				<div className="absolute bottom-20 right-20 w-80 h-80 bg-[#FFCB05] rounded-full blur-3xl" />
-			</div>
-
+		<footer className="relative bg-gradient-to-br from-[#003366] to-[#00274C] text-white overflow-hidden">
 			<div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-16">
 				<div className="grid grid-cols-1 md:grid-cols-4 gap-8">
 					<motion.div
 						className="col-span-1 md:col-span-2"
-						initial={{ opacity: 0, y: 30 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{
-							duration: 0.8,
-							ease: [0.25, 0.4, 0.25, 1],
-						}}
 						viewport={{ once: true }}
 					>
 						<div className="flex items-center space-x-3 mb-6">
-							<motion.div
-								className="bg-gradient-to-br from-[#FFCB05] to-[#FFD700] p-3 rounded-xl shadow-lg shadow-[#FFCB05]/25"
-								whileHover={{ rotate: 5, scale: 1.05 }}
-							>
-								<MapPin className="h-6 w-6 text-[#00274C]" />
-							</motion.div>
 							<div>
-								<span className="text-2xl font-extrabold">
+								<span className="text-2xl bg-[#f1c232] bg-clip-text font-extrabold text-transparent">
 									maize
 								</span>
-								<span className="text-2xl font-extrabold bg-gradient-to-r from-[#FFCB05] to-[#FFD700] bg-clip-text text-transparent">
+								<span className="text-2xl font-extrabold">
 									bus
 								</span>
 							</div>
@@ -58,7 +41,7 @@ const Footer = () => {
 								whileTap={{ scale: 0.9 }}
 								className="text-gray-300 hover:text-[#FFCB05] transition-all duration-300 p-2 rounded-lg hover:bg-white/10 backdrop-blur-sm"
 							>
-								<Twitter className="h-6 w-6" />
+								<Youtube className="h-6 w-6" />
 							</motion.a>
 							<motion.a
 								href="#"
@@ -72,16 +55,9 @@ const Footer = () => {
 					</motion.div>
 
 					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{
-							duration: 0.8,
-							delay: 0.2,
-							ease: [0.25, 0.4, 0.25, 1],
-						}}
 						viewport={{ once: true }}
 					>
-						<h3 className="font-bold text-xl bg-gradient-to-r from-[#FFCB05] to-[#FFD700] bg-clip-text text-transparent mb-6">
+						<h3 className="font-bold text-xl bg-[#f1c232] bg-clip-text text-transparent mb-6">
 							Quick Links
 						</h3>
 						<ul className="space-y-4">
@@ -105,30 +81,22 @@ const Footer = () => {
 					</motion.div>
 
 					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{
-							duration: 0.8,
-							delay: 0.4,
-							ease: [0.25, 0.4, 0.25, 1],
-						}}
 						viewport={{ once: true }}
 					>
-						<h3 className="font-bold text-xl bg-gradient-to-r from-[#FFCB05] to-[#FFD700] bg-clip-text text-transparent mb-6">
+						<h3 className="font-bold text-xl bg-[#f1c232] bg-clip-text text-transparent mb-6">
 							Contact
 						</h3>
 						<div className="space-y-4">
-							<motion.div
+							<div
 								className="flex items-center space-x-3 group"
-								whileHover={{ x: 5 }}
 							>
-								<div className="p-2 bg-[#FFCB05]/20 rounded-lg group-hover:bg-[#FFCB05]/30 transition-colors duration-300">
-									<Mail className="h-5 w-5 text-[#FFCB05]" />
+								<div className="p-2 bg-[#f1c232]/20 rounded-lg">
+									<Mail className="h-5 w-5 text-[#f1c232]" />
 								</div>
 								<span className="text-gray-300 group-hover:text-white transition-colors duration-300">
-									hello@maizebus.org
+									contact@maizebus.org
 								</span>
-							</motion.div>
+							</div>
 							<p className="text-gray-300 hover:text-gray-200 transition-colors duration-300">
 								University of Michigan
 							</p>
@@ -141,13 +109,6 @@ const Footer = () => {
 
 				<motion.div
 					className="border-t border-white/10 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center"
-					initial={{ opacity: 0, y: 20 }}
-					whileInView={{ opacity: 1, y: 0 }}
-					transition={{
-						duration: 0.8,
-						delay: 0.6,
-						ease: [0.25, 0.4, 0.25, 1],
-					}}
 					viewport={{ once: true }}
 				>
 					<p className="text-gray-400 mb-4 sm:mb-0 font-medium">

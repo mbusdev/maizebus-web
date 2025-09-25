@@ -6,7 +6,6 @@ import {
 	Linkedin,
 	Link,
 	Instagram,
-    MapPin,
 } from "lucide-react";
 import { motion } from "motion/react";
 import { ImageWithFallback } from "@/components/imageWithFallback";
@@ -32,6 +31,7 @@ export function Team() {
 		}
 	};
 
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const renderSocialLinks = (member: any) => {
 		const socials = [];
         if (member.web)
@@ -59,6 +59,7 @@ export function Team() {
 	};
 
 	const renderMemberCard = (
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		member: any,
 		index: number,
 		isLeadership: boolean = false
@@ -199,7 +200,7 @@ export function Team() {
 								<motion.a
 									whileHover={{ scale: 1.05 }}
 									whileTap={{ scale: 0.95 }}
-									href="/apply"
+									href="/join"
 								>
 									<Button className="cta-button cta-button-primary">
 										Apply Now

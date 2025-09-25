@@ -1,4 +1,3 @@
-import { Button } from "@/components/button";
 import SpotlightCard from "@/components/SpotlightCard";
 import { CardContent } from "@/components/CardContent";
 import {
@@ -9,30 +8,18 @@ import {
 } from "@/components/accordion";
 import { Badge } from "@/components/badge";
 import {
-	Smartphone,
 	MapPin,
 	Clock,
 	Users,
 	Route,
 	Building,
-	Sparkles,
-	Apple,
-	Newspaper,
 } from "lucide-react";
 import { motion } from "motion/react";
-import exampleImage from "@/assets/maizebus-app-screens.jpg";
-import { useEffect, useState } from "react";
+import headerImage from "@/assets/header.jpg";
+import appleDownload from "@/assets/apple_download.svg";
+import androidDownload from "@/assets/android_download.png";
 
 export function Home() {
-	const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-	useEffect(() => {
-		const handleMouseMove = (e: MouseEvent) => {
-			setMousePosition({ x: e.clientX, y: e.clientY });
-		};
-		window.addEventListener("mousemove", handleMouseMove);
-		return () => window.removeEventListener("mousemove", handleMouseMove);
-	}, []);
 
 	const features = [
 		{
@@ -95,7 +82,7 @@ export function Home() {
 		},
 		{
 			question: "How do I report issues or suggest features?",
-			answer: "You can contact us through the app's feedback feature or email us at hello@maizebus.org. We actively respond to all user feedback within 24 hours.",
+			answer: "You can contact us through the app's feedback feature or email us at contact@maizebus.org. We actively respond to all user feedback within 24 hours.",
 		},
 	];
 
@@ -104,39 +91,20 @@ export function Home() {
 			className="min-h-screen bg-white"
 			style={{ fontFamily: "Urbanist, system-ui, sans-serif" }}
 		>
-			<div className="fixed inset-0 overflow-hidden pointer-events-none">
-				<motion.div
-					className="absolute top-20 left-20 w-96 h-96 bg-gradient-to-r from-[#f1c232]/20 to-[#FFD700]/10 rounded-full blur-3xl"
-					animate={{
-						x: mousePosition.x * 0.02,
-						y: mousePosition.y * 0.02,
-					}}
-					transition={{ type: "spring", stiffness: 50, damping: 20 }}
-				/>
-				<motion.div
-					className="absolute top-1/2 right-20 w-80 h-80 bg-gradient-to-r from-[#0b5394]/10 to-[#003366]/20 rounded-full blur-3xl"
-					animate={{
-						x: mousePosition.x * -0.015,
-						y: mousePosition.y * -0.015,
-					}}
-					transition={{ type: "spring", stiffness: 50, damping: 20 }}
-				/>
-			</div>
-
 			<section className="relative min-h-screen flex items-center justify-center text-center overflow-hidden pt-24">
-				<div className="absolute inset-0 bg-gradient-to-br from-white via-gray-50/50 to-[#f1c232]/5" />
+				<div className="absolute inset-0 bg-white" />
 
 				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16 z-10">
 					<motion.div
 						initial={{ opacity: 0, y: 50 }}
 						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 1, ease: [0.25, 0.4, 0.25, 1] }}
+						transition={{ duration: 1 }}
 						className="max-w-6xl mx-auto"
 					>
 						<motion.div
 							initial={{ opacity: 0, y: 30 }}
 							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.8, delay: 0.2 }}
+							transition={{ duration: 0.8}}
 							className="mb-8"
 						>
 							<h1
@@ -157,145 +125,42 @@ export function Home() {
 							className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
 							initial={{ opacity: 0, y: 30 }}
 							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.8, delay: 0.4 }}
+							transition={{ duration: 0.8}}
 						>
 							<motion.div
-								whileHover={{ scale: 1.05, y: -2 }}
-								whileTap={{ scale: 0.95 }}
 								className="group"
 							>
-								<Button className="bg-gradient-to-r from-[#f1c232] to-[#FFD700] text-[#0b5394] hover:from-[#FFD700] hover:to-[#f1c232] px-10 py-6 text-lg font-bold rounded-2xl shadow-xl shadow-[#f1c232]/30 border-0 transition-all duration-300 group-hover:shadow-2xl group-hover:shadow-[#f1c232]/40">
-									<Apple className="mr-3 h-6 w-6" />
-									Download for iOS
-								</Button>
+								<input type="image" src={appleDownload} className="h-20 px-6 pt-6 text-lg font-bold" />
 							</motion.div>
 							<motion.div
-								whileHover={{ scale: 1.05, y: -2 }}
-								whileTap={{ scale: 0.95 }}
 								className="group"
 							>
-								<Button className="bg-[#0b5394] text-white hover:bg-[#003366] px-10 py-6 text-lg font-bold rounded-2xl shadow-xl shadow-[#0b5394]/20 border-0 transition-all duration-300 group-hover:shadow-2xl">
-									<Smartphone className="mr-3 h-6 w-6" />
-									Download for Android
-								</Button>
+								<input type="image" src={androidDownload} className="h-20 px-6 pt-6 text-lg font-bold" />
 							</motion.div>
 						</motion.div>
 
 						<motion.div
 							initial={{ opacity: 0, y: 50, scale: 0.95 }}
 							animate={{ opacity: 1, y: 0, scale: 1 }}
-							transition={{ duration: 1, delay: 0.6 }}
+							transition={{ duration: 1}}
 							className="flex justify-center relative"
 						>
 							<motion.div
 								className="relative"
-								whileHover={{ y: -10, scale: 1.02 }}
 								transition={{
 									type: "spring",
 									stiffness: 300,
 									damping: 30,
 								}}
 							>
-								<div className="absolute inset-0 bg-gradient-to-r from-[#f1c232]/20 to-[#0b5394]/20 rounded-3xl blur-2xl scale-110" />
+								<div className="absolute inset-0 rounded-3xl blur-2xl scale-110" />
 
-								<div className="relative bg-white/80 backdrop-blur-md rounded-3xl p-8 border border-white/30 shadow-2xl">
+								<div className="relative bg-white/80 rounded-3xl p-8 border border-white/30">
 									<img
-										src={exampleImage}
+										src={headerImage}
 										alt="MaizeBus App Screenshots"
-										className="max-w-full h-auto rounded-2xl shadow-2xl ring-1 ring-black/5"
+										className="max-w-full h-auto rounded-2xl"
 									/>
-
-									<motion.div
-										className="absolute -top-6 -right-6 bg-gradient-to-r from-[#f1c232] to-[#FFD700] text-[#0b5394] px-6 py-3 rounded-full font-bold shadow-2xl shadow-[#f1c232]/40 border-4 border-white/30"
-										animate={{
-											rotate: [0, 5, 0, -5, 0],
-											scale: [1, 1.05, 1],
-										}}
-										transition={{
-											rotate: {
-												duration: 4,
-												repeat: Infinity,
-												ease: "easeInOut",
-											},
-											scale: {
-												duration: 2,
-												repeat: Infinity,
-												ease: "easeInOut",
-											},
-										}}
-									>
-										<Sparkles className="w-4 h-4 inline mr-2" />
-										Free
-									</motion.div>
-
-									<motion.div
-										className="absolute -top-8 -left-8 bg-gradient-to-r from-white via-gray-50 to-white text-[#0b5394] px-6 py-4 rounded-2xl font-bold shadow-2xl border-2 border-[#f1c232]/30 backdrop-blur-sm"
-										initial={{
-											opacity: 0,
-											scale: 0.85,
-											rotate: -8,
-											y: 20,
-										}}
-										animate={{
-											opacity: 1,
-											scale: 1,
-											rotate: -3,
-											y: 0,
-										}}
-										transition={{
-											duration: 1.2,
-											delay: 1.2,
-											ease: [0.25, 0.4, 0.25, 1],
-											type: "spring",
-											stiffness: 100,
-											damping: 15,
-										}}
-										whileHover={{
-											scale: 1.05,
-											rotate: 0,
-											y: -3,
-											transition: {
-												type: "spring",
-												stiffness: 400,
-												damping: 25,
-												mass: 0.8,
-											},
-										}}
-									>
-										<div className="flex items-center space-x-3">
-											<div className="w-8 h-8 bg-gradient-to-br from-[#f1c232] to-[#FFD700] rounded-lg flex items-center justify-center">
-												<Newspaper className="w-4 h-4 text-[#0b5394]" />
-											</div>
-											<div>
-												<div
-													className="text-xs text-gray-600 uppercase tracking-wide"
-													style={{ fontWeight: 400 }}
-												>
-													Featured in
-												</div>
-												<div
-													className="text-sm font-bold"
-													style={{ fontWeight: 700 }}
-												>
-													The Michigan Daily
-												</div>
-											</div>
-										</div>
-
-										<motion.div
-											className="absolute -top-1 -right-1 w-3 h-3 bg-[#f1c232] rounded-full"
-											animate={{
-												scale: [1, 1.3, 1],
-												opacity: [0.7, 1, 0.7],
-											}}
-											transition={{
-												duration: 3,
-												repeat: Infinity,
-												ease: [0.4, 0, 0.6, 1],
-												repeatType: "mirror",
-											}}
-										/>
-									</motion.div>
 								</div>
 							</motion.div>
 						</motion.div>
@@ -406,11 +271,10 @@ export function Home() {
 							>
 								<SpotlightCard
 									className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 bg-gray-50/80 backdrop-blur-sm rounded-3xl overflow-hidden"
-									spotlightColor="rgba(0, 229, 255, 0.2)"
 								>
 									<CardContent className="p-10">
 										<div className="flex items-center mb-6">
-											<div className="w-16 h-16 bg-gradient-to-br from-[#f1c232] to-[#FFD700] rounded-2xl flex items-center justify-center text-[#0b5394] shadow-lg mr-4">
+											<div className="w-16 h-16 bg-[#f1c232] rounded-2xl flex items-center justify-center text-black shadow-lg mr-4">
 												{feature.icon}
 											</div>
 											<Badge
@@ -626,24 +490,14 @@ export function Home() {
 							viewport={{ once: true }}
 						>
 							<motion.div
-								whileHover={{ scale: 1.05, y: -5 }}
-								whileTap={{ scale: 0.95 }}
 								className="group"
 							>
-								<Button className="bg-gradient-to-r from-[#f1c232] to-[#FFD700] text-[#0b5394] hover:from-[#FFD700] hover:to-[#f1c232] px-12 py-8 text-xl font-bold shadow-2xl shadow-[#f1c232]/30 border-0 transition-all duration-500 rounded-2xl">
-									<Apple className="mr-3 h-6 w-6" />
-									Download for iOS
-								</Button>
+								<input type="image" src={appleDownload} className="h-20 px-6 pt-6 text-lg font-bold" />
 							</motion.div>
 							<motion.div
-								whileHover={{ scale: 1.05, y: -5 }}
-								whileTap={{ scale: 0.95 }}
 								className="group"
 							>
-								<Button className="bg-gradient-to-r from-[#f1c232] to-[#FFD700] text-[#0b5394] hover:from-[#FFD700] hover:to-[#f1c232] px-12 py-8 text-xl font-bold shadow-2xl shadow-[#f1c232]/30 border-0 transition-all duration-500 rounded-2xl">
-									<Smartphone className="mr-3 h-6 w-6" />
-									Download for Android
-								</Button>
+								<input type="image" src={androidDownload} className="h-20 px-6 pt-6 text-lg font-bold" />
 							</motion.div>
 						</motion.div>
 					</motion.div>
