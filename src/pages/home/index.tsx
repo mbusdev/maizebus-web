@@ -1,5 +1,3 @@
-import SpotlightCard from "@/components/SpotlightCard";
-import { CardContent } from "@/components/CardContent";
 import {
 	Accordion,
 	AccordionContent,
@@ -9,7 +7,7 @@ import {
 import {
 	Users,
 } from "lucide-react";
-import { motion } from "motion/react";
+import { useEffect } from "react";
 import headerImage from "@/assets/header.jpg";
 import appleDownload from "@/assets/apple_download.svg";
 import androidDownload from "@/assets/android_download.png";
@@ -18,7 +16,47 @@ import frame4Image from "@/assets/Frame 4.png";
 import frame5Image from "@/assets/Frame 5.png";
 import frame6Image from "@/assets/Frame 6.png";
 
+function useIntersectionObserver() {
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('visible');
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{
+					threshold: 0.2,
+					rootMargin: '0px 0px -100px 0px'
+				}
+			);
+
+			const elements = document.querySelectorAll('.fade-in-on-scroll');
+			elements.forEach((el) => observer.observe(el));
+
+			return () => observer.disconnect();
+		}, 100);
+
+		return () => clearTimeout(timer);
+	}, []);
+}
+
 export function Home() {
+	useIntersectionObserver();
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			const elements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in');
+			elements.forEach((el) => {
+				el.classList.add('animate');
+			});
+		}, 50);
+
+		return () => clearTimeout(timer);
+	}, []);
 
 	const features = [
 		{
@@ -82,18 +120,8 @@ export function Home() {
 				<div className="absolute inset-0 bg-white" />
 
 				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-16 z-10">
-					<motion.div
-						initial={{ opacity: 0, y: 50 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 1 }}
-						className="max-w-6xl mx-auto"
-					>
-						<motion.div
-							initial={{ opacity: 0, y: 30 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.8}}
-							className="mb-8"
-						>
+					<div className="max-w-6xl mx-auto animate-fade-in-up">
+						<div className="mb-8 animate-fade-in-up delay-200">
 							<h1
 								className="text-6xl lg:text-7xl font-bold mb-6 leading-tight text-[#0b5394]"
 								style={{ fontWeight: 700 }}
@@ -106,40 +134,33 @@ export function Home() {
 							>
 								Real-time buses, buildings, directions, bus stops - all a search away.
 							</p>
-						</motion.div>
+						</div>
 
-						<motion.div
-							className="flex flex-col sm:flex-row gap-4 justify-center mb-16"
-							initial={{ opacity: 0, y: 30 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.8}}
-						>
-							<motion.div
-								className="group"
-							>
-								<input type="image" src={appleDownload} className="h-20 px-6 pt-6 text-lg font-bold" />
-							</motion.div>
-							<motion.div
-								className="group"
-							>
-								<input type="image" src={androidDownload} className="h-20 px-6 pt-6 text-lg font-bold" />
-							</motion.div>
-						</motion.div>
+						<div className="flex flex-col sm:flex-row gap-4 justify-center mb-16 animate-fade-in-up delay-300">
+							<div className="group">
+								<a 
+									href="https://apps.apple.com/us/app/maizebus/id6748656074" 
+									target="_blank" 
+									rel="noopener noreferrer"
+									className="inline-block"
+								>
+									<img src={appleDownload} className="h-20 px-6 pt-6 text-lg font-bold" alt="Download on the App Store" />
+								</a>
+							</div>
+							<div className="group">
+								<a 
+									href="https://play.google.com/store/apps/details?id=com.ishankumar.maizebus" 
+									target="_blank" 
+									rel="noopener noreferrer"
+									className="inline-block"
+								>
+									<img src={androidDownload} className="h-20 px-6 pt-6 text-lg font-bold" alt="Get it on Google Play" />
+								</a>
+							</div>
+						</div>
 
-						<motion.div
-							initial={{ opacity: 0, y: 50, scale: 0.95 }}
-							animate={{ opacity: 1, y: 0, scale: 1 }}
-							transition={{ duration: 1}}
-							className="flex justify-center relative"
-						>
-							<motion.div
-								className="relative"
-								transition={{
-									type: "spring",
-									stiffness: 300,
-									damping: 30,
-								}}
-							>
+						<div className="flex justify-center relative animate-fade-in-up delay-400">
+							<div className="relative">
 								<div className="absolute inset-0 rounded-3xl blur-2xl scale-110" />
 
 								<div className="relative bg-white/80 rounded-3xl p-8 border border-white/30">
@@ -149,9 +170,9 @@ export function Home() {
 										className="max-w-full h-auto rounded-2xl"
 									/>
 								</div>
-							</motion.div>
-						</motion.div>
-					</motion.div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 
@@ -159,13 +180,7 @@ export function Home() {
 				<div className="absolute inset-0 bg-gray-50" />
 
 				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-					<motion.div
-						initial={{ opacity: 0, y: 50 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 1 }}
-						viewport={{ once: true }}
-						className="text-center mb-20"
-					>
+					<div className="text-center mb-20 fade-in-on-scroll">
 						<h2
 							className="text-5xl lg:text-7xl font-bold text-[#0b5394] mb-6"
 							style={{ fontWeight: 700 }}
@@ -178,20 +193,14 @@ export function Home() {
 						>
 							Trusted by thousands of Michigan students every day.
 						</p>
-					</motion.div>
+					</div>
 
 					<div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
 						{stats.map((stat, index) => (
-							<motion.div
+							<div
 								key={stat.label}
-								initial={{ opacity: 0, y: 30 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{
-									duration: 0.8,
-									delay: index * 0.15,
-								}}
-								viewport={{ once: true }}
-								className="text-center"
+								className="text-center fade-in-on-scroll"
+								style={{ animationDelay: `${index * 0.1}s` }}
 							>
 								<div
 									className="text-5xl lg:text-6xl font-bold text-[#0b5394] mb-3"
@@ -211,7 +220,7 @@ export function Home() {
 								>
 									{stat.sublabel}
 								</div>
-							</motion.div>
+							</div>
 						))}
 					</div>
 				</div>
@@ -221,13 +230,7 @@ export function Home() {
 				<div className="absolute inset-0 bg-white" />
 
 				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-					<motion.div
-						initial={{ opacity: 0, y: 50 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 1 }}
-						viewport={{ once: true }}
-						className="text-center mb-20"
-					>
+					<div className="text-center mb-20 fade-in-on-scroll">
 						<h2
 							className="text-5xl lg:text-7xl font-bold text-[#0b5394] mb-6"
 							style={{ fontWeight: 700 }}
@@ -241,27 +244,21 @@ export function Home() {
 							Every feature is thoughtfully crafted to make your
 							campus travel effortless and reliable.
 						</p>
-					</motion.div>
+					</div>
 
 					<div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
 						{features.map((feature, index) => (
-							<motion.div
+							<div
 								key={feature.alt}
-								initial={{ opacity: 0, y: 50 }}
-								whileInView={{ opacity: 1, y: 0 }}
-								transition={{
-									duration: 0.8,
-									delay: index * 0.15,
-								}}
-								viewport={{ once: true }}
-								className="group"
+								className="group fade-in-on-scroll"
+								style={{ animationDelay: `${index * 0.15}s` }}
 							>
 								<img
 									src={feature.image}
 									alt={feature.alt}
 									className="w-full h-auto rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500"
 								/>
-							</motion.div>
+							</div>
 						))}
 					</div>
 				</div>
@@ -271,11 +268,7 @@ export function Home() {
 				<div className="absolute inset-0 bg-gradient-to-br from-[#0b5394] to-[#003366]" />
 
 				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
-					<motion.div
-						initial={{ opacity: 0, y: 50 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 1 }}
-						viewport={{ once: true }}
+					<div
 						className="max-w-5xl mx-auto"
 					>
 						<h2
@@ -298,37 +291,17 @@ export function Home() {
 							campus navigation effortless for every Wolverine.
 						</p>
 
-						<motion.div
+						<div
 							className="flex justify-center items-center space-x-6"
-							initial={{ opacity: 0, y: 30 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.8, delay: 0.3 }}
-							viewport={{ once: true }}
 						>
 							<div className="flex -space-x-3">
 								{[1, 2, 3, 4, 5].map((i) => (
-									<motion.div
+									<div
 										key={i}
 										className="w-14 h-14 bg-gradient-to-br from-[#f1c232] to-[#FFD700] rounded-full border-4 border-white flex items-center justify-center shadow-lg"
-										whileHover={{
-											scale: 1.1,
-											y: -2,
-											transition: {
-												type: "spring",
-												stiffness: 300,
-												damping: 20,
-											},
-										}}
-										initial={{ opacity: 0, scale: 0 }}
-										whileInView={{ opacity: 1, scale: 1 }}
-										transition={{
-											duration: 0.5,
-											delay: 0.5 + i * 0.1,
-										}}
-										viewport={{ once: true }}
 									>
 										<Users className="h-6 w-6 text-[#0b5394]" />
-									</motion.div>
+									</div>
 								))}
 							</div>
 							<span
@@ -337,20 +310,16 @@ export function Home() {
 							>
 								25+ Student Developers
 							</span>
-						</motion.div>
-					</motion.div>
+						</div>
+					</div>
 				</div>
 			</section>
 
-			<section className="py-32 relative overflow-hidden">
+			<section id="faq" className="py-32 relative overflow-hidden">
 				<div className="absolute inset-0 bg-gray-50" />
 
 				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8">
-					<motion.div
-						initial={{ opacity: 0, y: 50 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 1 }}
-						viewport={{ once: true }}
+					<div
 						className="text-center mb-20"
 					>
 						<h2
@@ -366,13 +335,9 @@ export function Home() {
 							Here are the answers to the most common questions
 							about MaizeBus.
 						</p>
-					</motion.div>
+					</div>
 
-					<motion.div
-						initial={{ opacity: 0, y: 50 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 0.2 }}
-						viewport={{ once: true }}
+					<div
 						className="max-w-4xl mx-auto"
 					>
 						<Accordion
@@ -381,15 +346,8 @@ export function Home() {
 							className="space-y-6"
 						>
 							{faqs.map((faq, index) => (
-								<motion.div
+								<div
 									key={index}
-									initial={{ opacity: 0, x: -20 }}
-									whileInView={{ opacity: 1, x: 0 }}
-									transition={{
-										duration: 0.6,
-										delay: index * 0.1,
-									}}
-									viewport={{ once: true }}
 									className="group"
 								>
 									<AccordionItem
@@ -409,10 +367,10 @@ export function Home() {
 											{faq.answer}
 										</AccordionContent>
 									</AccordionItem>
-								</motion.div>
+								</div>
 							))}
 						</Accordion>
-					</motion.div>
+					</div>
 				</div>
 			</section>
 
@@ -420,11 +378,7 @@ export function Home() {
 				<div className="absolute inset-0 bg-white" />
 
 				<div className="relative container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-					<motion.div
-						initial={{ opacity: 0, y: 50 }}
-						whileInView={{ opacity: 1, y: 0 }}
-						transition={{ duration: 1 }}
-						viewport={{ once: true }}
+					<div
 						className="max-w-5xl mx-auto"
 					>
 						<h2
@@ -445,25 +399,35 @@ export function Home() {
 							bus. Download MaizeBus today.
 						</p>
 
-						<motion.div
+						<div
 							className="flex flex-col sm:flex-row gap-6 justify-center"
-							initial={{ opacity: 0, y: 30 }}
-							whileInView={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.8, delay: 0.3 }}
-							viewport={{ once: true }}
 						>
-							<motion.div
+							<div
 								className="group"
 							>
-								<input type="image" src={appleDownload} className="h-20 px-6 pt-6 text-lg font-bold" />
-							</motion.div>
-							<motion.div
+								<a 
+									href="https://apps.apple.com/us/app/maizebus/id6748656074" 
+									target="_blank" 
+									rel="noopener noreferrer"
+									className="inline-block"
+								>
+									<img src={appleDownload} className="h-20 px-6 pt-6 text-lg font-bold" alt="Download on the App Store" />
+								</a>
+							</div>
+							<div
 								className="group"
 							>
-								<input type="image" src={androidDownload} className="h-20 px-6 pt-6 text-lg font-bold" />
-							</motion.div>
-						</motion.div>
-					</motion.div>
+								<a 
+									href="https://play.google.com/store/apps/details?id=com.ishankumar.maizebus" 
+									target="_blank" 
+									rel="noopener noreferrer"
+									className="inline-block"
+								>
+									<img src={androidDownload} className="h-20 px-6 pt-6 text-lg font-bold" alt="Get it on Google Play" />
+								</a>
+							</div>
+						</div>
+					</div>
 				</div>
 			</section>
 		</div>

@@ -4,10 +4,10 @@ import { AnimatePresence } from "motion/react";
 
 import { Home } from "@/pages/home";
 import { Team } from "@/pages/team";
-import Contact from "@/pages/contact";
+import { Contact } from "@/pages/contact";
 import { Navbar } from "@/components/nav";
 import Dashboard from "@/pages/dashboard";
-import Join from "@/pages/join";
+import { Join } from "@/pages/join";
 import Tracker from "@/pages/tracker";
 import SignUp from "@/pages/signup";
 import Login from "@/pages/login";
@@ -26,13 +26,7 @@ function AppContent() {
 	const [user, setUser] = useState<User | null>(null);
 	const location = useLocation();
 
-	// const handleLogin = (userData: User) => {
-	// 	setUser(userData);
-	// };
 
-	// const handleSignup = (userData: User) => {
-	// 	setUser(userData);
-	// };
 
 	const handleLogout = () => {
 		setUser(null);
@@ -50,9 +44,7 @@ function AppContent() {
 						<Route path="/contact" element={<Contact />} />
 						<Route path="/dashboard" element={<Dashboard />} />
 						<Route path="/join" element={<Join />} />
-						{/* <Route path="/login" element={<Login onLogin={handleLogin} />} /> */}
 						<Route path="/login" element={<Login />} />
-						{/* <Route path="/signup" element={<SignUp onSignup={handleSignup}/>} /> */}
 						<Route path="/signup" element={<SignUp />} />
 						<Route path="/tracker" element={<Tracker />} />
 					</Routes>

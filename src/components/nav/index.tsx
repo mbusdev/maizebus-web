@@ -8,16 +8,7 @@ import {
 	SheetHeader,
 	SheetTitle,
 } from "@/components/sheet";
-// import { Avatar, AvatarFallback } from "@/components/avatar";
-// import {
-// 	DropdownMenu,
-// 	DropdownMenuContent,
-// 	DropdownMenuItem,
-// 	DropdownMenuSeparator,
-// 	DropdownMenuTrigger,
-// } from "@/components/dropdown-menu";
 import { Menu, User } from "lucide-react";
-// import { Settings, LogOut, BarChart3 } from "lucide-react";
 import { motion, useScroll, useTransform } from "motion/react";
 import "./index.css";
 
@@ -56,23 +47,11 @@ export function Navbar({ user }: NavbarProps) {
 
 	const navItems = [
 		{ name: "Home", path: "/" },
-		// { name: "Bus Tracker", path: "/tracker" },
 		{ name: "Team", path: "/team" },
 		{ name: "Contact", path: "/contact" },
 	];
 
-	// const handleLogout = () => {
-	// 	onLogout();
-	// 	setIsOpen(false);
-	// };
 
-	// const getInitials = (name: string) => {
-	// 	return name
-	// 		.split(" ")
-	// 		.map((n) => n[0])
-	// 		.join("")
-	// 		.toUpperCase();
-	// };
 
 	const isCurrentPath = (path: string) => {
 		return location.pathname === path;
@@ -88,9 +67,9 @@ export function Navbar({ user }: NavbarProps) {
 			<div className="container mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex h-16 items-center justify-between">
 					<Link to="/">
-						<div className="logo-text font-extrabold text-3xl">
-							<span className="text-[#f1c232]">maize</span>
-							<span className="text-[#0b5394]">bus</span>
+						<div className="logo-text">
+							<span className="logo-maize">maize</span>
+							<span className="logo-bus">bus</span>
 						</div>
 					</Link>
 
@@ -234,11 +213,11 @@ export function Navbar({ user }: NavbarProps) {
 								<SheetHeader>
 									<SheetTitle className="flex items-center justify-center ">
 										<Link to="/">
-											<div className="logo-text font-extrabold text-3xl">
-												<span className="text-[#f1c232]">
+											<div className="logo-text">
+												<span className="logo-maize">
 													maize
 												</span>
-												<span className="text-[#0b5394]">
+												<span className="logo-bus">
 													bus
 												</span>
 											</div>

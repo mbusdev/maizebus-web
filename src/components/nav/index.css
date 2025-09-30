@@ -19,7 +19,7 @@
 }
 
 .logo-icon {
-  background: linear-gradient(135deg, var(--maize), #f1c232);
+  background: var(--maize);
   padding: 0.75rem;
   border-radius: 0.75rem;
   box-shadow: 0 10px 25px -5px rgba(255, 203, 5, 0.25);
@@ -31,6 +31,8 @@
 }
 
 .logo-text {
+  font-size: 1.5rem;
+  font-weight: 900;
   transition: transform 0.3s ease;
 }
 
@@ -66,7 +68,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+  background: rgba(255, 255, 255, 0.2);
   transition: left 0.5s ease;
 }
 
@@ -86,21 +88,24 @@
 }
 
 .logo-maize {
-  font-size: 1.25rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--michigan-blue), #0b5394);
+  font-size: 1.5rem;
+  font-weight: 900;
+  background: #0b5394;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  letter-spacing: -0.02em;
 }
 
 .logo-bus {
-  font-size: 1.25rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, var(--maize), #f1c232);
+  font-size: 1.5rem;
+  font-weight: 900;
+  background: #f1c232;
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
+  letter-spacing: -0.02em;
+  margin-left: -0.1875rem;
 }
 
 .nav-item {
@@ -129,7 +134,7 @@
 .nav-item-background {
   position: absolute;
   inset: 0;
-  background: linear-gradient(135deg, rgba(255, 203, 5, 0), rgba(255, 215, 0, 0));
+  background: transparent;
   border-radius: 0.75rem;
   transition: all 0.3s ease;
 }
@@ -151,7 +156,7 @@
 }
 
 .user-avatar-fallback {
-  background: linear-gradient(135deg, var(--maize), #f1c232);
+  background: var(--maize);
   color: var(--michigan-blue);
   font-weight: 700;
 }
@@ -176,29 +181,29 @@
 
 .auth-button-login:hover {
   color: white;
-  background: linear-gradient(135deg, var(--maize), #f1c232);
+  background: var(--maize);
 }
 
 .auth-button-signup {
-  background: linear-gradient(135deg, var(--michigan-blue), #0b5394);
+  background: var(--michigan-blue);
   color: white;
   box-shadow: 0 10px 25px -5px rgba(0, 39, 76, 0.25);
 }
 
 .auth-button-signup:hover {
-  background: linear-gradient(135deg, #0b5394, var(--michigan-blue));
+  background: #0b5394;
 }
 
 .mobile-menu-button {
   padding: 0.75rem;
   border-radius: 0.75rem;
-  background: linear-gradient(135deg, rgba(255, 203, 5, 0.1), rgba(255, 215, 0, 0.1));
+  background: rgba(255, 203, 5, 0.1);
   border: 1px solid rgba(255, 203, 5, 0.2);
   transition: all 0.3s ease;
 }
 
 .mobile-menu-button:hover {
-  background: linear-gradient(135deg, rgba(255, 203, 5, 0.2), rgba(255, 215, 0, 0.2));
+  background: rgba(255, 203, 5, 0.2);
   border: 1px solid rgba(255, 203, 5, 0.4);
 }
 
@@ -211,7 +216,7 @@
 
 .mobile-user-info {
   padding: 1rem 1.5rem;
-  background: linear-gradient(135deg, rgba(255, 203, 5, 0.1), rgba(255, 215, 0, 0.1));
+  background: rgba(255, 203, 5, 0.1);
   border-radius: 0.75rem;
   border: 1px solid rgba(255, 203, 5, 0.2);
 }
@@ -227,7 +232,7 @@
 
 .mobile-nav-item-active {
   color: white;
-  background: linear-gradient(135deg, var(--michigan-blue), #0b5394);
+  background: var(--michigan-blue);
   box-shadow: 0 10px 25px -5px rgba(0, 39, 76, 0.25);
 }
 
@@ -237,7 +242,7 @@
 
 .mobile-nav-item-inactive:hover {
   color: white;
-  background: linear-gradient(135deg, var(--maize), #f1c232);
+  background: var(--maize);
   box-shadow: 0 10px 25px -5px rgba(255, 203, 5, 0.25);
 }
 
@@ -252,7 +257,7 @@
 
 .mobile-auth-button:hover {
   color: white;
-  background: linear-gradient(135deg, var(--maize), #f1c232);
+  background: var(--maize);
 }
 
 .mobile-logout-button {
@@ -282,17 +287,17 @@
 
 .mobile-login-button:hover {
   color: white;
-  background: linear-gradient(135deg, var(--maize), #f1c232);
+  background: var(--maize);
 }
 
 .mobile-signup-button {
-  background: linear-gradient(135deg, var(--michigan-blue), #0b5394);
+  background: var(--michigan-blue);
   color: white;
   box-shadow: 0 10px 25px -5px rgba(0, 39, 76, 0.25);
 }
 
 .mobile-signup-button:hover {
-  background: linear-gradient(135deg, #0b5394, var(--michigan-blue));
+  background: #0b5394;
 }
 
 @media (max-width: 768px) {

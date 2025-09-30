@@ -7,12 +7,53 @@ import {
 	Link,
 	Instagram,
 } from "lucide-react";
-import { motion } from "motion/react";
+import { useEffect } from "react";
 import { ImageWithFallback } from "@/components/imageWithFallback";
 import teamData from "@/assets/team.json";
 import "./index.css";
 
+function useIntersectionObserver() {
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			const observer = new IntersectionObserver(
+				(entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('visible');
+							observer.unobserve(entry.target);
+						}
+					});
+				},
+				{
+					threshold: 0.2,
+					rootMargin: '0px 0px -100px 0px'
+				}
+			);
+
+			const elements = document.querySelectorAll('.fade-in-on-scroll');
+			elements.forEach((el) => observer.observe(el));
+
+			return () => observer.disconnect();
+		}, 100);
+
+		return () => clearTimeout(timer);
+	}, []);
+}
+
 export function Team() {
+	useIntersectionObserver();
+
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			const elements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in');
+			elements.forEach((el) => {
+				el.classList.add('animate');
+			});
+		}, 50);
+
+		return () => clearTimeout(timer);
+	}, []);
+
 	const leadership = teamData.lead;
 	const members = teamData.members;
 
@@ -31,7 +72,6 @@ export function Team() {
 		}
 	};
 
-	// eslint-disable-next-line @typescript-eslint/no-explicit-any
 	const renderSocialLinks = (member: any) => {
 		const socials = [];
         if (member.web)
@@ -44,35 +84,29 @@ export function Team() {
 			socials.push({ platform: "instagram", url: member.instagram });
 
 		return socials.map((social) => (
-			<motion.a
+			<a
 				key={social.platform}
 				href={social.url}
 				target={social.platform === "email" ? "_self" : "_blank"}
 				rel="noopener noreferrer"
 				className={`social-link social-link-${social.platform}`}
-				whileHover={{ scale: 1.1 }}
-				whileTap={{ scale: 0.9 }}
 			>
 				{getSocialIcon(social.platform)}
-			</motion.a>
+			</a>
 		));
 	};
 
 	const renderMemberCard = (
-		// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		member: any,
 		index: number,
 		isLeadership: boolean = false
 	) => (
-		<motion.div
+		<div
 			key={member.name}
-			initial={{ opacity: 0, y: 30 }}
-			animate={{ opacity: 1, y: 0 }}
-			transition={{ duration: 0.5, delay: index * 0.05 }}
-			whileHover={{ y: -8 }}
-			className={`member-card ${
+			className={`member-card fade-in-on-scroll ${
 				isLeadership ? "member-card-leadership" : "member-card-regular"
 			}`}
+			style={{ animationDelay: `${index * 0.1}s` }}
 		>
 			<Card className="member-card-inner">
 				<CardContent className="member-card-content">
@@ -103,46 +137,22 @@ export function Team() {
 					</div>
 				</CardContent>
 			</Card>
-		</motion.div>
+		</div>
 	);
 
 	return (
 		<div className="about-page">
 			<div className="about-background">
-				<motion.div
-					className="bg-element bg-element-1"
-					animate={{
-						scale: [1, 1.2, 1],
-						opacity: [0.3, 0.5, 0.3],
-					}}
-					transition={{ duration: 8, repeat: Infinity }}
-				/>
-				<motion.div
-					className="bg-element bg-element-2"
-					animate={{
-						scale: [1, 1.1, 1],
-						opacity: [0.2, 0.4, 0.2],
-					}}
-					transition={{ duration: 10, repeat: Infinity, delay: 4 }}
-				/>
+				<div className="bg-element bg-element-1" />
+				<div className="bg-element bg-element-2" />
 			</div>
 
 			<div className="about-container">
-				<motion.div
-					initial={{ opacity: 0, y: 60 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 1 }}
-					className="about-hero"
-				>
+				<div className="about-hero animate-fade-in-up">
 					<div className="about-hero-icon">
-						<motion.div
-							className=""
-							whileHover={{ scale: 1.05, rotate: 5 }}
-						>
-						</motion.div>
 						<div className="about-logo-text">
-							<span className="about-logo-maize">Maize</span>
-							<span className="about-logo-bus">Bus</span>
+							<span className="about-logo-maize">maize</span>
+							<span className="about-logo-bus">bus</span>
 						</div>
 					</div>
 
@@ -151,42 +161,27 @@ export function Team() {
 						Meet the passionate students revolutionizing campus
 						transportation at the University of Michigan.
 					</p>
-				</motion.div>
+				</div>
 
-				<motion.div
-					initial={{ opacity: 0, y: 60 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 1, delay: 0.3 }}
-					className="team-section"
-				>
+				<div className="team-section fade-in-on-scroll">
 					<h2 className="team-section-title">Leads</h2>
 					<div className="team-grid team-grid-leadership">
 						{leadership.map((member, index) =>
 							renderMemberCard(member, index, true)
 						)}
 					</div>
-				</motion.div>
+				</div>
 
-				<motion.div
-					initial={{ opacity: 0, y: 60 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 1, delay: 0.5 }}
-					className="team-section"
-				>
+				<div className="team-section fade-in-on-scroll">
 					<h2 className="team-section-title">Team Members</h2>
 					<div className="team-grid team-grid-members">
 						{members.map((member, index) =>
 							renderMemberCard(member, index, false)
 						)}
 					</div>
-				</motion.div>
+				</div>
 
-				<motion.div
-					initial={{ opacity: 0, y: 60 }}
-					animate={{ opacity: 1, y: 0 }}
-					transition={{ duration: 1, delay: 0.7 }}
-					className="about-cta"
-				>
+				<div className="about-cta fade-in-on-scroll">
 					<Card className="about-cta-card">
 						<CardContent className="about-cta-content">
 							<h3 className="about-cta-title">
@@ -197,19 +192,15 @@ export function Team() {
 								help lead the future of campus transportation.
 							</p>
 							<div className="about-cta-buttons">
-								<motion.a
-									whileHover={{ scale: 1.05 }}
-									whileTap={{ scale: 0.95 }}
-									href="/join"
-								>
+								<a href="/join">
 									<Button className="cta-button cta-button-primary">
 										Apply Now
 									</Button>
-								</motion.a>
+								</a>
 							</div>
 						</CardContent>
 					</Card>
-				</motion.div>
+				</div>
 			</div>
 		</div>
 	);
