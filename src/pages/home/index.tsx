@@ -6,49 +6,36 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/accordion";
-import { Badge } from "@/components/badge";
 import {
-	MapPin,
-	Clock,
 	Users,
-	Route,
-	Building,
 } from "lucide-react";
 import { motion } from "motion/react";
 import headerImage from "@/assets/header.jpg";
 import appleDownload from "@/assets/apple_download.svg";
 import androidDownload from "@/assets/android_download.png";
+import frame3Image from "@/assets/Frame 3.png";
+import frame4Image from "@/assets/Frame 4.png";
+import frame5Image from "@/assets/Frame 5.png";
+import frame6Image from "@/assets/Frame 6.png";
 
 export function Home() {
 
 	const features = [
 		{
-			icon: <MapPin className="h-8 w-8" />,
-			title: "Real-Time Tracking",
-			description:
-				"See live bus locations and arrival times with pinpoint accuracy. Never wonder when your bus will arrive again.",
-			highlight: "Live GPS tracking",
+			image: frame3Image,
+			alt: "Real-Time Tracking Feature"
 		},
 		{
-			icon: <Building className="h-8 w-8" />,
-			title: "Campus Navigation",
-			description:
-				"Find any building instantly with our comprehensive campus directory and smart search functionality.",
-			highlight: "250+ locations",
+			image: frame4Image,
+			alt: "Campus Navigation Feature"
 		},
 		{
-			icon: <Route className="h-8 w-8" />,
-			title: "Smart Routes",
-			description:
-				"Get optimal route suggestions with multiple options and real-time adjustments for delays.",
-			highlight: "Accurate routing",
+			image: frame5Image,
+			alt: "Smart Routes Feature"
 		},
 		{
-			icon: <Clock className="h-8 w-8" />,
-			title: "Arrival Predictions",
-			description:
-				"Precise arrival times for every stop and bus based on real-time data.",
-			highlight: "95% accuracy",
+			image: frame6Image,
+			alt: "Arrival Predictions Feature"
 		},
 	];
 
@@ -259,7 +246,7 @@ export function Home() {
 					<div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
 						{features.map((feature, index) => (
 							<motion.div
-								key={feature.title}
+								key={feature.alt}
 								initial={{ opacity: 0, y: 50 }}
 								whileInView={{ opacity: 1, y: 0 }}
 								transition={{
@@ -269,35 +256,11 @@ export function Home() {
 								viewport={{ once: true }}
 								className="group"
 							>
-								<SpotlightCard
-									className="h-full border-0 shadow-lg hover:shadow-xl transition-all duration-500 bg-gray-50/80 backdrop-blur-sm rounded-3xl overflow-hidden"
-								>
-									<CardContent className="p-10">
-										<div className="flex items-center mb-6">
-											<div className="w-16 h-16 bg-[#f1c232] rounded-2xl flex items-center justify-center text-black shadow-lg mr-4">
-												{feature.icon}
-											</div>
-											<Badge
-												className="bg-[#0b5394]/10 text-[#0b5394] px-3 py-1 rounded-full border-0"
-												style={{ fontWeight: 700 }}
-											>
-												{feature.highlight}
-											</Badge>
-										</div>
-										<h3
-											className="text-2xl font-bold text-[#0b5394] mb-4"
-											style={{ fontWeight: 700 }}
-										>
-											{feature.title}
-										</h3>
-										<p
-											className="text-lg text-gray-600 leading-relaxed"
-											style={{ fontWeight: 400 }}
-										>
-											{feature.description}
-										</p>
-									</CardContent>
-								</SpotlightCard>
+								<img
+									src={feature.image}
+									alt={feature.alt}
+									className="w-full h-auto rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500"
+								/>
 							</motion.div>
 						))}
 					</div>
