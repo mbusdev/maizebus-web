@@ -130,12 +130,19 @@ jobs:
           WantedBy=multi-user.target
           EOF
           
-          # Get Let's Encrypt SSL certificate
-          # Note: This requires a domain name pointing to your EC2 instance
-          # For now, we'll use a fallback self-signed certificate
+          # Get Let's Encrypt SSL certificate with fallback
           if [ -n "${{ secrets.DOMAIN_NAME }}" ]; then
-            echo "Getting Let's Encrypt certificate for ${{ secrets.DOMAIN_NAME }}"
-            sudo certbot --nginx -d ${{ secrets.DOMAIN_NAME }} --non-interactive --agree-tos --email ${{ secrets.EMAIL_TO }} --redirect
+            echo "Attempting to get Let's Encrypt certificate for ${{ secrets.DOMAIN_NAME }}"
+            if sudo certbot --nginx -d ${{ secrets.DOMAIN_NAME }} --non-interactive --agree-tos --email ${{ secrets.EMAIL_TO }} --redirect; then
+              echo "✅ Let's Encrypt certificate obtained successfully"
+            else
+              echo "❌ Let's Encrypt failed, falling back to self-signed certificate"
+              sudo mkdir -p /etc/ssl/certs /etc/ssl/private
+              sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+                -keyout /etc/ssl/private/maizebus-selfsigned.key \
+                -out /etc/ssl/certs/maizebus-selfsigned.crt \
+                -subj "/C=US/ST=MI/L=Ann Arbor/O=MaizeBus/CN=${{ secrets.DOMAIN_NAME }}"
+            fi
           else
             echo "No domain name provided, generating self-signed certificate"
             sudo mkdir -p /etc/ssl/certs /etc/ssl/private
@@ -147,8 +154,11 @@ jobs:
           
           # Set up Nginx reverse proxy with HTTPS
           if [ -n "${{ secrets.DOMAIN_NAME }}" ]; then
-            # Let's Encrypt configuration (certbot will modify this)
-            sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
+            # Check if Let's Encrypt certificate exists
+            if [ -f "/etc/letsencrypt/live/${{ secrets.DOMAIN_NAME }}/fullchain.pem" ]; then
+              echo "Using Let's Encrypt certificate for ${{ secrets.DOMAIN_NAME }}"
+              # Let's Encrypt configuration (certbot will modify this)
+              sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
           server {
               listen 80;
               server_name ${{ secrets.DOMAIN_NAME }};
@@ -166,6 +176,43 @@ jobs:
               }
           }
           EOF
+            else
+              echo "Using self-signed certificate for ${{ secrets.DOMAIN_NAME }}"
+              # Self-signed certificate configuration
+              sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
+          # HTTP server - redirect to HTTPS
+          server {
+              listen 80;
+              server_name ${{ secrets.DOMAIN_NAME }};
+              return 301 https://\$server_name\$request_uri;
+          }
+          
+          # HTTPS server
+          server {
+              listen 443 ssl http2;
+              server_name ${{ secrets.DOMAIN_NAME }};
+              
+              # SSL configuration (self-signed)
+              ssl_certificate /etc/ssl/certs/maizebus-selfsigned.crt;
+              ssl_certificate_key /etc/ssl/private/maizebus-selfsigned.key;
+              ssl_protocols TLSv1.2 TLSv1.3;
+              ssl_ciphers ECDHE-RSA-AES256-GCM-SHA512:DHE-RSA-AES256-GCM-SHA512:ECDHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES256-GCM-SHA384;
+              ssl_prefer_server_ciphers off;
+              
+              location / {
+                  proxy_pass http://localhost:3001;
+                  proxy_http_version 1.1;
+                  proxy_set_header Upgrade \$http_upgrade;
+                  proxy_set_header Connection 'upgrade';
+                  proxy_set_header Host \$host;
+                  proxy_set_header X-Real-IP \$remote_addr;
+                  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+                  proxy_set_header X-Forwarded-Proto \$scheme;
+                  proxy_cache_bypass \$http_upgrade;
+              }
+          }
+          EOF
+            fi
           else
             # Self-signed certificate configuration
             sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
