@@ -9,7 +9,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = parseInt(process.env.PORT || '3001');
 
 // CORS configuration for production and development
 const allowedOrigins = [
@@ -292,10 +292,8 @@ app.use((req, res) => {
   }
 });
 
-// For Vercel serverless functions
 export default app;
 
-// Start server
 const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
 
 app.listen(PORT, HOST, () => {
