@@ -58,15 +58,24 @@ const upload = multer({
   }
 });
 
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-  port: parseInt(process.env.EMAIL_PORT || '587'),
-  secure: true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+// Email configuration - only create transporter if credentials are provided
+let transporter: nodemailer.Transporter | null = null;
+const emailConfigured = process.env.EMAIL_USER && process.env.EMAIL_PASS;
+
+if (emailConfigured) {
+  transporter = nodemailer.createTransport({
+    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
+    port: parseInt(process.env.EMAIL_PORT || '587'),
+    secure: process.env.EMAIL_PORT === '465',
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS,
+    },
+  });
+} else {
+  console.log('⚠️  Email not configured - forms will be logged to console only');
+  console.log('   To enable email, set EMAIL_USER and EMAIL_PASS environment variables');
+}
 
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', message: 'MaizeBus Backend is running' });
@@ -117,13 +126,24 @@ app.post('/api/join', async (req, res) => {
       attachments: []
     };
 
-    await transporter.sendMail(mailOptions);
-
-
-    res.json({
-      success: true,
-      message: 'Application submitted successfully! We\'ll be in touch soon.'
-    });
+    if (transporter) {
+      await transporter.sendMail(mailOptions);
+      res.json({
+        success: true,
+        message: 'Application submitted successfully! We\'ll be in touch soon.'
+      });
+    } else {
+      console.log('📧 Application received (email not configured):');
+      console.log('Name:', formData.name);
+      console.log('Email:', formData.email);
+      console.log('Role:', formData.role);
+      console.log('Experience:', formData.experience);
+      console.log('Motivation:', formData.motivation);
+      res.json({
+        success: true,
+        message: 'Application received (email not configured).'
+      });
+    }
 
   } catch (error) {
     console.error('Error processing application:', error);
@@ -184,12 +204,23 @@ app.post('/api/contact', async (req, res) => {
       html: emailContent,
     };
 
-    await transporter.sendMail(mailOptions);
-
-    res.json({
-      success: true,
-      message: 'Message sent successfully! We\'ll get back to you soon.'
-    });
+    if (transporter) {
+      await transporter.sendMail(mailOptions);
+      res.json({
+        success: true,
+        message: 'Message sent successfully! We\'ll get back to you soon.'
+      });
+    } else {
+      console.log('📧 Contact form received (email not configured):');
+      console.log('Name:', name);
+      console.log('Email:', email);
+      console.log('Subject:', subject);
+      console.log('Message:', message);
+      res.json({
+        success: true,
+        message: 'Message received (email not configured).'
+      });
+    }
 
   } catch (error) {
     console.error('Error processing contact form:', error);
@@ -226,7 +257,12 @@ app.use((error: any, req: express.Request, res: express.Response, next: express.
 });
 
 // Catch-all handler: send back React's index.html file for client-side routing
-app.get('*', (req, res) => {
+app.use((req, res) => {
+  // Skip API routes
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ message: 'API endpoint not found' });
+  }
+  
   const indexPath = path.join(__dirname, '../../client/dist/index.html');
   if (fs.existsSync(indexPath)) {
     res.sendFile(indexPath);
