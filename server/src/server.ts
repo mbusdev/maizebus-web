@@ -66,10 +66,9 @@ app.get('/health', (req, res) => {
   res.json({ status: 'OK', message: 'MaizeBus Backend is running' });
 });
 
-app.post('/api/join', upload.single('resume'), async (req, res) => {
+app.post('/api/join', async (req, res) => {
   try {
     const formData = req.body;
-    const resumeFile = req.file;
 
     const requiredFields = ['name', 'email', 'role', 'experience', 'motivation'];
     const missingFields = requiredFields.filter(field => !formData[field]);
@@ -101,7 +100,6 @@ app.post('/api/join', upload.single('resume'), async (req, res) => {
         ${formData.relevantClasses ? `<p><strong>Relevant Classes:</strong> ${formData.relevantClasses}</p>` : ''}
         ${formData.problemSolving ? `<p><strong>Problem Solving:</strong> ${formData.problemSolving}</p>` : ''}
         
-        ${resumeFile ? `<p><strong>Resume:</strong> Attached (${resumeFile.originalname})</p>` : ''}
       </div>
     `;
 
@@ -110,17 +108,11 @@ app.post('/api/join', upload.single('resume'), async (req, res) => {
       to: process.env.EMAIL_TO || 'contact@maizebus.com',
       subject: `New MaizeBus Application - ${formData.name} (${formData.role})`,
       html: emailContent,
-      attachments: resumeFile ? [{
-        filename: resumeFile.originalname,
-        path: resumeFile.path
-      }] : []
+      attachments: []
     };
 
     await transporter.sendMail(mailOptions);
 
-    if (resumeFile && fs.existsSync(resumeFile.path)) {
-      fs.unlinkSync(resumeFile.path);
-    }
 
     res.json({
       success: true,
@@ -130,9 +122,6 @@ app.post('/api/join', upload.single('resume'), async (req, res) => {
   } catch (error) {
     console.error('Error processing application:', error);
     
-    if (req.file && fs.existsSync(req.file.path)) {
-      fs.unlinkSync(req.file.path);
-    }
 
     res.status(500).json({
       success: false,

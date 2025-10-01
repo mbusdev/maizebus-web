@@ -14,9 +14,6 @@ import {
   Lightbulb,
   Award,
   CheckCircle,
-  Upload,
-  FileText,
-  X,
   Loader2,
 } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -76,7 +73,6 @@ export function Join() {
     problemSolving: "",
   });
 
-  const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const roles = [
@@ -157,9 +153,6 @@ export function Join() {
       formDataWithFile.append(key, value);
     });
 
-    if (resumeFile) {
-      formDataWithFile.append("resume", resumeFile);
-    }
 
     try {
       const response = await fetch('http://localhost:3001/api/join', {
@@ -182,11 +175,6 @@ export function Join() {
           relevantClasses: "",
           problemSolving: "",
         });
-        setResumeFile(null);
-        const fileInput = document.getElementById("resume") as HTMLInputElement;
-        if (fileInput) {
-          fileInput.value = "";
-        }
       } else {
         alert(`Error: ${result.message}`);
       }
@@ -202,35 +190,6 @@ export function Join() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleResumeUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const allowedTypes = [
-        "application/pdf",
-        "application/msword",
-        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-      ];
-      if (!allowedTypes.includes(file.type)) {
-        alert("Please upload a PDF or Word document");
-        return;
-      }
-
-      if (file.size > 5 * 1024 * 1024) {
-        alert("File size must be less than 5MB");
-        return;
-      }
-
-      setResumeFile(file);
-    }
-  };
-
-  const removeResume = () => {
-    setResumeFile(null);
-    const fileInput = document.getElementById("resume") as HTMLInputElement;
-    if (fileInput) {
-      fileInput.value = "";
-    }
-  };
 
   return (
     <div className="join-page">
@@ -408,7 +367,11 @@ export function Join() {
                     onChange={(e) =>
                       handleInputChange("experience", e.target.value)
                     }
-                    placeholder="Describe your relevant experience, skills, and projects. Include technologies you've worked with."
+                    placeholder="List your relevant experience, skills, and technologies (one per line or bullet points):
+• React, TypeScript, Node.js
+• 2 years web development
+• Built e-commerce website
+• GitHub: github.com/username"
                     className="form-textarea"
                     rows={4}
                     required
@@ -447,48 +410,6 @@ export function Join() {
                   />
                 </div>
 
-                <div>
-                  <Label htmlFor="resume" className="form-label">
-                    Resume Upload (Optional)
-                  </Label>
-                  <div className="space-y-2">
-                    {!resumeFile ? (
-                      <div className="relative">
-                        <input
-                          id="resume"
-                          type="file"
-                          accept=".pdf,.doc,.docx"
-                          onChange={handleResumeUpload}
-                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
-                        />
-                        <div className="resume-upload">
-                          <Upload className="h-6 w-6 text-gray-400 mb-1" />
-                          <p className="text-gray-600 text-sm">
-                            Click to upload resume (PDF/Word, max 5MB)
-                          </p>
-                        </div>
-                      </div>
-                    ) : (
-                      <div className="resume-uploaded">
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center space-x-2">
-                            <FileText className="h-4 w-4 text-green-600" />
-                            <span className="text-green-800 text-sm">
-                              {resumeFile.name}
-                            </span>
-                          </div>
-                          <button
-                            type="button"
-                            onClick={removeResume}
-                            className="text-green-600 hover:text-green-800"
-                          >
-                            <X className="h-4 w-4" />
-                          </button>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                </div>
 
                 <div className="pt-6">
                   <Button 
