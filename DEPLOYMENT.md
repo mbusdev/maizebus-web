@@ -16,8 +16,8 @@ Set these environment variables in your Vercel project settings:
 
 ```bash
 # Email Configuration (Optional - for production email)
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
+EMAIL_HOST=smtp.zoho.com
+EMAIL_PORT=465
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-app-password
 EMAIL_TO=contact@maizebus.com
