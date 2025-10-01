@@ -111,6 +111,11 @@ jobs:
           Environment=NODE_ENV=production
           Environment=PORT=3001
           Environment=FRONTEND_URL=https://mbusdev.github.io
+          Environment=EMAIL_USER=${{ secrets.EMAIL_USER }}
+          Environment=EMAIL_PASS=${{ secrets.EMAIL_PASS }}
+          Environment=EMAIL_TO=${{ secrets.EMAIL_TO }}
+          Environment=EMAIL_HOST=${{ secrets.EMAIL_HOST }}
+          Environment=EMAIL_PORT=${{ secrets.EMAIL_PORT }}
           
           [Install]
           WantedBy=multi-user.target

@@ -84,8 +84,8 @@ const emailConfigured = process.env.EMAIL_USER && process.env.EMAIL_PASS;
 
 if (emailConfigured) {
   transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-    port: parseInt(process.env.EMAIL_PORT || '587'),
+    host: process.env.EMAIL_HOST || 'smtp.zoho.com',
+    port: parseInt(process.env.EMAIL_PORT || '465'),
     secure: process.env.EMAIL_PORT === '465',
     auth: {
       user: process.env.EMAIL_USER,
