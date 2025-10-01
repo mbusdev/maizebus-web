@@ -12,7 +12,7 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: '/maizebus-web/',
+  base: '/',
   build: {
     target: 'esnext',
     minify: 'esbuild',

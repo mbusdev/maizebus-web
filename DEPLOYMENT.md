@@ -61,7 +61,7 @@ Add these secrets to your GitHub repository (Settings > Secrets and variables > 
    EMAIL_TO=contact@maizebus.com
    PORT=3001
    NODE_ENV=production
-   FRONTEND_URL=https://mbusdev.github.io/maizebus-web
+   FRONTEND_URL=https://mbusdev.github.io
    ```
 
 6. **Set up reverse proxy** (optional, for custom domain):
@@ -100,9 +100,9 @@ Add these secrets to your GitHub repository (Settings > Secrets and variables > 
 ### Connectivity Configuration
 
 **Frontend (GitHub Pages) → Backend (EC2)**
-- Frontend URL: `https://mbusdev.github.io/maizebus-web`
+- Frontend URL: `https://mbusdev.github.io`
 - Backend URL: `https://your-ec2-domain.com` or `http://your-ec2-ip:3001`
-- CORS is configured to allow GitHub Pages domain
+- CORS is configured to allow GitHub Pages root domain
 - Backend binds to `0.0.0.0:3001` for external access
 
 **Security Group Requirements:**

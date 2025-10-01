@@ -16,8 +16,7 @@ const allowedOrigins = [
   'http://localhost:5173', // Development
   'http://localhost:3000', // Alternative dev port
   process.env.FRONTEND_URL, // Production frontend URL
-  'https://mbusdev.github.io', // GitHub Pages
-  'https://mbusdev.github.io/maizebus-web' // GitHub Pages with path
+  'https://mbusdev.github.io' // GitHub Pages root domain
 ].filter(Boolean);
 
 app.use(cors({
