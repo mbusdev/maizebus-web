@@ -19,21 +19,9 @@ jobs:
       with:
         node-version: '22.12'
         
-    - name: Install root dependencies
+    - name: Install all dependencies
       run: |
-        npm ci
-        
-    - name: Install client dependencies
-      run: |
-        cd client && rm -rf node_modules package-lock.json && npm install
-        
-    - name: Install server dependencies
-      run: |
-        cd server && npm ci
-        
-    - name: Install API dependencies
-      run: |
-        cd api && npm ci
+        npm run install:all
         
     - name: Build project
       run: |
