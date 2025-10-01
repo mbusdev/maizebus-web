@@ -144,7 +144,7 @@ export function Join() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (isSubmitting) return; // Prevent double submission
+    if (isSubmitting) return;
     
     setIsSubmitting(true);
 
