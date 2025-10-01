@@ -58,7 +58,7 @@ function AppContent() {
 
 export default function App() {
 	return (
-		<BrowserRouter>
+		<BrowserRouter basename="/maizebus-web">
 			<AppContent />
 		</BrowserRouter>
 	);
