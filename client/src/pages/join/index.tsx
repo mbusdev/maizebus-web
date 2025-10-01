@@ -17,6 +17,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { useState, useEffect } from "react";
+import { API_ENDPOINTS } from "@/config";
 import "./index.css";
 
 function useIntersectionObserver() {
@@ -148,7 +149,7 @@ export function Join() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch('http://localhost:3001/api/join', {
+      const response = await fetch(API_ENDPOINTS.JOIN, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -64,8 +64,8 @@ Create a `.env` file in the `server/` directory:
 ```env
 PORT=3001
 FRONTEND_URL=http://localhost:5173
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
+EMAIL_HOST=smtp.zoho.com
+EMAIL_PORT=465
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=your-app-password
 EMAIL_TO=contact@maizebus.com
@@ -96,14 +96,6 @@ EMAIL_TO=contact@maizebus.com
    ```bash
    npm run start
    ```
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and linting
-5. Submit a pull request
 
 ## License
 
