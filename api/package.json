@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "MaizeBus API - Vercel Serverless Functions",
   "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch"
+  },
   "dependencies": {
     "@vercel/node": "^3.0.0",
     "nodemailer": "^7.0.6"
