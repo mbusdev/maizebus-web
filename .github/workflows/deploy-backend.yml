@@ -119,7 +119,7 @@ jobs:
           RestartSec=10
           Environment=NODE_ENV=production
           Environment=PORT=3001
-          Environment=FRONTEND_URL=https://mbusdev.github.io
+          Environment=FRONTEND_URL=${{ secrets.FRONTEND_URL || 'https://mbusdev.github.io/maizebus-web' }}
           Environment=EMAIL_USER=${{ secrets.EMAIL_USER }}
           Environment=EMAIL_PASS=${{ secrets.EMAIL_PASS }}
           Environment=EMAIL_TO=${{ secrets.EMAIL_TO }}
