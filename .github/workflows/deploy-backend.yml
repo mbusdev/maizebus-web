@@ -46,6 +46,17 @@ jobs:
         key: ${{ secrets.EC2_SSH_KEY }}
         port: ${{ secrets.EC2_PORT || 22 }}
         script: |
+          # Install Node.js if not already installed
+          if ! command -v node &> /dev/null; then
+            echo "Installing Node.js..."
+            curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
+            sudo apt-get install -y nodejs
+          fi
+          
+          # Verify Node.js installation
+          node --version
+          npm --version
+          
           # Create deployment directory
           mkdir -p /home/ubuntu/maizebus-backend
           cd /home/ubuntu/maizebus-backend
@@ -88,12 +99,9 @@ jobs:
           # Install production dependencies
           npm ci --production
           
-          # Copy environment file
-          if [ -f "/home/ubuntu/maizebus-backend/.env" ]; then
-            cp /home/ubuntu/maizebus-backend/.env .
-          else
-            echo "⚠️  No .env file found. Please create one on the server."
-          fi
+          # Install screen if not already installed
+          sudo apt-get update
+          sudo apt-get install -y screen
           
           # Set up systemd service
           sudo tee /etc/systemd/system/maizebus-backend.service > /dev/null <<EOF
@@ -102,10 +110,11 @@ jobs:
           After=network.target
           
           [Service]
-          Type=simple
+          Type=forking
           User=ubuntu
           WorkingDirectory=/home/ubuntu/maizebus-backend/current
-          ExecStart=/usr/bin/node dist/server.js
+          ExecStart=/usr/bin/screen -dmS maizebus-backend /usr/bin/node dist/server.js
+          ExecStop=/usr/bin/screen -S maizebus-backend -X quit
           Restart=always
           RestartSec=10
           Environment=NODE_ENV=production
@@ -128,6 +137,18 @@ jobs:
           
           # Check service status
           sudo systemctl status maizebus-backend --no-pager
+          
+          # Check if screen session is running
+          screen -list | grep maizebus-backend || echo "Screen session not found"
+          
+          # Show environment variables (without sensitive data)
+          echo "Environment check:"
+          echo "NODE_ENV: $NODE_ENV"
+          echo "PORT: $PORT"
+          echo "FRONTEND_URL: $FRONTEND_URL"
+          echo "EMAIL_USER: ${EMAIL_USER:+SET}"
+          echo "EMAIL_PASS: ${EMAIL_PASS:+SET}"
+          echo "EMAIL_TO: $EMAIL_TO"
           
           # Cleanup old backups (keep last 3)
           cd /home/ubuntu/maizebus-backend
