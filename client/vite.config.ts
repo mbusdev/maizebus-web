@@ -21,4 +21,7 @@ export default defineConfig({
       },
     },
   },
+  optimizeDeps: {
+    include: ['@rollup/rollup-linux-x64-gnu']
+  },
 })
