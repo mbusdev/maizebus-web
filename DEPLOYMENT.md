@@ -15,7 +15,7 @@ The frontend is automatically deployed to GitHub Pages when changes are pushed t
 
 ## Backend Deployment (AWS EC2)
 
-The backend is deployed to an AWS EC2 instance when changes are pushed to the `main` branch in the `server/` or `api/` directories.
+The backend is deployed to an AWS EC2 instance when changes are pushed to the `main` branch in the `server/` directory.
 
 ### Required GitHub Secrets
 

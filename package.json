@@ -3,23 +3,18 @@
   "version": "1.0.0",
   "description": "MaizeBus Web Application - Full Stack React + Node.js",
   "private": true,
-  "workspaces": [
-    "client",
-    "server"
-  ],
   "scripts": {
     "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
     "dev:client": "cd client && npm run dev",
     "dev:server": "cd server && npm run dev",
-    "build": "npm run build:client && npm run build:server && npm run build:api",
+    "build": "npm run build:client && npm run build:server",
     "build:client": "cd client && npm run build",
     "build:server": "cd server && npm run build",
-    "build:api": "cd api && npm run build",
     "start": "concurrently \"npm run start:server\" \"npm run start:client\"",
     "start:client": "cd client && npm run preview",
     "start:server": "cd server && npm start",
-    "install:all": "npm install && cd client && npm install && cd ../server && npm install && cd ../api && npm install",
-    "clean": "rm -rf client/node_modules server/node_modules node_modules",
+    "install:all": "cd client && npm install && cd ../server && npm install",
+    "clean": "rm -rf client/node_modules server/node_modules",
     "lint": "npm run lint:client && npm run lint:server",
     "lint:client": "cd client && npm run lint",
     "lint:server": "cd server && npm run lint"
@@ -33,7 +28,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/your-username/maizebus-web.git"
+    "url": "https://github.com/mbusdev/maizebus-web.git"
   },
   "keywords": [
     "maizebus",
