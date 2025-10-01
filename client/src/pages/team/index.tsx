@@ -12,6 +12,7 @@ import { ImageWithFallback } from "@/components/imageWithFallback";
 import teamData from "@/assets/team.json";
 import "./index.css";
 
+
 function useIntersectionObserver() {
 	useEffect(() => {
 		const timer = setTimeout(() => {

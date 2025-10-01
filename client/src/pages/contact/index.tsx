@@ -20,9 +20,8 @@ import {
   Send,
   CheckCircle,
   Instagram,
-  Twitter,
+  Youtube,
   Linkedin,
-  Github,
   Loader2,
 } from "lucide-react";
 import { useState, useEffect } from "react";
@@ -359,15 +358,15 @@ export function Contact() {
                       <ExternalLink className="h-3 w-3" />
                     </a>
                     <a
-                      href="https://twitter.com/maizebus"
+                      href="https://www.youtube.com/@MaizeBus"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="social-link"
                     >
                       <div className="social-icon">
-                        <Twitter className="h-6 w-6" />
+                        <Youtube className="h-6 w-6" />
                       </div>
-                      <span className="social-name">Twitter</span>
+                      <span className="social-name">YouTube</span>
                       <ExternalLink className="h-3 w-3" />
                     </a>
                     <a
@@ -380,18 +379,6 @@ export function Contact() {
                         <Linkedin className="h-6 w-6" />
                       </div>
                       <span className="social-name">LinkedIn</span>
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                    <a
-                      href="https://github.com/maizebus"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="social-link"
-                    >
-                      <div className="social-icon">
-                        <Github className="h-6 w-6" />
-                      </div>
-                      <span className="social-name">GitHub</span>
                       <ExternalLink className="h-3 w-3" />
                     </a>
                   </div>
