@@ -16,7 +16,7 @@
 			"id": "harvey-kyllonen",
 			"name": "Harvey Kyllonen",
 			"role": "Frontend Lead",
-			"major": "",
+			"major": "Computer Science",
 			"year": "W27",
 			"image": "../../assets/profiles/Harvey_Kyllonen_Headshot.jpg",
 			"type": "lead"
@@ -120,71 +120,6 @@
 			"image": "../../assets/profiles/Siddhant_Bhirud_Headshot.jpg",
 			"linkedin": "https://www.linkedin.com/in/siddhant-bhirud",
 			"instagram": "https://instagram.com/siddhant.2831",
-			"type": "member"
-		},
-		{
-			"id": "member",
-			"name": "Member Example",
-			"role": "Onboarding",
-			"major": "Major",
-			"year": "Grad Year",
-			"image": "linkHere",
-			"github": "",
-			"linkedin": "",
-			"web": "",
-			"instagram": "",
-			"type": "member"
-		},
-		{
-			"id": "member",
-			"name": "Member Example",
-			"role": "Onboarding",
-			"major": "Major",
-			"year": "Grad Year",
-			"image": "linkHere",
-			"github": "",
-			"linkedin": "",
-			"web": "",
-			"instagram": "",
-			"type": "member"
-		},
-		{
-			"id": "member",
-			"name": "Member Example",
-			"role": "Onboarding",
-			"major": "Major",
-			"year": "Grad Year",
-			"image": "linkHere",
-			"github": "",
-			"linkedin": "",
-			"web": "",
-			"instagram": "",
-			"type": "member"
-		},
-		{
-			"id": "member",
-			"name": "Member Example",
-			"role": "Onboarding",
-			"major": "Major",
-			"year": "Grad Year",
-			"image": "linkHere",
-			"github": "",
-			"linkedin": "",
-			"web": "",
-			"instagram": "",
-			"type": "member"
-		},
-		{
-			"id": "member",
-			"name": "Member Example",
-			"role": "Onboarding",
-			"major": "Major",
-			"year": "Grad Year",
-			"image": "linkHere",
-			"github": "",
-			"linkedin": "",
-			"web": "",
-			"instagram": "",
 			"type": "member"
 		}
 	]
