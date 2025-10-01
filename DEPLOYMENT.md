@@ -140,11 +140,10 @@ To deploy manually:
 
 ```bash
 # Build locally
-npm run build:server
-npm run build:api
+cd server && npm run build
 
 # Create deployment package
-tar -czf deployment.tar.gz -C server/dist . -C ../api/dist api
+tar -czf deployment.tar.gz -C server/dist .
 
 # Upload to EC2
 scp -i your-key.pem deployment.tar.gz ubuntu@your-ec2-ip:/home/ubuntu/maizebus-backend/current/

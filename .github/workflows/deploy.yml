@@ -19,17 +19,21 @@ jobs:
       with:
         node-version: '22.12'
         
-    - name: Install all dependencies
+    - name: Install client dependencies
       run: |
-        npm run install:all
+        cd client && npm ci
+        
+    - name: Install server dependencies
+      run: |
+        cd server && npm ci
         
     - name: Build client
       run: |
-        npm run build:client
+        cd client && npm run build
         
     - name: Build server
       run: |
-        npm run build:server
+        cd server && npm run build
         
     - name: Run tests (if available)
       run: |
