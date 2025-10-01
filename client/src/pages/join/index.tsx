@@ -147,17 +147,13 @@ export function Join() {
     
     setIsSubmitting(true);
 
-    const formDataWithFile = new FormData();
-
-    Object.entries(formData).forEach(([key, value]) => {
-      formDataWithFile.append(key, value);
-    });
-
-
     try {
       const response = await fetch('http://localhost:3001/api/join', {
         method: 'POST',
-        body: formDataWithFile,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
 
       const result = await response.json();
@@ -370,8 +366,7 @@ export function Join() {
                     placeholder="List your relevant experience, skills, and technologies (one per line or bullet points):
 • React, TypeScript, Node.js
 • 2 years web development
-• Built e-commerce website
-• GitHub: github.com/username"
+• Built e-commerce website"
                     className="form-textarea"
                     rows={4}
                     required
