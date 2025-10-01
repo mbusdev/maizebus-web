@@ -92,3 +92,4 @@ The server sends formatted emails to the configured recipient with:
 - Supported formats: PDF, DOC, DOCX
 - Maximum file size: 5MB
 - Files are temporarily stored and deleted after email sending
+# Test trigger
