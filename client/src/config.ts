@@ -3,7 +3,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 
 export const API_BASE_URL = isDevelopment 
   ? 'http://localhost:3001'
-  : apiUrl || 'ec2-3-129-13-199.us-east-2.compute.amazonaws.com';
+  : apiUrl || 'http://ec2-3-129-13-199.us-east-2.compute.amazonaws.com';
 
 export const API_ENDPOINTS = {
   JOIN: `${API_BASE_URL}/api/join`,
