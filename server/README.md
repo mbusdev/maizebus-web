@@ -93,3 +93,4 @@ The server sends formatted emails to the configured recipient with:
 - Maximum file size: 5MB
 - Files are temporarily stored and deleted after email sending
 # Test trigger
+# Trigger backend deployment - Wed Oct  1 02:27:18 EDT 2025
