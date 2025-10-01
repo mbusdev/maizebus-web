@@ -99,9 +99,9 @@ jobs:
           # Install production dependencies
           npm ci --production
           
-          # Install screen, nginx, and openssl if not already installed
+          # Install screen, nginx, and certbot if not already installed
           sudo apt-get update
-          sudo apt-get install -y screen nginx openssl
+          sudo apt-get install -y screen nginx certbot python3-certbot-nginx
           
           # Set up systemd service
           sudo tee /etc/systemd/system/maizebus-backend.service > /dev/null <<EOF
@@ -130,15 +130,45 @@ jobs:
           WantedBy=multi-user.target
           EOF
           
-          # Generate self-signed SSL certificate
-          sudo mkdir -p /etc/ssl/certs /etc/ssl/private
-          sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-            -keyout /etc/ssl/private/maizebus-selfsigned.key \
-            -out /etc/ssl/certs/maizebus-selfsigned.crt \
-            -subj "/C=US/ST=MI/L=Ann Arbor/O=MaizeBus/CN=ec2-3-129-13-199.us-east-2.compute.amazonaws.com"
+          # Get Let's Encrypt SSL certificate
+          # Note: This requires a domain name pointing to your EC2 instance
+          # For now, we'll use a fallback self-signed certificate
+          if [ -n "${{ secrets.DOMAIN_NAME }}" ]; then
+            echo "Getting Let's Encrypt certificate for ${{ secrets.DOMAIN_NAME }}"
+            sudo certbot --nginx -d ${{ secrets.DOMAIN_NAME }} --non-interactive --agree-tos --email ${{ secrets.EMAIL_TO }} --redirect
+          else
+            echo "No domain name provided, generating self-signed certificate"
+            sudo mkdir -p /etc/ssl/certs /etc/ssl/private
+            sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+              -keyout /etc/ssl/private/maizebus-selfsigned.key \
+              -out /etc/ssl/certs/maizebus-selfsigned.crt \
+              -subj "/C=US/ST=MI/L=Ann Arbor/O=MaizeBus/CN=ec2-3-129-13-199.us-east-2.compute.amazonaws.com"
+          fi
           
           # Set up Nginx reverse proxy with HTTPS
-          sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
+          if [ -n "${{ secrets.DOMAIN_NAME }}" ]; then
+            # Let's Encrypt configuration (certbot will modify this)
+            sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
+          server {
+              listen 80;
+              server_name ${{ secrets.DOMAIN_NAME }};
+              
+              location / {
+                  proxy_pass http://localhost:3001;
+                  proxy_http_version 1.1;
+                  proxy_set_header Upgrade \$http_upgrade;
+                  proxy_set_header Connection 'upgrade';
+                  proxy_set_header Host \$host;
+                  proxy_set_header X-Real-IP \$remote_addr;
+                  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+                  proxy_set_header X-Forwarded-Proto \$scheme;
+                  proxy_cache_bypass \$http_upgrade;
+              }
+          }
+          EOF
+          else
+            # Self-signed certificate configuration
+            sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
           # HTTP server - redirect to HTTPS
           server {
               listen 80;
@@ -151,7 +181,7 @@ jobs:
               listen 443 ssl http2;
               server_name _;
               
-              # SSL configuration (self-signed for now)
+              # SSL configuration (self-signed)
               ssl_certificate /etc/ssl/certs/maizebus-selfsigned.crt;
               ssl_certificate_key /etc/ssl/private/maizebus-selfsigned.key;
               ssl_protocols TLSv1.2 TLSv1.3;
@@ -171,6 +201,7 @@ jobs:
               }
           }
           EOF
+          fi
           
           # Enable the site
           sudo ln -sf /etc/nginx/sites-available/maizebus-backend /etc/nginx/sites-enabled/
