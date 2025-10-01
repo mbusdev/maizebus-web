@@ -78,7 +78,7 @@ export default function App() {
 	}, []);
 
 	return (
-		<BrowserRouter basename="/maizebus-web">
+		<BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/' : '/maizebus-web'}>
 			<AppContent />
 		</BrowserRouter>
 	);
