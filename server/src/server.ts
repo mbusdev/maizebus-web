@@ -11,9 +11,30 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 
+// CORS configuration for production and development
+const allowedOrigins = [
+  'http://localhost:5173', // Development
+  'http://localhost:3000', // Alternative dev port
+  process.env.FRONTEND_URL, // Production frontend URL
+  'https://mbusdev.github.io', // GitHub Pages
+  'https://mbusdev.github.io/maizebus-web' // GitHub Pages with path
+].filter(Boolean);
+
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
-  credentials: true
+  origin: function (origin, callback) {
+    // Allow requests with no origin (mobile apps, Postman, etc.)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.log('CORS blocked origin:', origin);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -274,10 +295,12 @@ app.use((req, res) => {
 // For Vercel serverless functions
 export default app;
 
-// For local development
-if (process.env.NODE_ENV !== 'production') {
-  app.listen(PORT, () => {
-    console.log(`MaizeBus Backend server running on port ${PORT}`);
-    console.log(`Health check: http://localhost:${PORT}/health`);
-  });
-}
+// Start server
+const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
+
+app.listen(PORT, HOST, () => {
+  console.log(`MaizeBus Backend server running on ${HOST}:${PORT}`);
+  console.log(`Health check: http://${HOST}:${PORT}/health`);
+  console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`CORS allowed origins: ${allowedOrigins.join(', ')}`);
+});

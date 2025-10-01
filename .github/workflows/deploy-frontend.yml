@@ -38,7 +38,7 @@ jobs:
     - name: Build frontend
       run: |
         cd client
-        npm run build
+        VITE_API_URL=${{ secrets.EC2_API_URL || 'https://your-ec2-ip.com' }} npm run build
         
     - name: Setup Pages
       uses: actions/configure-pages@v4

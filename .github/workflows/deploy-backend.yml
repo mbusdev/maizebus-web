@@ -112,6 +112,8 @@ jobs:
           Restart=always
           RestartSec=10
           Environment=NODE_ENV=production
+          Environment=PORT=3001
+          Environment=FRONTEND_URL=https://mbusdev.github.io/maizebus-web
           
           [Install]
           WantedBy=multi-user.target

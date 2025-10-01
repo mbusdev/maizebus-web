@@ -29,17 +29,18 @@ Add these secrets to your GitHub repository (Settings > Secrets and variables > 
 
 ### EC2 Instance Setup
 
-1. **Launch an EC2 instance** (Ubuntu 20.04+ recommended)
+1. **Launch an EC2 instance** (Ubuntu 24.04 recommended)
 2. **Configure security groups** to allow:
    - SSH (port 22) from your IP
    - HTTP (port 80) from anywhere
    - HTTPS (port 443) from anywhere
    - Custom port 3001 for your backend API
 
-3. **Install Node.js** on the EC2 instance:
+3. **Install Node.js** on the EC2 instance (Ubuntu 24.04):
    ```bash
    curl -fsSL https://deb.nodesource.com/setup_22.x | sudo -E bash -
    sudo apt-get install -y nodejs
+   node --version  # Should show v22.x.x
    ```
 
 4. **Create deployment directory**:
@@ -60,7 +61,7 @@ Add these secrets to your GitHub repository (Settings > Secrets and variables > 
    EMAIL_TO=contact@maizebus.com
    PORT=3001
    NODE_ENV=production
-   FRONTEND_URL=https://your-username.github.io/maizebus-web
+   FRONTEND_URL=https://mbusdev.github.io/maizebus-web
    ```
 
 6. **Set up reverse proxy** (optional, for custom domain):
@@ -95,6 +96,31 @@ Add these secrets to your GitHub repository (Settings > Secrets and variables > 
    sudo nginx -t
    sudo systemctl restart nginx
    ```
+
+### Connectivity Configuration
+
+**Frontend (GitHub Pages) → Backend (EC2)**
+- Frontend URL: `https://mbusdev.github.io/maizebus-web`
+- Backend URL: `https://your-ec2-domain.com` or `http://your-ec2-ip:3001`
+- CORS is configured to allow GitHub Pages domain
+- Backend binds to `0.0.0.0:3001` for external access
+
+**Security Group Requirements:**
+- Port 22 (SSH): Your IP only
+- Port 80 (HTTP): 0.0.0.0/0 (for reverse proxy)
+- Port 443 (HTTPS): 0.0.0.0/0 (for reverse proxy)
+- Port 3001 (API): 0.0.0.0/0 (for direct API access)
+
+**Testing Connectivity:**
+```bash
+# Test backend health endpoint
+curl http://your-ec2-ip:3001/health
+
+# Test API endpoint
+curl -X POST http://your-ec2-ip:3001/api/contact \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Test","email":"test@test.com","inquiryType":"general","subject":"Test","message":"Test"}'
+```
 
 ### Deployment Process
 
