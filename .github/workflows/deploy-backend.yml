@@ -136,12 +136,12 @@ jobs:
             if sudo certbot --nginx -d ${{ secrets.DOMAIN_NAME }} --non-interactive --agree-tos --email ${{ secrets.EMAIL_TO }} --redirect; then
               echo "✅ Let's Encrypt certificate obtained successfully"
             else
-              echo "❌ Let's Encrypt failed, falling back to self-signed certificate"
+              echo "❌ Let's Encrypt failed, falling back to self-signed certificate with EC2 domain"
               sudo mkdir -p /etc/ssl/certs /etc/ssl/private
               sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
                 -keyout /etc/ssl/private/maizebus-selfsigned.key \
                 -out /etc/ssl/certs/maizebus-selfsigned.crt \
-                -subj "/C=US/ST=MI/L=Ann Arbor/O=MaizeBus/CN=${{ secrets.DOMAIN_NAME }}"
+                -subj "/C=US/ST=MI/L=Ann Arbor/O=MaizeBus/CN=ec2-3-129-13-199.us-east-2.compute.amazonaws.com"
             fi
           else
             echo "No domain name provided, generating self-signed certificate"
@@ -177,20 +177,20 @@ jobs:
           }
           EOF
             else
-              echo "Using self-signed certificate for ${{ secrets.DOMAIN_NAME }}"
-              # Self-signed certificate configuration
+              echo "Using self-signed certificate with EC2 domain (Let's Encrypt failed)"
+              # Self-signed certificate configuration with EC2 domain
               sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
           # HTTP server - redirect to HTTPS
           server {
               listen 80;
-              server_name ${{ secrets.DOMAIN_NAME }};
+              server_name _;
               return 301 https://\$server_name\$request_uri;
           }
           
           # HTTPS server
           server {
               listen 443 ssl http2;
-              server_name ${{ secrets.DOMAIN_NAME }};
+              server_name _;
               
               # SSL configuration (self-signed)
               ssl_certificate /etc/ssl/certs/maizebus-selfsigned.crt;
