@@ -70,7 +70,7 @@ export default function App() {
 				}).join('?');
 				var newUrl = l.pathname.slice(0, -1) + decoded + l.hash;
 				console.log('GitHub Pages routing fix - New URL:', newUrl);
-				window.history.replaceState(null, null, newUrl);
+				window.history.replaceState(null, '', newUrl);
 			} else {
 				console.log('GitHub Pages routing fix - No redirect needed');
 			}
