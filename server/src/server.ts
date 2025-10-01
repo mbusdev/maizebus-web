@@ -16,7 +16,11 @@ const allowedOrigins = [
   'http://localhost:5173', // Development
   'http://localhost:3000', // Alternative dev port
   process.env.FRONTEND_URL, // Production frontend URL
-  'https://mbusdev.github.io' // GitHub Pages root domain
+  'https://mbusdev.github.io', // GitHub Pages root domain
+  `https://${process.env.DOMAIN_NAME}`, // Backend domain (HTTPS)
+  `http://${process.env.DOMAIN_NAME}`, // Backend domain (HTTP)
+  'https://ec2-3-129-13-199.us-east-2.compute.amazonaws.com', // EC2 domain (HTTPS)
+  'http://ec2-3-129-13-199.us-east-2.compute.amazonaws.com' // EC2 domain (HTTP)
 ].filter(Boolean);
 
 app.use(cors({
