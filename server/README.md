@@ -43,7 +43,7 @@
 
 - Node.js 18+
 - npm 8+
-- SMTP email account (Gmail recommended)
+- SMTP email account (Zoho utilized by MaizeBus)
 
 ### Installation
 
@@ -109,7 +109,7 @@ EMAIL_TO=contact@maizebus.com
 #### Gmail Configuration
 1. Enable 2-Factor Authentication
 2. Generate an App Password: [Google Account Settings](https://myaccount.google.com/apppasswords)
-3. Use the App Password (not your regular password) in `EMAIL_PASS`
+3. Use the App Password (not your regular password) in `EMAIL_PASS` (Regular password can be used if 2FA is disabled)
 
 #### Other Email Providers
 ```bash
@@ -120,6 +120,10 @@ EMAIL_PORT=587
 # Yahoo
 EMAIL_HOST=smtp.mail.yahoo.com
 EMAIL_PORT=587
+
+# Zoho
+EMAIL_HOST=smtp.zoho.com
+EMAIL_PORT=465
 
 # Custom SMTP
 EMAIL_HOST=your-smtp-server.com
@@ -240,7 +244,6 @@ The server is configured to accept requests from:
 <h2>New {formType} Submission</h2>
 <p><strong>Name:</strong> {name}</p>
 <p><strong>Email:</strong> {email}</p>
-<!-- Additional fields based on form type -->
 <p><strong>Message:</strong></p>
 <p>{message}</p>
 ```
@@ -302,9 +305,6 @@ Monitor server status with the `/health` endpoint:
 ```bash
 # Check server status
 curl https://api.maizebus.com/health
-
-# Check from EC2
-curl https://ec2-3-129-13-199.us-east-2.compute.amazonaws.com/health
 ```
 
 ### Logs
@@ -354,34 +354,12 @@ Enable debug logging by setting:
 NODE_ENV=development
 ```
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Make your changes
-4. Test thoroughly
-5. Commit: `git commit -m 'Add amazing feature'`
-6. Push: `git push origin feature/amazing-feature`
-7. Open a Pull Request
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Team
-
-Built by the MaizeBus development team at the University of Michigan.
-
-- **Backend Lead**: Ryan Lu
-- **DevOps Lead**: Andrew Yu
-- **Executive Director**: Ishan Kumar
 
 ## 📞 Support
 
 - **Email**: contact@maizebus.com
 - **GitHub Issues**: [Report bugs or request features](https://github.com/mbusdev/maizebus-web/issues)
-- **API Documentation**: [View API docs](https://api.maizebus.com/health)
-
----
-
-**Made with ❤️ by Michigan students, for Michigan students**
+- **API Documentation**: [View API docs](https://docs.maizebus.com)

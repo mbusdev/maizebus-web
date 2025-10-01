@@ -241,35 +241,11 @@ export function Component({ title, children }: ComponentProps) {
 - Ensure `404.html` exists in `public/`
 - Check `basename` configuration in `App.tsx`
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Make your changes
-4. Test thoroughly
-5. Commit: `git commit -m 'Add amazing feature'`
-6. Push: `git push origin feature/amazing-feature`
-7. Open a Pull Request
-
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👥 Team
-
-Built by the MaizeBus development team at the University of Michigan.
-
-- **Frontend Lead**: Harvey Kyllonen
-- **Backend Lead**: Ryan Lu
-- **DevOps Lead**: Andrew Yu
-- **Executive Director**: Ishan Kumar
 
 ## 📞 Support
 
 - **Email**: contact@maizebus.com
 - **GitHub Issues**: [Report bugs or request features](https://github.com/mbusdev/maizebus-web/issues)
-- **Discord**: [Join our community](https://discord.gg/maizebus)
-
----
-
-**Made with ❤️ by Michigan students, for Michigan students**
