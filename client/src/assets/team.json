@@ -1,0 +1,191 @@
+{
+	"lead": [
+		{
+			"id": "ishan-kumar",
+			"name": "Ishan Kumar",
+			"role": "Executive Director",
+			"major": "Computer Engineering",
+			"year": "W27",
+			"image": "/assets/profiles/Ishan_Kumar_Headshot.png",
+			"github": "https://github.com/i-kumar",
+			"linkedin": "https://www.linkedin.com/in/ishan-kumar-umich/",
+			"instagram": "https://instagram.com/ishan.i.k",
+			"type": "lead"
+		},
+		{
+			"id": "harvey-kyllonen",
+			"name": "Harvey Kyllonen",
+			"role": "Frontend Lead",
+			"major": "",
+			"year": "W27",
+			"image": "/assets/profiles/Harvey_Kyllonen_Headshot.jpg",
+			"type": "lead"
+		},
+		{
+			"id": "ryan-lu",
+			"name": "Ryan Lu",
+			"role": "Backend Lead",
+			"major": "Computer Science",
+			"year": "W27",
+			"image": "/assets/profiles/Ryan_Lu_Headshot.jpg",
+			"github": "https://github.com/ry-lu",
+			"linkedin": "https://www.linkedin.com/in/ryan-lu-91505232a/",
+			"type": "lead"
+		},
+		{
+			"id": "andrew-yu",
+			"name": "Andrew Yu",
+			"role": "DevOps Lead",
+			"major": "Computer Science",
+			"year": "W27",
+			"image": "/assets/profiles/Andrew_Yu_Headshot.jpg",
+			"github": "https://github.com/sirquackyy",
+            "instagram": "https://instagram.com/yua.priv",
+			"linkedin": "https://linkedin.com/in/andrewyyu",
+            "web": "https://andrewyu.dev",
+			"type": "lead"
+		}
+	],
+	"members": [
+		{
+			"id": "amanze-aguwa",
+			"name": "Amanze Aguwa",
+			"role": "Backend Developer",
+			"major": "Computer Science",
+			"year": "W29",
+			"image": "/assets/profiles/Amanze_Aguwa_Headshot.jpg",
+			"github": "https://github.com/Nnanyere",
+			"instagram": "https://instagram.com/amanzeaguwa",
+			"type": "member"
+		},
+		{
+			"id": "mason-shields",
+			"name": "Mason Shields",
+			"role": "Backend Developer",
+			"major": "Computer Science",
+			"year": "W27",
+			"image": "/assets/profiles/Mason_Shields_Headshot.jpg",
+			"linkedin": "https://www.linkedin.com/in/mason-shields-713613289/",
+			"web": "https://masonshields.dev",
+			"type": "member"
+		},
+		{
+			"id": "thuong-vo",
+			"name": "Thuong Vo",
+			"role": "Onboarding",
+			"major": "Robotics",
+			"year": "W28",
+			"image": "/assets/profiles/Thuong_Vo_Headshot.jpg",
+			"github": "https://github.com/the2nake",
+			"type": "member"
+		},
+		{
+			"id": "samart-chetan",
+			"name": "Samarth Chetan",
+			"role": "Onboarding",
+			"major": "Computer Science",
+			"year": "W29",
+			"image": "/assets/profiles/Samarth_Chetan_Headshot.png",
+			"github": "https://github.com/Samarth-Chetan",
+			"linkedin": "https://www.linkedin.com/in/samarth-chetan-872a932b9/",
+			"type": "member"
+		},
+		{
+			"id": "tony-zeng",
+			"name": "Tony Zeng",
+			"role": "Onboarding",
+			"major": "Computer Science",
+			"year": "W28",
+			"image": "/assets/profiles/Tony_Zeng_Headshot.jpeg",
+			"instagram": "https://instagram.com/tonyz3ng",
+			"type": "member"
+		},
+		{
+			"id": "antonio-said",
+			"name": "Antonio Said",
+			"role": "Onboarding",
+			"major": "Urban Technology",
+			"year": "W29",
+			"image": "/assets/profiles/Antonio_Said_Headshot.jpeg",
+			"linkedin": "https://www.linkedin.com/in/antonio-said-387262311/",
+			"instagram": "https://instagram.com/antoniowsaid",
+			"type": "member"
+		},
+		{
+			"id": "siddhant-bhirud",
+			"name": "Siddhant Bhirud",
+			"role": "Onboarding",
+			"major": "Data Science",
+			"year": "F28",
+			"image": "/assets/profiles/Siddhant_Bhirud_Headshot.jpg",
+			"linkedin": "https://www.linkedin.com/in/siddhant-bhirud",
+			"instagram": "https://instagram.com/siddhant.2831",
+			"type": "member"
+		},
+		{
+			"id": "member",
+			"name": "Member Example",
+			"role": "Onboarding",
+			"major": "Major",
+			"year": "Grad Year",
+			"image": "linkHere",
+			"github": "",
+			"linkedin": "",
+			"web": "",
+			"instagram": "",
+			"type": "member"
+		},
+		{
+			"id": "member",
+			"name": "Member Example",
+			"role": "Onboarding",
+			"major": "Major",
+			"year": "Grad Year",
+			"image": "linkHere",
+			"github": "",
+			"linkedin": "",
+			"web": "",
+			"instagram": "",
+			"type": "member"
+		},
+		{
+			"id": "member",
+			"name": "Member Example",
+			"role": "Onboarding",
+			"major": "Major",
+			"year": "Grad Year",
+			"image": "linkHere",
+			"github": "",
+			"linkedin": "",
+			"web": "",
+			"instagram": "",
+			"type": "member"
+		},
+		{
+			"id": "member",
+			"name": "Member Example",
+			"role": "Onboarding",
+			"major": "Major",
+			"year": "Grad Year",
+			"image": "linkHere",
+			"github": "",
+			"linkedin": "",
+			"web": "",
+			"instagram": "",
+			"type": "member"
+		},
+		{
+			"id": "member",
+			"name": "Member Example",
+			"role": "Onboarding",
+			"major": "Major",
+			"year": "Grad Year",
+			"image": "linkHere",
+			"github": "",
+			"linkedin": "",
+			"web": "",
+			"instagram": "",
+			"type": "member"
+		}
+	]
+}
