@@ -99,9 +99,9 @@ jobs:
           # Install production dependencies
           npm ci --production
           
-          # Install screen if not already installed
+          # Install screen and nginx if not already installed
           sudo apt-get update
-          sudo apt-get install -y screen
+          sudo apt-get install -y screen nginx
           
           # Set up systemd service
           sudo tee /etc/systemd/system/maizebus-backend.service > /dev/null <<EOF
@@ -130,6 +130,32 @@ jobs:
           WantedBy=multi-user.target
           EOF
           
+          # Set up Nginx reverse proxy
+          sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
+          server {
+              listen 80;
+              server_name _;
+              
+              location / {
+                  proxy_pass http://localhost:3001;
+                  proxy_http_version 1.1;
+                  proxy_set_header Upgrade \$http_upgrade;
+                  proxy_set_header Connection 'upgrade';
+                  proxy_set_header Host \$host;
+                  proxy_set_header X-Real-IP \$remote_addr;
+                  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+                  proxy_set_header X-Forwarded-Proto \$scheme;
+                  proxy_cache_bypass \$http_upgrade;
+              }
+          }
+          EOF
+          
+          # Enable the site
+          sudo ln -sf /etc/nginx/sites-available/maizebus-backend /etc/nginx/sites-enabled/
+          sudo rm -f /etc/nginx/sites-enabled/default
+          sudo nginx -t
+          sudo systemctl restart nginx
+          
           # Reload systemd and start service
           sudo systemctl daemon-reload
           sudo systemctl enable maizebus-backend
@@ -137,9 +163,16 @@ jobs:
           
           # Check service status
           sudo systemctl status maizebus-backend --no-pager
+          sudo systemctl status nginx --no-pager
           
           # Check if screen session is running
           screen -list | grep maizebus-backend || echo "Screen session not found"
+          
+          # Test endpoints
+          echo "Testing backend directly:"
+          curl -s http://localhost:3001/health || echo "Backend not responding"
+          echo "Testing through Nginx:"
+          curl -s http://localhost/health || echo "Nginx proxy not working"
           
           # Show environment variables (without sensitive data)
           echo "Environment check:"
