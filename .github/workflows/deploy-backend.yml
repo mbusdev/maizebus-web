@@ -1,0 +1,130 @@
+name: Deploy Backend to AWS EC2
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'server/**', 'api/**' ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '22.12'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: |
+        npm ci
+        cd server && npm ci
+        cd ../api && npm ci
+        
+    - name: Build backend
+      run: |
+        npm run build:server
+        npm run build:api
+        
+    - name: Create deployment package
+      run: |
+        mkdir -p deployment
+        cp -r server/dist deployment/
+        cp -r api/dist deployment/api
+        cp server/package.json deployment/
+        cp server/package-lock.json deployment/
+        cp -r server/node_modules deployment/ || true
+        tar -czf deployment.tar.gz -C deployment .
+        
+    - name: Deploy to EC2
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: ${{ secrets.EC2_PORT || 22 }}
+        script: |
+          # Create deployment directory
+          mkdir -p /home/ubuntu/maizebus-backend
+          cd /home/ubuntu/maizebus-backend
+          
+          # Stop existing service
+          sudo systemctl stop maizebus-backend || true
+          
+          # Backup current deployment
+          if [ -d "current" ]; then
+            mv current backup-$(date +%Y%m%d-%H%M%S)
+          fi
+          
+          # Create new deployment directory
+          mkdir -p current
+          
+    - name: Upload deployment package
+      uses: appleboy/scp-action@v0.1.7
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: ${{ secrets.EC2_PORT || 22 }}
+        source: "deployment.tar.gz"
+        target: "/home/ubuntu/maizebus-backend/current/"
+        
+    - name: Extract and setup on EC2
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: ${{ secrets.EC2_HOST }}
+        username: ${{ secrets.EC2_USERNAME }}
+        key: ${{ secrets.EC2_SSH_KEY }}
+        port: ${{ secrets.EC2_PORT || 22 }}
+        script: |
+          cd /home/ubuntu/maizebus-backend/current
+          
+          # Extract deployment
+          tar -xzf deployment.tar.gz
+          rm deployment.tar.gz
+          
+          # Install production dependencies
+          npm ci --production
+          
+          # Copy environment file
+          if [ -f "/home/ubuntu/maizebus-backend/.env" ]; then
+            cp /home/ubuntu/maizebus-backend/.env .
+          else
+            echo "⚠️  No .env file found. Please create one on the server."
+          fi
+          
+          # Set up systemd service
+          sudo tee /etc/systemd/system/maizebus-backend.service > /dev/null <<EOF
+          [Unit]
+          Description=MaizeBus Backend Service
+          After=network.target
+          
+          [Service]
+          Type=simple
+          User=ubuntu
+          WorkingDirectory=/home/ubuntu/maizebus-backend/current
+          ExecStart=/usr/bin/node dist/server.js
+          Restart=always
+          RestartSec=10
+          Environment=NODE_ENV=production
+          
+          [Install]
+          WantedBy=multi-user.target
+          EOF
+          
+          # Reload systemd and start service
+          sudo systemctl daemon-reload
+          sudo systemctl enable maizebus-backend
+          sudo systemctl start maizebus-backend
+          
+          # Check service status
+          sudo systemctl status maizebus-backend --no-pager
+          
+          # Cleanup old backups (keep last 3)
+          cd /home/ubuntu/maizebus-backend
+          ls -t backup-* | tail -n +4 | xargs -r rm -rf
