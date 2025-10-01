@@ -39,9 +39,13 @@ jobs:
       run: |
         cd api && npm ci
         
-    - name: Build project
+    - name: Build client first
       run: |
-        npm run build
+        npm run build:client
+        
+    - name: Build server and API
+      run: |
+        npm run build:server && npm run build:api
         
     - name: Deploy to Vercel
       uses: amondnet/vercel-action@v25
