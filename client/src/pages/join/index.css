@@ -596,9 +596,17 @@
     transition: all 0.3s ease;
   }
   
-  .submit-button:hover {
+  .submit-button:hover:not(:disabled) {
     background: var(--maize);
     box-shadow: 0 15px 30px -4px rgba(255, 203, 5, 0.6);
+  }
+  
+  .submit-button:disabled {
+    background: #e5e7eb;
+    color: #9ca3af;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
   }
   
   @media (max-width: 768px) {

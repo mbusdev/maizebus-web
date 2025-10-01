@@ -23,6 +23,7 @@ import {
   Twitter,
   Linkedin,
   Github,
+  Loader2,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
@@ -295,7 +296,7 @@ export function Contact() {
                       >
                         {isSubmitting ? (
                           <>
-                            <div className="spinner"></div>
+                            <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                             Sending...
                           </>
                         ) : (

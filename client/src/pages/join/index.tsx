@@ -17,6 +17,7 @@ import {
   Upload,
   FileText,
   X,
+  Loader2,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import "./index.css";
@@ -76,6 +77,7 @@ export function Join() {
   });
 
   const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const roles = [
     {
@@ -144,6 +146,10 @@ export function Join() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (isSubmitting) return; // Prevent double submission
+    
+    setIsSubmitting(true);
 
     const formDataWithFile = new FormData();
 
@@ -187,6 +193,8 @@ export function Join() {
     } catch (error) {
       console.error('Error submitting form:', error);
       alert('Failed to submit application. Please try again later.');
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -483,9 +491,22 @@ export function Join() {
                 </div>
 
                 <div className="pt-6">
-                  <Button type="submit" className="submit-button">
-                    <CheckCircle className="mr-2 h-5 w-5" />
-                    Submit Application
+                  <Button 
+                    type="submit" 
+                    className="submit-button"
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                        Submitting...
+                      </>
+                    ) : (
+                      <>
+                        <CheckCircle className="mr-2 h-5 w-5" />
+                        Submit Application
+                      </>
+                    )}
                   </Button>
                 </div>
               </form>
