@@ -1,5 +1,6 @@
 import { Mail, Instagram, Github, Youtube } from "lucide-react";
 import { motion } from "motion/react";
+import { Link } from "react-router";
 
 const Footer = () => {
 	return (
@@ -68,13 +69,14 @@ const Footer = () => {
 								{ label: "Contact", href: "/contact" },
 							].map(({ label, href }) => (
 								<motion.li key={label}>
+									<Link key={label} to={href}>
 									<motion.a
-										href={href}
 										className="text-gray-300 hover:text-white transition-all duration-300 hover:translate-x-2 inline-block"
 										whileHover={{ x: 5 }}
 									>
 										{label}
 									</motion.a>
+									</Link>
 								</motion.li>
 							))}
 						</ul>
