@@ -154,9 +154,11 @@ jobs:
           fi
           
           # Set up Nginx reverse proxy with HTTPS
+          echo "Setting up Nginx configuration..."
+          
+          # Create initial Nginx configuration
           if [ -n "${{ secrets.DOMAIN_NAME }}" ]; then
-            # Create initial Nginx configuration for Let's Encrypt
-            echo "Setting up Nginx configuration for ${{ secrets.DOMAIN_NAME }}"
+            echo "Using custom domain: ${{ secrets.DOMAIN_NAME }}"
             sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
           # HTTP server - will be modified by certbot
           server {
@@ -176,16 +178,40 @@ jobs:
               }
           }
           EOF
-            
-            # Enable the site and test Nginx configuration
-            sudo ln -sf /etc/nginx/sites-available/maizebus-backend /etc/nginx/sites-enabled/
-            sudo nginx -t && sudo systemctl reload nginx
-            
-            # Check if Let's Encrypt certificate exists
-            if [ -f "/etc/letsencrypt/live/${{ secrets.DOMAIN_NAME }}/fullchain.pem" ]; then
-              echo "Using existing Let's Encrypt certificate for ${{ secrets.DOMAIN_NAME }}"
-              # Certbot will have already modified the configuration
-            else
+          else
+            echo "Using EC2 domain fallback"
+            sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
+          # HTTP server - EC2 domain fallback
+          server {
+              listen 80;
+              server_name _;
+              
+              location / {
+                  proxy_pass http://localhost:3001;
+                  proxy_http_version 1.1;
+                  proxy_set_header Upgrade \$http_upgrade;
+                  proxy_set_header Connection 'upgrade';
+                  proxy_set_header Host \$host;
+                  proxy_set_header X-Real-IP \$remote_addr;
+                  proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+                  proxy_set_header X-Forwarded-Proto \$scheme;
+                  proxy_cache_bypass \$http_upgrade;
+              }
+          }
+          EOF
+          fi
+          
+          # Remove default Nginx site and enable our site
+          echo "Enabling Nginx site and testing configuration..."
+          sudo rm -f /etc/nginx/sites-enabled/default
+          sudo ln -sf /etc/nginx/sites-available/maizebus-backend /etc/nginx/sites-enabled/
+          sudo nginx -t && sudo systemctl reload nginx
+          
+          # Check if Let's Encrypt certificate exists
+          if [ -n "${{ secrets.DOMAIN_NAME }}" ] && [ -f "/etc/letsencrypt/live/${{ secrets.DOMAIN_NAME }}/fullchain.pem" ]; then
+            echo "Using existing Let's Encrypt certificate for ${{ secrets.DOMAIN_NAME }}"
+            # Certbot will have already modified the configuration
+          else
               echo "Using self-signed certificate with EC2 domain (Let's Encrypt failed)"
               # Self-signed certificate configuration with EC2 domain
               sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
