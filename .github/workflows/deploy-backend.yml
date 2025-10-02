@@ -155,11 +155,10 @@ jobs:
           
           # Set up Nginx reverse proxy with HTTPS
           if [ -n "${{ secrets.DOMAIN_NAME }}" ]; then
-            # Check if Let's Encrypt certificate exists
-            if [ -f "/etc/letsencrypt/live/${{ secrets.DOMAIN_NAME }}/fullchain.pem" ]; then
-              echo "Using Let's Encrypt certificate for ${{ secrets.DOMAIN_NAME }}"
-              # Let's Encrypt configuration (certbot will modify this)
-              sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
+            # Create initial Nginx configuration for Let's Encrypt
+            echo "Setting up Nginx configuration for ${{ secrets.DOMAIN_NAME }}"
+            sudo tee /etc/nginx/sites-available/maizebus-backend > /dev/null <<EOF
+          # HTTP server - will be modified by certbot
           server {
               listen 80;
               server_name ${{ secrets.DOMAIN_NAME }};
@@ -177,6 +176,15 @@ jobs:
               }
           }
           EOF
+            
+            # Enable the site and test Nginx configuration
+            sudo ln -sf /etc/nginx/sites-available/maizebus-backend /etc/nginx/sites-enabled/
+            sudo nginx -t && sudo systemctl reload nginx
+            
+            # Check if Let's Encrypt certificate exists
+            if [ -f "/etc/letsencrypt/live/${{ secrets.DOMAIN_NAME }}/fullchain.pem" ]; then
+              echo "Using existing Let's Encrypt certificate for ${{ secrets.DOMAIN_NAME }}"
+              # Certbot will have already modified the configuration
             else
               echo "Using self-signed certificate with EC2 domain (Let's Encrypt failed)"
               # Self-signed certificate configuration with EC2 domain
