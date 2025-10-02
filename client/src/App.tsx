@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router";
 import { AnimatePresence } from "motion/react";
 
@@ -57,28 +57,8 @@ function AppContent() {
 }
 
 export default function App() {
-	useEffect(() => {
-		(function(l) {
-			console.log('GitHub Pages routing fix - URL:', l.href);
-			console.log('GitHub Pages routing fix - Search:', l.search);
-			console.log('GitHub Pages routing fix - Pathname:', l.pathname);
-			
-			if (l.search[1] === '/' ) {
-				console.log('GitHub Pages routing fix - Redirect detected, converting...');
-				var decoded = l.search.slice(1).split('&').map(function(s) { 
-					return s.replace(/~and~/g, '&')
-				}).join('?');
-				var newUrl = l.pathname.slice(0, -1) + decoded + l.hash;
-				console.log('GitHub Pages routing fix - New URL:', newUrl);
-				window.history.replaceState(null, '', newUrl);
-			} else {
-				console.log('GitHub Pages routing fix - No redirect needed');
-			}
-		}(window.location as Location))
-	}, []);
-
 	return (
-		<BrowserRouter basename={process.env.NODE_ENV === 'production' ? '/' : '/maizebus-web'}>
+		<BrowserRouter>
 			<AppContent />
 		</BrowserRouter>
 	);
