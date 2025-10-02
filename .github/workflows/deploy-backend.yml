@@ -131,29 +131,7 @@ jobs:
           WantedBy=multi-user.target
           EOF
           
-          # Get Let's Encrypt SSL certificate with fallback
-          if [ -n "${{ secrets.DOMAIN_NAME }}" ]; then
-            echo "Attempting to get Let's Encrypt certificate for ${{ secrets.DOMAIN_NAME }}"
-            if sudo certbot --nginx -d ${{ secrets.DOMAIN_NAME }} --non-interactive --agree-tos --email ${{ secrets.EMAIL_TO }} --redirect; then
-              echo "✅ Let's Encrypt certificate obtained successfully"
-            else
-              echo "❌ Let's Encrypt failed, falling back to self-signed certificate with EC2 domain"
-              sudo mkdir -p /etc/ssl/certs /etc/ssl/private
-              sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-                -keyout /etc/ssl/private/maizebus-selfsigned.key \
-                -out /etc/ssl/certs/maizebus-selfsigned.crt \
-                -subj "/C=US/ST=MI/L=Ann Arbor/O=MaizeBus/CN=ec2-3-129-13-199.us-east-2.compute.amazonaws.com"
-            fi
-          else
-            echo "No domain name provided, generating self-signed certificate"
-            sudo mkdir -p /etc/ssl/certs /etc/ssl/private
-            sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
-              -keyout /etc/ssl/private/maizebus-selfsigned.key \
-              -out /etc/ssl/certs/maizebus-selfsigned.crt \
-              -subj "/C=US/ST=MI/L=Ann Arbor/O=MaizeBus/CN=ec2-3-129-13-199.us-east-2.compute.amazonaws.com"
-          fi
-          
-          # Set up Nginx reverse proxy with HTTPS
+          # Set up Nginx reverse proxy with HTTPS FIRST
           echo "Setting up Nginx configuration..."
           
           # Create initial Nginx configuration
@@ -288,7 +266,29 @@ jobs:
           # Enable the site
           sudo ln -sf /etc/nginx/sites-available/maizebus-backend /etc/nginx/sites-enabled/
           sudo rm -f /etc/nginx/sites-enabled/default
-          sudo nginx -t
+          sudo nginx -t && sudo systemctl reload nginx
+          
+          # Now try to get Let's Encrypt certificate (after Nginx is configured)
+          if [ -n "${{ secrets.DOMAIN_NAME }}" ]; then
+            echo "Attempting to get Let's Encrypt certificate for ${{ secrets.DOMAIN_NAME }}"
+            if sudo certbot --nginx -d ${{ secrets.DOMAIN_NAME }} --non-interactive --agree-tos --email ${{ secrets.EMAIL_TO }} --redirect; then
+              echo "✅ Let's Encrypt certificate obtained successfully"
+            else
+              echo "❌ Let's Encrypt failed, falling back to self-signed certificate with EC2 domain"
+              sudo mkdir -p /etc/ssl/certs /etc/ssl/private
+              sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+                -keyout /etc/ssl/private/maizebus-selfsigned.key \
+                -out /etc/ssl/certs/maizebus-selfsigned.crt \
+                -subj "/C=US/ST=MI/L=Ann Arbor/O=MaizeBus/CN=ec2-3-129-13-199.us-east-2.compute.amazonaws.com"
+            fi
+          else
+            echo "No domain name provided, generating self-signed certificate"
+            sudo mkdir -p /etc/ssl/certs /etc/ssl/private
+            sudo openssl req -x509 -nodes -days 365 -newkey rsa:2048 \
+              -keyout /etc/ssl/private/maizebus-selfsigned.key \
+              -out /etc/ssl/certs/maizebus-selfsigned.crt \
+              -subj "/C=US/ST=MI/L=Ann Arbor/O=MaizeBus/CN=ec2-3-129-13-199.us-east-2.compute.amazonaws.com"
+          fi
           sudo systemctl restart nginx
           
           # Reload systemd and start service
