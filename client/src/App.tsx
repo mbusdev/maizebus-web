@@ -12,6 +12,7 @@ import Tracker from "@/pages/tracker";
 import SignUp from "@/pages/signup";
 import Login from "@/pages/login";
 import Footer from "@/components/footer";
+import ScrollToTop from "./components/ScrollToTop";
 
 interface User {
 	id: string;
@@ -59,6 +60,7 @@ function AppContent() {
 export default function App() {
 	return (
 		<HashRouter>
+			<ScrollToTop />
 			<AppContent />
 		</HashRouter>
 	);
