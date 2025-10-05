@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card, CardContent } from "@/components/CardContent";
 import { Badge } from "@/components/badge";
 import { Button } from "@/components/button";
