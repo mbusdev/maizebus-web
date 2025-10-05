@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router";
+import { HashRouter, Routes, Route, useLocation } from "react-router";
 import { AnimatePresence } from "motion/react";
 
 import { Home } from "@/pages/home";
@@ -58,8 +58,8 @@ function AppContent() {
 
 export default function App() {
 	return (
-		<BrowserRouter>
+		<HashRouter>
 			<AppContent />
-		</BrowserRouter>
+		</HashRouter>
 	);
 }
