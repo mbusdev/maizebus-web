@@ -107,7 +107,7 @@ export function Home() {
 		},
 		{
 			question: "How do I report issues or suggest features?",
-			answer: "You can contact us through the app's feedback feature or email us at contact@maizebus.org. We actively respond to all user feedback within 24 hours.",
+			answer: "You can contact us through the app's feedback feature or email us at contact@maizebus.com. We actively respond to all user feedback within 24 hours.",
 		},
 	];
 

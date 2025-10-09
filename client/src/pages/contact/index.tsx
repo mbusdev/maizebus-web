@@ -62,6 +62,17 @@ export function Contact() {
   const navigate = useNavigate();
 
   useEffect(() => {
+    const match = window.location.pathname.match(/\/contact\/([^/]+)/);
+    const id = match ? match[1] : null;
+    if (id) {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     const timer = setTimeout(() => {
       const elements = document.querySelectorAll('.animate-fade-in-up, .animate-fade-in');
       elements.forEach((el) => {
@@ -194,7 +205,7 @@ export function Contact() {
 
         <div className="contact-main fade-in-on-scroll">
           <div className="contact-grid">
-            <div className="contact-form-section">
+            <div id="contact-form" className="contact-form-section">
               <Card className="contact-form-card">
                 <CardHeader>
                   <CardTitle className="contact-form-title">

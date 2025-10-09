@@ -42,7 +42,8 @@ function AppContent() {
 					<Routes location={location} key={location.pathname}>
 						<Route path="/" element={<Home />} />
 						<Route path="/team" element={<Team />} />
-						<Route path="/contact" element={<Contact />} />
+						<Route path="/contact/" element={<Contact />} />
+						<Route path="/contact/:id" element={<Contact />} />
 						<Route path="/dashboard" element={<Dashboard />} />
 						<Route path="/join" element={<Join />} />
 						<Route path="/login" element={<Login />} />

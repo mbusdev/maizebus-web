@@ -96,7 +96,7 @@ const Footer = () => {
 									<Mail className="h-5 w-5 text-[#f1c232]" />
 								</div>
 								<span className="text-gray-300 group-hover:text-white transition-colors duration-300">
-									contact@maizebus.org
+									contact@maizebus.com
 								</span>
 							</div>
 							<p className="text-gray-300 hover:text-gray-200 transition-colors duration-300">
