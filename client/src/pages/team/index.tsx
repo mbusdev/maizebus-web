@@ -194,7 +194,7 @@ export function Team() {
 								help lead the future of campus transportation.
 							</p>
 							<div className="about-cta-buttons">
-								<a href="/join">
+								<a href="/#/join">
 									<Button className="cta-button cta-button-primary">
 										Apply Now
 									</Button>
