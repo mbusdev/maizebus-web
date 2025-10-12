@@ -29,7 +29,7 @@ const Footer = () => {
 						</p>
 						<div className="flex space-x-6">
 							<motion.a
-								href="#"
+								href="https://www.instagram.com/maizebus/"
 								whileHover={{ scale: 1.2, y: -3 }}
 								whileTap={{ scale: 0.9 }}
 								className="text-gray-300 hover:text-[#FFCB05] transition-all duration-300 p-2 rounded-lg hover:bg-white/10 backdrop-blur-sm"
@@ -37,7 +37,7 @@ const Footer = () => {
 								<Instagram className="h-6 w-6" />
 							</motion.a>
 							<motion.a
-								href="#"
+								href="https://www.youtube.com/@MaizeBus"
 								whileHover={{ scale: 1.2, y: -3 }}
 								whileTap={{ scale: 0.9 }}
 								className="text-gray-300 hover:text-[#FFCB05] transition-all duration-300 p-2 rounded-lg hover:bg-white/10 backdrop-blur-sm"
@@ -45,7 +45,7 @@ const Footer = () => {
 								<Youtube className="h-6 w-6" />
 							</motion.a>
 							<motion.a
-								href="#"
+								href="https://github.com/mbusdev"
 								whileHover={{ scale: 1.2, y: -3 }}
 								whileTap={{ scale: 0.9 }}
 								className="text-gray-300 hover:text-[#FFCB05] transition-all duration-300 p-2 rounded-lg hover:bg-white/10 backdrop-blur-sm"
@@ -89,15 +89,20 @@ const Footer = () => {
 							Contact
 						</h3>
 						<div className="space-y-4">
-							<div
-								className="flex items-center space-x-3 group"
-							>
-								<div className="p-2 bg-[#f1c232]/20 rounded-lg">
+							<div className="flex items-center space-x-3 group">
+								<a
+									href="mailto:contact@maizebus.com"
+									className="p-2 bg-[#f1c232]/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f1c232]"
+									aria-label="Send email to contact@maizebus.com"
+								>
 									<Mail className="h-5 w-5 text-[#f1c232]" />
-								</div>
-								<span className="text-gray-300 group-hover:text-white transition-colors duration-300">
+								</a>
+								<a
+									href="mailto:contact@maizebus.com"
+									className="text-gray-300 group-hover:text-white transition-colors duration-300 underline"
+								>
 									contact@maizebus.com
-								</span>
+								</a>
 							</div>
 							<p className="text-gray-300 hover:text-gray-200 transition-colors duration-300">
 								University of Michigan
@@ -118,14 +123,14 @@ const Footer = () => {
 					</p>
 					<div className="flex space-x-8">
 						<motion.a
-							href="#"
+							href="https://docs.google.com/document/d/1WvjdN3yInRlzOa8bcKb_bf75vxN06ZqnWSInY8RUmO4/edit?tab=t.0"
 							className="text-gray-400 hover:text-[#FFCB05] transition-all duration-300 font-medium"
 							whileHover={{ y: -2 }}
 						>
 							Privacy Policy
 						</motion.a>
 						<motion.a
-							href="#"
+							href="https://docs.google.com/document/d/1WvjdN3yInRlzOa8bcKb_bf75vxN06ZqnWSInY8RUmO4/edit?tab=t.0"
 							className="text-gray-400 hover:text-[#FFCB05] transition-all duration-300 font-medium"
 							whileHover={{ y: -2 }}
 						>
