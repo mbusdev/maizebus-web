@@ -85,11 +85,21 @@
 		{
 			"id": "thuong-vo",
 			"name": "Thuong Vo",
-			"role": "Onboarding",
+			"role": "Backend Developer",
 			"major": "Robotics",
 			"year": "W28",
 			"image": "/assets/profiles/Thuong_Vo_Headshot.jpg",
 			"github": "https://github.com/the2nake",
+			"type": "member"
+		},
+		{
+			"id": "tony-zeng",
+			"name": "Tony Zeng",
+			"role": "Backend Developer",
+			"major": "Computer Science",
+			"year": "W28",
+			"image": "/assets/profiles/Tony_Zeng_Headshot.jpeg",
+			"instagram": "https://instagram.com/tonyz3ng",
 			"type": "member"
 		},
 		{
@@ -101,16 +111,6 @@
 			"image": "/assets/profiles/Samarth_Chetan_Headshot.png",
 			"github": "https://github.com/Samarth-Chetan",
 			"linkedin": "https://www.linkedin.com/in/samarth-chetan-872a932b9/",
-			"type": "member"
-		},
-		{
-			"id": "tony-zeng",
-			"name": "Tony Zeng",
-			"role": "Onboarding",
-			"major": "Computer Science",
-			"year": "W28",
-			"image": "/assets/profiles/Tony_Zeng_Headshot.jpeg",
-			"instagram": "https://instagram.com/tonyz3ng",
 			"type": "member"
 		},
 		{
