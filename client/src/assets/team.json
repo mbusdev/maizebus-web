@@ -28,7 +28,7 @@
 			"name": "Ryan Lu",
 			"role": "Backend Lead",
 			"major": "Computer Science",
-			"year": "W27",
+			"year": "F28",
 			"image": "/assets/profiles/Ryan_Lu_Headshot.jpg",
 			"github": "https://github.com/ry-lu",
 			"linkedin": "https://www.linkedin.com/in/ryan-lu-91505232a/",
@@ -46,20 +46,30 @@
 			"linkedin": "https://linkedin.com/in/andrewyyu",
             "web": "https://andrewyu.dev",
 			"type": "lead"
+		}
+	],
+	"members": [
+		{
+			"id": "edward-zhang",
+			"name": "Edward Zhang",
+			"role": "Fullstack Developer",
+			"major": "Data Science, Math",
+			"year": "W29",
+			"image": "/assets/profiles/Edward_Zhang_Headshot.jpg",
+			"github": "https://github.com/jumpy-cat",
+			"type": "member"
 		},
 		{
 			"id": "francisco-yan",
 			"name": "Francisco Yan",
-			"role": "Database Lead",
+			"role": "Backend Developer",
 			"major": "Computer Engineering",
 			"year": "W28",
 			"image": "/assets/profiles/Francisco_Yan_Headshot.jpg",
 			"github": "https://github.com/Cheddar629",
 			"linkedin": "https://www.linkedin.com/in/franciscoyan/",
-			"type": "lead"
-		}
-	],
-	"members": [
+			"type": "member"
+		},
 		{
 			"id": "amanze-aguwa",
 			"name": "Amanze Aguwa",
@@ -116,7 +126,7 @@
 		{
 			"id": "antonio-said",
 			"name": "Antonio Said",
-			"role": "Onboarding",
+			"role": "UI/UX Designer",
 			"major": "Urban Technology",
 			"year": "W29",
 			"image": "/assets/profiles/Antonio_Said_Headshot.jpeg",
@@ -127,22 +137,12 @@
 		{
 			"id": "siddhant-bhirud",
 			"name": "Siddhant Bhirud",
-			"role": "Onboarding",
+			"role": "Frontend Developer",
 			"major": "Data Science",
 			"year": "F28",
 			"image": "/assets/profiles/Siddhant_Bhirud_Headshot.jpg",
 			"linkedin": "https://www.linkedin.com/in/siddhant-bhirud",
 			"instagram": "https://instagram.com/siddhant.2831",
-			"type": "member"
-		},
-		{
-			"id": "edward-zhang",
-			"name": "Edward Zhang",
-			"role": "Onboarding",
-			"major": "Data Science, Math",
-			"year": "W29",
-			"image": "/assets/profiles/Edward_Zhang_Headshot.jpg",
-			"github": "https://github.com/jumpy-cat",
 			"type": "member"
 		}
 	]
