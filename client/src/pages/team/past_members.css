@@ -1,0 +1,33 @@
+
+.team-grid-past {
+	grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+	gap: 1.5rem;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.past-member-item {
+	background: rgba(255, 255, 255, 0.7);
+	backdrop-filter: blur(5px);
+	border: 1px solid rgba(0, 39, 76, 0.1);
+	padding: 0.75rem 1rem;
+	border-radius: 9999px;
+	text-align: center;
+	color: #64748b;
+	font-weight: 600;
+	font-size: 1rem;
+	transition: all 0.3s ease;
+	cursor: default;
+}
+
+.past-member-item:hover {
+	background: rgba(255, 255, 255, 0.95);
+	border-color: rgba(255, 203, 5, 0.5);
+	color: var(--michigan-blue);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+}
+
+.member-card-past {
+	display: none; 
+}

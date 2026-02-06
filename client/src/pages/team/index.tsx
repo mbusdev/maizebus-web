@@ -58,6 +58,7 @@ export function Team() {
 
 	const leadership = teamData.lead;
 	const members = teamData.members;
+	// const pastMembers = (teamData as any).pastMembers || [];
 
 	const getSocialIcon = (platform: string) => {
 		switch (platform) {
@@ -97,6 +98,8 @@ export function Team() {
 			</a>
 		));
 	};
+
+
 
 	const renderMemberCard = (
 		member: any,
@@ -182,6 +185,24 @@ export function Team() {
 						)}
 					</div>
 				</div>
+
+				{/* Once we have alumni ig use this section */}
+				{/* {pastMembers.length > 0 && (
+					<div className="team-section fade-in-on-scroll">
+						<h2 className="team-section-title">Past Members</h2>
+						<div className="team-grid team-grid-past">
+							{pastMembers.map((member: any) => (
+								<div 
+									key={member.name}
+									className="past-member-item"
+									title={`${member.role} • ${member.major}`}
+								>
+									{member.name}
+								</div>
+							))}
+						</div>
+					</div>
+				)} */}
 
 				<div className="about-cta fade-in-on-scroll">
 					<Card className="about-cta-card">

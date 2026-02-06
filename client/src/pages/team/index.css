@@ -659,3 +659,84 @@
 		height: 7rem;
 	}
 }
+
+.team-grid-past {
+	grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.member-card-past .member-card-inner {
+	background: rgba(255, 255, 255, 0.85);
+	backdrop-filter: blur(10px);
+	border: 1px solid rgba(0, 39, 76, 0.1);
+}
+
+.member-card-past .member-photo {
+	width: 5rem;
+	height: 5rem;
+	filter: grayscale(100%);
+	opacity: 0.8;
+	transition: all 0.3s ease;
+}
+
+.member-card-past:hover .member-photo {
+	filter: grayscale(0%);
+	opacity: 1;
+	transform: scale(1.05);
+}
+
+.member-card-past .member-name {
+	font-size: 1.125rem;
+	color: #64748b;
+}
+
+.member-card-past .member-role {
+	font-size: 0.9rem;
+	color: #94a3b8;
+}
+
+.member-card-past .member-card-content {
+	padding: 1.75rem 1.5rem;
+}
+
+@media (max-width: 640px) {
+	.team-grid-past {
+		grid-template-columns: 1fr;
+		max-width: 350px;
+	}
+}
+
+.team-grid-past {
+	grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+	gap: 1.5rem;
+	max-width: 1000px;
+	margin: 0 auto;
+}
+
+.past-member-item {
+	background: rgba(255, 255, 255, 0.7);
+	backdrop-filter: blur(5px);
+	border: 1px solid rgba(0, 39, 76, 0.1);
+	padding: 0.75rem 1rem;
+	border-radius: 9999px;
+	text-align: center;
+	color: #64748b;
+	font-weight: 600;
+	font-size: 1rem;
+	transition: all 0.3s ease;
+	cursor: default;
+}
+
+.past-member-item:hover {
+	background: rgba(255, 255, 255, 0.95);
+	border-color: rgba(255, 203, 5, 0.5);
+	color: var(--michigan-blue);
+	transform: translateY(-2px);
+	box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+}
+
+/* Remove old styles if they exist or ensure these take precedence */
+.member-card-past {
+	display: none; 
+}

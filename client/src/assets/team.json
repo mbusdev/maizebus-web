@@ -1,149 +1,265 @@
 {
-	"lead": [
-		{
-			"id": "ishan-kumar",
-			"name": "Ishan Kumar",
-			"role": "Executive Director",
-			"major": "Computer Engineering",
-			"year": "W27",
-			"image": "/assets/profiles/Ishan_Kumar_Headshot.png",
-			"github": "https://github.com/i-kumar",
-			"linkedin": "https://www.linkedin.com/in/ishan-kumar-umich/",
-			"instagram": "https://instagram.com/ishan.i.k",
-			"type": "lead"
-		},
-		{
-			"id": "harvey-kyllonen",
-			"name": "Harvey Kyllonen",
-			"role": "Frontend Lead",
-			"major": "Computer Science",
-			"year": "W27",
-			"image": "/assets/profiles/Harvey_Kyllonen_Headshot.jpeg",
-			"github": "https://github.com/kurz3m3",
-			"linkedin": "https://www.linkedin.com/in/harveykyllonen",
-			"type": "lead"
-		},
-		{
-			"id": "ryan-lu",
-			"name": "Ryan Lu",
-			"role": "Backend Lead",
-			"major": "Computer Science",
-			"year": "F28",
-			"image": "/assets/profiles/Ryan_Lu_Headshot.jpg",
-			"github": "https://github.com/ry-lu",
-			"linkedin": "https://www.linkedin.com/in/ryan-lu-91505232a/",
-			"type": "lead"
-		},
-		{
-			"id": "andrew-yu",
-			"name": "Andrew Yu",
-			"role": "DevOps Lead",
-			"major": "Computer Science",
-			"year": "W27",
-			"image": "/assets/profiles/Andrew_Yu_Headshot.jpg",
-			"github": "https://github.com/sirquackyy",
+    "lead": [
+        {
+            "id": "ishan-kumar",
+            "name": "Ishan Kumar",
+            "role": "Executive Director",
+            "major": "Computer Engineering",
+            "year": "W27",
+            "image": "/assets/profiles/Ishan_Kumar_Headshot.png",
+            "github": "https://github.com/i-kumar",
+            "linkedin": "https://www.linkedin.com/in/ishan-kumar-umich/",
+            "instagram": "https://instagram.com/ishan.i.k",
+            "type": "lead"
+        },
+        {
+            "id": "harvey-kyllonen",
+            "name": "Harvey Kyllonen",
+            "role": "Frontend Lead",
+            "major": "Computer Science",
+            "year": "W27",
+            "image": "/assets/profiles/Harvey_Kyllonen_Headshot.jpeg",
+            "github": "https://github.com/kurz3m3",
+            "linkedin": "https://www.linkedin.com/in/harveykyllonen",
+            "type": "lead"
+        },
+        {
+            "id": "ryan-lu",
+            "name": "Ryan Lu",
+            "role": "Backend Lead",
+            "major": "Computer Science",
+            "year": "F28",
+            "image": "/assets/profiles/Ryan_Lu_Headshot.jpg",
+            "github": "https://github.com/ry-lu",
+            "linkedin": "https://www.linkedin.com/in/ryan-lu-91505232a/",
+            "type": "lead"
+        },
+        {
+            "id": "andrew-yu",
+            "name": "Andrew Yu",
+            "role": "DevOps Lead",
+            "major": "Computer Science",
+            "year": "W27",
+            "image": "/assets/profiles/Andrew_Yu_Headshot.jpg",
+            "github": "https://github.com/sirquackyy",
             "instagram": "https://instagram.com/yua.priv",
-			"linkedin": "https://linkedin.com/in/andrewyyu",
+            "linkedin": "https://linkedin.com/in/andrewyyu",
             "web": "https://andrewyu.dev",
-			"type": "lead"
-		}
-	],
-	"members": [
-		{
-			"id": "edward-zhang",
-			"name": "Edward Zhang",
-			"role": "Fullstack Developer",
-			"major": "Data Science, Math",
-			"year": "W29",
-			"image": "/assets/profiles/Edward_Zhang_Headshot.jpg",
-			"github": "https://github.com/jumpy-cat",
-			"type": "member"
-		},
-		{
-			"id": "francisco-yan",
-			"name": "Francisco Yan",
-			"role": "Backend Developer",
-			"major": "Computer Engineering",
-			"year": "W28",
-			"image": "/assets/profiles/Francisco_Yan_Headshot.jpg",
-			"github": "https://github.com/Cheddar629",
-			"linkedin": "https://www.linkedin.com/in/franciscoyan/",
-			"type": "member"
-		},
-		{
-			"id": "amanze-aguwa",
-			"name": "Amanze Aguwa",
-			"role": "Backend Developer",
-			"major": "Computer Science",
-			"year": "W29",
-			"image": "/assets/profiles/Amanze_Aguwa_Headshot.jpg",
-			"github": "https://github.com/Nnanyere",
-			"instagram": "https://instagram.com/amanzeaguwa",
-			"type": "member"
-		},
-		{
-			"id": "mason-shields",
-			"name": "Mason Shields",
-			"role": "Backend Developer",
-			"major": "Computer Science",
-			"year": "W27",
-			"image": "/assets/profiles/Mason_Shields_Headshot.jpg",
-			"linkedin": "https://www.linkedin.com/in/mason-shields-713613289/",
-			"web": "https://masonshields.dev",
-			"type": "member"
-		},
-		{
-			"id": "thuong-vo",
-			"name": "Thuong Vo",
-			"role": "Backend Developer",
-			"major": "Robotics",
-			"year": "W28",
-			"image": "/assets/profiles/Thuong_Vo_Headshot.jpg",
-			"github": "https://github.com/the2nake",
-			"type": "member"
-		},
-		{
-			"id": "tony-zeng",
-			"name": "Tony Zeng",
-			"role": "Backend Developer",
-			"major": "Computer Science",
-			"year": "W28",
-			"image": "/assets/profiles/Tony_Zeng_Headshot.jpeg",
-			"instagram": "https://instagram.com/tonyz3ng",
-			"type": "member"
-		},
-		{
-			"id": "samart-chetan",
-			"name": "Samarth Chetan",
-			"role": "Onboarding",
-			"major": "Computer Science",
-			"year": "W29",
-			"image": "/assets/profiles/Samarth_Chetan_Headshot.jpg",
-			"github": "https://github.com/Samarth-Chetan",
-			"linkedin": "https://www.linkedin.com/in/samarth-chetan-872a932b9/",
-			"type": "member"
-		},
-		{
-			"id": "antonio-said",
-			"name": "Antonio Said",
-			"role": "UI/UX Designer",
-			"major": "Urban Technology",
-			"year": "W29",
-			"image": "/assets/profiles/Antonio_Said_Headshot.jpeg",
-			"linkedin": "https://www.linkedin.com/in/antonio-said-387262311/",
-			"instagram": "https://instagram.com/antoniowsaid",
-			"type": "member"
-		},
-		{
-			"id": "siddhant-bhirud",
-			"name": "Siddhant Bhirud",
-			"role": "Frontend Developer",
-			"major": "Data Science",
-			"year": "F28",
-			"image": "/assets/profiles/Siddhant_Bhirud_Headshot.jpg",
-			"linkedin": "https://www.linkedin.com/in/siddhant-bhirud",
-			"instagram": "https://instagram.com/siddhant.2831",
-			"type": "member"
-		}
-	]
+            "type": "lead"
+        }
+    ],
+    "members": [
+        {
+            "id": "edward-zhang",
+            "name": "Edward Zhang",
+            "role": "Fullstack Developer",
+            "major": "Data Science, Math",
+            "year": "W29",
+            "image": "/assets/profiles/Edward_Zhang_Headshot.jpg",
+            "github": "https://github.com/jumpy-cat",
+            "type": "member"
+        },
+        {
+            "id": "antonio-said",
+            "name": "Antonio Said",
+            "role": "UI/UX Designer",
+            "major": "Urban Technology",
+            "year": "W29",
+            "image": "/assets/profiles/Antonio_Said_Headshot.jpeg",
+            "linkedin": "https://www.linkedin.com/in/antonio-said-387262311/",
+            "instagram": "https://instagram.com/antoniowsaid",
+            "type": "member"
+        },
+        {
+            "id": "karen-lin",
+            "name": "Karen Lin",
+            "role": "UI/UX Designer",
+            "major": "UX Design",
+            "year": "W28",
+            "image": "/assets/profiles/Karen_Lin_Headshot.JPG",
+            "linkedin": "https://www.linkedin.com/in/karenlin28/",
+            "web": "https://lkarenin.framer.website/",
+            "type": "member"
+        },
+        {
+            "id": "amanze-aguwa",
+            "name": "Amanze Aguwa",
+            "role": "Backend Developer",
+            "major": "Computer Science",
+            "year": "W29",
+            "image": "/assets/profiles/Amanze_Aguwa_Headshot.jpg",
+            "github": "https://github.com/Nnanyere",
+            "instagram": "https://instagram.com/amanzeaguwa",
+            "type": "member"
+        },
+        {
+            "id": "francisco-yan",
+            "name": "Francisco Yan",
+            "role": "Backend Developer",
+            "major": "Computer Engineering",
+            "year": "W28",
+            "image": "/assets/profiles/Francisco_Yan_Headshot.jpg",
+            "github": "https://github.com/Cheddar629",
+            "linkedin": "https://www.linkedin.com/in/franciscoyan/",
+            "type": "member"
+        },
+        {
+            "id": "lucas-choi",
+            "name": "Lucas Choi",
+            "role": "Backend Engineer",
+            "major": "Computer Science",
+            "year": "W29",
+            "image": "/assets/profiles/Lucas_Choi_Headshot.jpg",
+            "type": "member"
+        },
+        {
+            "id": "mason-shields",
+            "name": "Mason Shields",
+            "role": "Backend Developer",
+            "major": "Computer Science",
+            "year": "W27",
+            "image": "/assets/profiles/Mason_Shields_Headshot.jpg",
+            "linkedin": "https://www.linkedin.com/in/mason-shields-713613289/",
+            "web": "https://masonshields.dev",
+            "type": "member"
+        },
+        {
+            "id": "medha-iyer",
+            "name": "Medha Iyer",
+            "role": "Backend Developer",
+            "major": "Computer Engineering",
+            "year": "W28",
+            "image": "/assets/profiles/Medha_Iyer_Headshot.JPG",
+            "linkedin": "www.linkedin.com/in/medha-g-iyer",
+            "instagram": "https://instagram.com/medha.iyer23",
+            "type": "member"
+        },
+        {
+            "id": "shashank-madhu",
+            "name": "Shashank Madhu",
+            "role": "Backend Engineer",
+            "major": "Data Science",
+            "year": "F28",
+            "image": "/assets/profiles/Shashank_Madhu_Headshot.jpeg",
+            "linkedin": "https://www.linkedin.com/in/shashank-madhu-48847b377?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+            "github": "https://github.com/dotSol0",
+            "instagram": "https://instagram.com/shankshank_redemption",
+            "type": "member"
+        },
+        {
+            "id": "thuong-vo",
+            "name": "Thuong Vo",
+            "role": "Backend Developer",
+            "major": "Robotics",
+            "year": "W28",
+            "image": "/assets/profiles/Thuong_Vo_Headshot.jpg",
+            "github": "https://github.com/the2nake",
+            "type": "member"
+        },
+        {
+            "id": "tony-zeng",
+            "name": "Tony Zeng",
+            "role": "Backend Developer",
+            "major": "Computer Science",
+            "year": "W28",
+            "image": "/assets/profiles/Tony_Zeng_Headshot.jpeg",
+            "instagram": "https://instagram.com/tonyz3ng",
+            "type": "member"
+        },
+        {
+            "id": "gustavo-rodriguez",
+            "name": "Gustavo Rodriguez",
+            "role": "Frontend Engineer",
+            "major": "Computer Science",
+            "year": "W28",
+            "image": "/assets/profiles/Gustavo_Rodriguez_Headshot.jpeg",
+            "instagram": "https://instagram.com/pizzaface817",
+            "type": "member"
+        },
+        {
+            "id": "isaac-wheeler",
+            "name": "Isaac Wheeler",
+            "role": "Frontend Engineer",
+            "major": "Computer Science",
+            "year": "W28",
+            "image": "/assets/profiles/Isaac_Wheeler_Headshot.jpg",
+            "github": "https://github.com/iswheeler",
+            "type": "member"
+        },
+        {
+            "id": "matthew-jia",
+            "name": "Matthew Jia",
+            "role": "Frontend Engineer",
+            "major": "Computer Science",
+            "year": "F28",
+            "image": "/assets/profiles/Matthew_Jia_Headshot.png",
+            "github": "https://github.com/TheStaticBits",
+            "linkedin": "https://www.linkedin.com/in/matthew-jia-b9187a269?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+            "instagram": "https://instagram.com/matthewzjia",
+            "type": "member"
+        },
+        {
+            "id": "siddhant-bhirud",
+            "name": "Siddhant Bhirud",
+            "role": "Frontend Developer",
+            "major": "Data Science",
+            "year": "F28",
+            "image": "/assets/profiles/Siddhant_Bhirud_Headshot.jpg",
+            "linkedin": "https://www.linkedin.com/in/siddhant-bhirud",
+            "instagram": "https://instagram.com/siddhant.2831",
+            "type": "member"
+        },
+        {
+            "id": "caroline-bull",
+            "name": "Caroline Bull",
+            "role": "Onboarding",
+            "major": "Computer Science, Political Science",
+            "year": "F28",
+            "image": "/assets/profiles/Caroline_Bull_Headshot.jpeg",
+            "linkedin": "https://www.linkedin.com/in/caroline-bull",
+            "instagram": "https://instagram.com/carolinekbull",
+            "type": "member"
+        },
+        {
+            "id": "derozan-yu",
+            "name": "DeRozan Yu",
+            "role": "Onboarding",
+            "major": "Computer Engineering",
+            "year": "W27",
+            "image": "/assets/profiles/DeRozan_Yu_Headshot.jpg",
+            "linkedin": "https://www.linkedin.com/in/derozanyu/",
+            "github": "https://github.com/Derozanyu",
+            "type": "member"
+        },
+        {
+            "id": "jongseo-park",
+            "name": "Jongseo Park",
+            "role": "Onboarding",
+            "major": "Urban Technology",
+            "year": "W28",
+            "image": "/assets/profiles/Jongseo_Park_Headshot.jpg",
+            "linkedin": "https://www.linkedin.com/in/lagcom/",
+            "github": "https://github.com/lagcom",
+            "instagram": "https://instagram.com/lagcom2000",
+            "type": "member"
+        },
+        {
+            "id": "samart-chetan",
+            "name": "Samarth Chetan",
+            "role": "Onboarding",
+            "major": "Computer Science",
+            "year": "W29",
+            "image": "/assets/profiles/Samarth_Chetan_Headshot.jpg",
+            "github": "https://github.com/Samarth-Chetan",
+            "linkedin": "https://www.linkedin.com/in/samarth-chetan-872a932b9/",
+            "type": "member"
+        }
+    ],
+    "pastMembers": [
+        {
+            "id": "john-doe",
+            "name": "John Doe",
+            "type": "past"
+        }
+    ]
 }
