@@ -79,13 +79,13 @@ export function Home() {
 
 	const stats = [
 		{
-			number: "600+",
+			number: "2000+",
 			label: "Active Users",
 			sublabel: "and growing daily",
 		},
-		{ number: "12", label: "Bus Routes", sublabel: "fully covered" },
+		{ number: "43", label: "Bus Routes", sublabel: "both the Ride and UMich" },
 		{
-			number: "100+",
+			number: "200+",
 			label: "Bus Stops",
 			sublabel: "tracked in real-time",
 		},
@@ -123,16 +123,16 @@ export function Home() {
 					<div className="max-w-6xl mx-auto animate-fade-in-up">
 						<div className="mb-8 animate-fade-in-up delay-200">
 							<h1
-								className="text-6xl lg:text-7xl font-bold mb-6 leading-tight text-[#0b5394]"
+								className="text-6xl lg:text-7xl font-bold mb-6 leading-tight text-[#000000]"
 								style={{ fontWeight: 700 }}
 							>
-								never miss a bus again
+								Introducing <span className="text-[#f1c232] font-extrabold">maize</span><span className="font-extrabold text-[#0b5394]">bus</span> 2
 							</h1>
 							<p
 								className="text-xl lg:text-2xl text-gray-500 max-w-4xl mx-auto leading-relaxed mb-8"
 								style={{ fontWeight: 400 }}
 							>
-								Real-time buses, buildings, directions, bus stops - all a search away.
+								We're once again redefining the way students travel at the University of Michigan. Watch the video to see what's new. 
 							</p>
 						</div>
 
@@ -159,18 +159,14 @@ export function Home() {
 							</div>
 						</div>
 
-						<div className="flex justify-center relative animate-fade-in-up delay-400">
-							<div className="relative">
-								<div className="absolute inset-0 rounded-3xl blur-2xl scale-110" />
-
-								<div className="relative bg-white/80 rounded-3xl p-8 border border-white/30">
-									<img
-										src={headerImage}
-										alt="MaizeBus App Screenshots"
-										className="max-w-full h-auto rounded-2xl"
-									/>
-								</div>
-							</div>
+						<div className="max-w-4xl mx-auto px-4">
+							<iframe
+								src="https://www.youtube.com/embed/UYNbFFihqIw"
+								title="MaizeBus 2"
+								allowFullScreen
+								className="w-full rounded-2xl"
+								style={{ aspectRatio: "16/9", border: "none" }}
+							/>
 						</div>
 					</div>
 				</div>
