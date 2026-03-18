@@ -8,6 +8,9 @@ import {
 	Users,
 } from "lucide-react";
 import { useEffect } from "react";
+import type { TeamData } from "@/types/team";
+import { formatMemberCount } from "@/types/team";
+import teamJson from "@/assets/team.json";
 import appleDownload from "@/assets/apple_download.svg";
 import androidDownload from "@/assets/android_download.png";
 import frame3Image from "@/assets/Frame 3.png";
@@ -42,6 +45,8 @@ function useIntersectionObserver() {
 		return () => clearTimeout(timer);
 	}, []);
 }
+
+const teamData = teamJson as TeamData;
 
 export function Home() {
 	useIntersectionObserver();
@@ -303,7 +308,7 @@ export function Home() {
 								className="text-lg font-bold"
 								style={{ fontWeight: 700 }}
 							>
-								25+ Student Developers
+								{formatMemberCount(teamData.people)} Student Developers
 							</span>
 						</div>
 					</div>

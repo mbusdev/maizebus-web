@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Card, CardContent } from "@/components/CardContent";
 import { Badge } from "@/components/badge";
 import { Button } from "@/components/button";
@@ -7,12 +6,17 @@ import {
 	Linkedin,
 	Link,
 	Instagram,
+	ChevronDown,
+	ChevronUp,
 } from "lucide-react";
-import { useEffect } from "react";
-import { ImageWithFallback } from "@/components/imageWithFallback";
-import teamData from "@/assets/team.json";
+import { useEffect, useState } from "react";
+import { ImageWithFallback, MISSING_IMAGE_SRC } from "@/components/imageWithFallback";
+import type { TeamData, TeamMember } from "@/types/team";
+import teamJson from "@/assets/team.json";
 import "./index.css";
+import "./past_members.css";
 
+const teamData = teamJson as TeamData;
 
 function useIntersectionObserver() {
 	useEffect(() => {
@@ -44,6 +48,7 @@ function useIntersectionObserver() {
 
 export function Team() {
 	useIntersectionObserver();
+	const [alumniExpanded, setAlumniExpanded] = useState(false);
 
 	useEffect(() => {
 		const timer = setTimeout(() => {
@@ -56,9 +61,10 @@ export function Team() {
 		return () => clearTimeout(timer);
 	}, []);
 
-	const leadership = teamData.lead;
-	const members = teamData.members;
-	// const pastMembers = (teamData as any).pastMembers || [];
+	const people = teamData.people;
+	const leadership = people.filter((p) => p.status === "active" && p.isLead);
+	const members = people.filter((p) => p.status === "active" && !p.isLead);
+	const pastAndAlumni = people.filter((p) => p.status === "inactive" || p.status === "alumni");
 
 	const getSocialIcon = (platform: string) => {
 		switch (platform) {
@@ -75,9 +81,9 @@ export function Team() {
 		}
 	};
 
-	const renderSocialLinks = (member: any) => {
-		const socials = [];
-        if (member.web)
+	const renderSocialLinks = (member: TeamMember) => {
+		const socials: { platform: string; url: string }[] = [];
+		if (member.web)
 			socials.push({ platform: "website", url: member.web });
 		if (member.github)
 			socials.push({ platform: "github", url: member.github });
@@ -99,15 +105,13 @@ export function Team() {
 		));
 	};
 
-
-
 	const renderMemberCard = (
-		member: any,
+		member: TeamMember,
 		index: number,
 		isLeadership: boolean = false
 	) => (
 		<div
-			key={member.name}
+			key={member.id}
 			className={`member-card fade-in-on-scroll ${
 				isLeadership ? "member-card-leadership" : "member-card-regular"
 			}`}
@@ -117,7 +121,7 @@ export function Team() {
 				<CardContent className="member-card-content">
 					<div className="member-photo-container">
 						<ImageWithFallback
-							src={member.image}
+							src={member.image ?? MISSING_IMAGE_SRC}
 							alt={member.name}
 							className="member-photo"
 						/>
@@ -127,14 +131,20 @@ export function Team() {
 						<h3 className="member-name">{member.name}</h3>
 						<p className="member-role">{member.role}</p>
 
-						<div className="member-badges">
-							<Badge className="member-badge member-badge-major">
-								{member.major}
-							</Badge>
-							<Badge className="member-badge member-badge-year">
-								{member.year}
-							</Badge>
-						</div>
+						{(member.major != null || member.year != null) && (
+							<div className="member-badges">
+								{member.major != null && (
+									<Badge className="member-badge member-badge-major">
+										{member.major}
+									</Badge>
+								)}
+								{member.year != null && (
+									<Badge className="member-badge member-badge-year">
+										{member.year}
+									</Badge>
+								)}
+							</div>
+						)}
 
 						<div className="member-socials">
 							{renderSocialLinks(member)}
@@ -186,23 +196,38 @@ export function Team() {
 					</div>
 				</div>
 
-				{/* Once we have alumni ig use this section */}
-				{/* {pastMembers.length > 0 && (
-					<div className="team-section fade-in-on-scroll">
-						<h2 className="team-section-title">Past Members</h2>
-						<div className="team-grid team-grid-past">
-							{pastMembers.map((member: any) => (
-								<div 
-									key={member.name}
-									className="past-member-item"
-									title={`${member.role} • ${member.major}`}
-								>
-									{member.name}
-								</div>
-							))}
-						</div>
+				{pastAndAlumni.length > 0 && (
+					<div className="team-section team-section-alumni fade-in-on-scroll">
+						<button
+							type="button"
+							className="team-section-alumni-toggle"
+							onClick={() => setAlumniExpanded(!alumniExpanded)}
+							aria-expanded={alumniExpanded}
+						>
+							<h2 className="team-section-title team-section-title-inline">
+								Alumni ({pastAndAlumni.length})
+							</h2>
+							{alumniExpanded ? (
+								<ChevronUp className="team-section-alumni-chevron" aria-hidden />
+							) : (
+								<ChevronDown className="team-section-alumni-chevron" aria-hidden />
+							)}
+						</button>
+						{alumniExpanded && (
+							<div className="team-grid team-grid-past">
+								{pastAndAlumni.map((member) => (
+									<div
+										key={member.id}
+										className="past-member-item"
+										title={[member.role, member.major, member.year].filter(Boolean).join(" • ")}
+									>
+										{member.name}
+									</div>
+								))}
+							</div>
+						)}
 					</div>
-				)} */}
+				)}
 
 				<div className="about-cta fade-in-on-scroll">
 					<Card className="about-cta-card">

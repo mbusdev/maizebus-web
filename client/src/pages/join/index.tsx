@@ -18,7 +18,14 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { API_ENDPOINTS } from "@/config";
+import type { TeamData } from "@/types/team";
+import { formatMemberCount } from "@/types/team";
+import teamJson from "@/assets/team.json";
 import "./index.css";
+
+const teamData = teamJson as TeamData;
+
+const APPLICATIONS_OPEN = false;
 
 function useIntersectionObserver() {
 	useEffect(() => {
@@ -127,7 +134,7 @@ export function Join() {
     {
       icon: <Award className="h-6 w-6" />,
       title: "Real Impact",
-      description: "Build solutions used by 600+ students daily",
+      description: "Build solutions used by 2000+ students daily",
     },
     {
       icon: <Users className="h-6 w-6" />,
@@ -209,11 +216,11 @@ export function Join() {
 
             <div className="join-stats">
               <div className="join-stat">
-                <span className="join-stat-number">25+</span>
+                <span className="join-stat-number">{formatMemberCount(teamData.people)}</span>
                 <span className="join-stat-label">Members</span>
               </div>
               <div className="join-stat">
-                <span className="join-stat-number">600+</span>
+                <span className="join-stat-number">2000+</span>
                 <span className="join-stat-label">Users</span>
               </div>
               <div className="join-stat">
@@ -295,140 +302,153 @@ export function Join() {
         </div>
 
         <div className="application-form fade-in-on-scroll">
-          <Card className="application-card">
-            <CardHeader className="text-center">
-              <CardTitle className="application-title">
-                Application Form
-              </CardTitle>
-              <CardDescription className="application-description">
-                We welcome students at all experience levels. Complete the form below to apply.
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="application-form-fields">
-                <div className="form-row">
+          {APPLICATIONS_OPEN ? (
+            <Card className="application-card">
+              <CardHeader className="text-center">
+                <CardTitle className="application-title">
+                  Application Form
+                </CardTitle>
+                <CardDescription className="application-description">
+                  We welcome students at all experience levels. Complete the form below to apply.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <form onSubmit={handleSubmit} className="application-form-fields">
+                  <div className="form-row">
+                    <div>
+                      <Label htmlFor="name" className="form-label">
+                        Full Name *
+                      </Label>
+                      <Input
+                        id="name"
+                        value={formData.name}
+                        onChange={(e) =>
+                          handleInputChange("name", e.target.value)
+                        }
+                        placeholder="Your full name"
+                        className="form-input"
+                        required
+                      />
+                    </div>
+                    <div>
+                      <Label htmlFor="email" className="form-label">
+                        University Email *
+                      </Label>
+                      <Input
+                        id="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={(e) =>
+                          handleInputChange("email", e.target.value)
+                        }
+                        placeholder="your.email@umich.edu"
+                        className="form-input"
+                        required
+                      />
+                    </div>
+                  </div>
+
                   <div>
-                    <Label htmlFor="name" className="form-label">
-                      Full Name *
+                    <Label htmlFor="role" className="form-label">
+                      Preferred Role *
                     </Label>
                     <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) =>
-                        handleInputChange("name", e.target.value)
-                      }
-                      placeholder="Your full name"
+                      id="role"
+                      value={formData.role}
+                      onChange={(e) => handleInputChange("role", e.target.value)}
+                      placeholder="e.g., Frontend Developer, UI/UX Designer"
                       className="form-input"
                       required
                     />
                   </div>
+
                   <div>
-                    <Label htmlFor="email" className="form-label">
-                      University Email *
+                    <Label htmlFor="experience" className="form-label">
+                      Experience & Skills *
                     </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
+                    <Textarea
+                      id="experience"
+                      value={formData.experience}
                       onChange={(e) =>
-                        handleInputChange("email", e.target.value)
+                        handleInputChange("experience", e.target.value)
                       }
-                      placeholder="your.email@umich.edu"
-                      className="form-input"
-                      required
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <Label htmlFor="role" className="form-label">
-                    Preferred Role *
-                  </Label>
-                  <Input
-                    id="role"
-                    value={formData.role}
-                    onChange={(e) => handleInputChange("role", e.target.value)}
-                    placeholder="e.g., Frontend Developer, UI/UX Designer"
-                    className="form-input"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <Label htmlFor="experience" className="form-label">
-                    Experience & Skills *
-                  </Label>
-                  <Textarea
-                    id="experience"
-                    value={formData.experience}
-                    onChange={(e) =>
-                      handleInputChange("experience", e.target.value)
-                    }
-                    placeholder="List your relevant experience, skills, and technologies (one per line or bullet points):
+                      placeholder="List your relevant experience, skills, and technologies (one per line or bullet points):
 • React, TypeScript, Node.js
 • 2 years web development
 • Built e-commerce website"
-                    className="form-textarea"
-                    rows={4}
-                    required
-                  />
-                </div>
+                      className="form-textarea"
+                      rows={4}
+                      required
+                    />
+                  </div>
 
-                <div>
-                  <Label htmlFor="motivation" className="form-label">
-                    Why MaizeBus? *
-                  </Label>
-                  <Textarea
-                    id="motivation"
-                    value={formData.motivation}
-                    onChange={(e) =>
-                      handleInputChange("motivation", e.target.value)
-                    }
-                    placeholder="What motivates you to join MaizeBus? What do you hope to learn and contribute? How does this align with your goals and interests?"
-                    className="form-textarea"
-                    rows={4}
-                    required
-                  />
-                </div>
+                  <div>
+                    <Label htmlFor="motivation" className="form-label">
+                      Why MaizeBus? *
+                    </Label>
+                    <Textarea
+                      id="motivation"
+                      value={formData.motivation}
+                      onChange={(e) =>
+                        handleInputChange("motivation", e.target.value)
+                      }
+                      placeholder="What motivates you to join MaizeBus? What do you hope to learn and contribute? How does this align with your goals and interests?"
+                      className="form-textarea"
+                      rows={4}
+                      required
+                    />
+                  </div>
 
-                <div>
-                  <Label htmlFor="portfolio" className="form-label">
-                    Portfolio/GitHub (Optional)
-                  </Label>
-                  <Input
-                    id="portfolio"
-                    value={formData.portfolio}
-                    onChange={(e) =>
-                      handleInputChange("portfolio", e.target.value)
-                    }
-                    placeholder="Links to your work or GitHub profile"
-                    className="form-input"
-                  />
-                </div>
+                  <div>
+                    <Label htmlFor="portfolio" className="form-label">
+                      Portfolio/GitHub (Optional)
+                    </Label>
+                    <Input
+                      id="portfolio"
+                      value={formData.portfolio}
+                      onChange={(e) =>
+                        handleInputChange("portfolio", e.target.value)
+                      }
+                      placeholder="Links to your work or GitHub profile"
+                      className="form-input"
+                    />
+                  </div>
 
 
-                <div className="pt-6">
-                  <Button 
-                    type="submit" 
-                    className="submit-button"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="mr-2 h-5 w-5 animate-spin" />
-                        Submitting...
-                      </>
-                    ) : (
-                      <>
-                        <CheckCircle className="mr-2 h-5 w-5" />
-                        Submit Application
-                      </>
-                    )}
-                  </Button>
-                </div>
-              </form>
-            </CardContent>
-          </Card>
+                  <div className="pt-6">
+                    <Button 
+                      type="submit" 
+                      className="submit-button"
+                      disabled={isSubmitting}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="mr-2 h-5 w-5 animate-spin" />
+                          Submitting...
+                        </>
+                      ) : (
+                        <>
+                          <CheckCircle className="mr-2 h-5 w-5" />
+                          Submit Application
+                        </>
+                      )}
+                    </Button>
+                  </div>
+                </form>
+              </CardContent>
+            </Card>
+          ) : (
+            <Card className="application-card">
+              <CardHeader className="text-center">
+                <CardTitle className="application-title">
+                  Applications Closed
+                </CardTitle>
+                <CardDescription className="application-description">
+                  Applications will open again at the beginning of Fall 2026 (around Festifall). Check back then to apply to join the MaizeBus team.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          )}
         </div>
       </div>
     </div>
