@@ -8,7 +8,6 @@ import {
 	Users,
 } from "lucide-react";
 import { useEffect } from "react";
-import headerImage from "@/assets/header.jpg";
 import appleDownload from "@/assets/apple_download.svg";
 import androidDownload from "@/assets/android_download.png";
 import frame3Image from "@/assets/Frame 3.png";
