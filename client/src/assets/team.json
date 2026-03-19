@@ -55,6 +55,7 @@
       "id": "kate-anderson",
       "name": "Kate Anderson",
       "role": "UI/UX Lead",
+      "major": "Computer Science",
       "year": "F25",
       "isLead": true,
       "status": "active"
