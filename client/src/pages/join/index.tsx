@@ -19,7 +19,7 @@ import "./index.css";
 
 const teamData = teamJson as TeamData;
 
-const APPLICATIONS_OPEN = false;
+const APPLICATIONS_OPEN = true;
 
 const INTEREST_FORM_URL = "https://forms.gle/VdCHufFnLaSJmzs19";
 
