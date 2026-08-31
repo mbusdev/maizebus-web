@@ -177,59 +177,6 @@
     margin-bottom: 3rem;
   }
   
-  .benefits-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-  }
-  
-  .benefit-card {
-    border: 0;
-    background: rgba(255, 255, 255, 0.8);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
-    height: 100%;
-    border-radius: 1rem;
-  }
-  
-.benefit-card:hover {
-  box-shadow: 0 20px 40px -8px rgba(0, 0, 0, 0.15);
-}
-
-.benefit-card-content {
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  height: 100%;
-  gap: 1.5rem;
-}
-
-.benefit-icon-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 5rem;
-  height: 5rem;
-}
-
-.benefit-text {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.benefit-card-wrapper {
-  transition: all 0.3s ease;
-}
-
-.benefit-card-wrapper:hover {
-  transform: translateY(-8px);
-}
-
 .role-card-wrapper {
   transition: all 0.3s ease;
 }
@@ -267,8 +214,7 @@
 }
 
 .role-skills-section,
-.role-requirements-section,
-.role-commitment-section {
+.role-requirements-section {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
@@ -314,41 +260,6 @@
   border-left: 3px solid #f59e0b;
 }
 
-.role-commitment-badge {
-  display: inline-block;
-  background: #00274C;
-  color: white;
-  padding: 0.5rem 1rem;
-  border-radius: 0.75rem;
-  font-size: 0.875rem;
-  font-weight: 600;
-  box-shadow: 0 2px 4px rgba(0, 39, 76, 0.2);
-}
-  
-  .benefit-icon {
-    width: 3rem;
-    height: 3rem;
-    background: var(--maize);
-    border-radius: 0.75rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 1rem;
-    color: var(--michigan-blue);
-  }
-  
-  .benefit-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--michigan-blue);
-    margin-bottom: 0.75rem;
-  }
-  
-  .benefit-description {
-    color: #6b7280;
-    line-height: 1.6;
-  }
-  
   .roles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -416,20 +327,9 @@
     font-weight: 500;
   }
   
-  .role-commitment {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .role-commitment-label {
-    font-size: 0.875rem;
-    color: #6b7280;
-  }
-  
   .application-form {
     max-width: 64rem;
-    margin: 0 auto;
+    margin: 0 auto 4rem;
   }
   
   .application-card {
@@ -609,13 +509,30 @@
     opacity: 0.7;
   }
   
+  .interest-form-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    background: var(--maize);
+    color: var(--michigan-blue);
+    font-weight: 700;
+    padding: 1.25rem 2rem;
+    font-size: 1.125rem;
+    border-radius: 0.75rem;
+    text-decoration: none;
+    box-shadow: 0 10px 20px -4px rgba(255, 203, 5, 0.4);
+    transition: all 0.3s ease;
+  }
+  
+  .interest-form-button:hover {
+    box-shadow: 0 15px 30px -4px rgba(255, 203, 5, 0.6);
+    transform: translateY(-2px);
+  }
+  
   @media (max-width: 768px) {
     .join-container {
       padding: 3rem 1rem 2rem;
-    }
-    
-    .benefits-grid {
-      grid-template-columns: 1fr;
     }
     
     .roles-grid {

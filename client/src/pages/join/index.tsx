@@ -9,13 +9,7 @@ import {
 import { Input } from "@/components/input";
 import { Label } from "@/components/label";
 import { Textarea } from "@/components/textarea";
-import {
-  Users,
-  Lightbulb,
-  Award,
-  CheckCircle,
-  Loader2,
-} from "lucide-react";
+import { CheckCircle, Loader2 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { API_ENDPOINTS } from "@/config";
 import type { TeamData } from "@/types/team";
@@ -26,6 +20,8 @@ import "./index.css";
 const teamData = teamJson as TeamData;
 
 const APPLICATIONS_OPEN = false;
+
+const INTEREST_FORM_URL = "https://forms.gle/VdCHufFnLaSJmzs19";
 
 function useIntersectionObserver() {
 	useEffect(() => {
@@ -92,7 +88,6 @@ export function Join() {
         "Flutter",
         "Dart",
       ],
-      commitment: "8+ hours/week",
       color: "blue-500",
     },
     {
@@ -104,7 +99,6 @@ export function Join() {
         "Node.js",
         "Database Design",
       ],
-      commitment: "8+ hours/week",
       color: "green-500",
     },
     {
@@ -112,7 +106,6 @@ export function Join() {
       description:
         "Lead design strategy, conduct user research, and create exceptional user experiences",
       skills: ["Figma", "User Research", "Design Systems", "Prototyping"],
-      commitment: "5+ hours/week",
       color: "purple-500",
     },
     {
@@ -125,26 +118,7 @@ export function Join() {
         "Content Strategy",
         "A/B Testing",
       ],
-      commitment: "5+ hours/week",
       color: "red-500",
-    },
-  ];
-
-  const benefits = [
-    {
-      icon: <Award className="h-6 w-6" />,
-      title: "Real Impact",
-      description: "Build solutions used by 2000+ students daily",
-    },
-    {
-      icon: <Users className="h-6 w-6" />,
-      title: "Team Learning",
-      description: "Collaborate with talented students across disciplines",
-    },
-    {
-      icon: <Lightbulb className="h-6 w-6" />,
-      title: "Skill Growth",
-      description: "Learn cutting-edge technologies and best practices",
     },
   ];
 
@@ -228,76 +202,6 @@ export function Join() {
                 <span className="join-stat-label">Open Roles</span>
               </div>
             </div>
-          </div>
-        </div>
-
-        <div className="join-section fade-in-on-scroll">
-          <h2 className="join-section-title">Why Join MaizeBus?</h2>
-          <div className="benefits-grid">
-            {benefits.map((benefit, index) => (
-              <div
-                key={benefit.title}
-                className="benefit-card-wrapper"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <Card className="benefit-card">
-                  <CardContent className="benefit-card-content">
-                    <div className="benefit-icon-container">
-                      <div className="benefit-icon">{benefit.icon}</div>
-                    </div>
-                    <div className="benefit-text">
-                      <h3 className="benefit-title">{benefit.title}</h3>
-                      <p className="benefit-description">{benefit.description}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="join-section fade-in-on-scroll">
-          <h2 className="join-section-title">Open Roles</h2>
-          <div className="roles-grid">
-            {roles.map((role, index) => (
-              <div
-                key={role.title}
-                className="role-card-wrapper"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <Card className="role-card">
-                  <CardHeader className="role-card-header">
-                    <div className="role-title-container">
-                      <div className={`role-color-indicator bg-${role.color}`}></div>
-                      <CardTitle className="role-title">{role.title}</CardTitle>
-                    </div>
-                    <CardDescription className="role-description">
-                      {role.description}
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="role-card-content">
-                    <div className="role-details">
-                      <div className="role-skills-section">
-                        <h4 className="role-detail-label">Skills</h4>
-                        <div className="role-skills-tags">
-                          {role.skills.map((skill, skillIndex) => (
-                            <span key={skillIndex} className="role-skill-tag">
-                              {skill}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-                      <div className="role-commitment-section">
-                        <h4 className="role-detail-label">Time Commitment</h4>
-                        <span className="role-commitment-badge">
-                          {role.commitment}
-                        </span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </div>
-            ))}
           </div>
         </div>
 
@@ -441,14 +345,64 @@ export function Join() {
             <Card className="application-card">
               <CardHeader className="text-center">
                 <CardTitle className="application-title">
-                  Applications Closed
+                  Interest Form
                 </CardTitle>
                 <CardDescription className="application-description">
-                  Applications will open again at the beginning of Fall 2026 (around Festifall). Check back then to apply to join the MaizeBus team.
+                  Fill out the form below to get our mass meeting details
                 </CardDescription>
               </CardHeader>
+              <CardContent>
+                <a
+                  href={INTEREST_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="interest-form-button"
+                >
+                  <CheckCircle className="mr-2 h-5 w-5" />
+                  Fill Out the Interest Form
+                </a>
+              </CardContent>
             </Card>
           )}
+        </div>
+
+        <div className="join-section fade-in-on-scroll">
+          <h2 className="join-section-title">Roles</h2>
+          <div className="roles-grid">
+            {roles.map((role, index) => (
+              <div
+                key={role.title}
+                className="role-card-wrapper"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <Card className="role-card">
+                  <CardHeader className="role-card-header">
+                    <div className="role-title-container">
+                      <div className={`role-color-indicator bg-${role.color}`}></div>
+                      <CardTitle className="role-title">{role.title}</CardTitle>
+                    </div>
+                    <CardDescription className="role-description">
+                      {role.description}
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent className="role-card-content">
+                    <div className="role-details">
+                      <div className="role-skills-section">
+                        <h4 className="role-detail-label">Skills</h4>
+                        <div className="role-skills-tags">
+                          {role.skills.map((skill, skillIndex) => (
+                            <span key={skillIndex} className="role-skill-tag">
+                              {skill}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
