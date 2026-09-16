@@ -12,6 +12,7 @@ import Tracker from "@/pages/tracker";
 import SignUp from "@/pages/signup";
 import Login from "@/pages/login";
 import Footer from "@/components/footer";
+import { Banner } from "@/pages/banner";
 import ScrollToTop from "./components/ScrollToTop";
 
 interface User {
@@ -33,11 +34,14 @@ function AppContent() {
 		setUser(null);
 	};
 
+	// The banner is a standalone share page: no navbar, no footer.
+	const isBanner = location.pathname === "/banner";
+
 	return (
 		<div className="min-h-screen flex flex-col">
-			<Navbar user={user} onLogout={handleLogout} />
+			{!isBanner && <Navbar user={user} onLogout={handleLogout} />}
 
-			<main className="flex-1 pt-20">
+			<main className={isBanner ? "flex-1" : "flex-1 pt-20"}>
 				<AnimatePresence mode="wait">
 					<Routes location={location} key={location.pathname}>
 						<Route path="/" element={<Home />} />
@@ -49,11 +53,12 @@ function AppContent() {
 						<Route path="/login" element={<Login />} />
 						<Route path="/signup" element={<SignUp />} />
 						<Route path="/tracker" element={<Tracker />} />
+						<Route path="/banner" element={<Banner />} />
 					</Routes>
 				</AnimatePresence>
 			</main>
 
-			<Footer />
+			{!isBanner && <Footer />}
 		</div>
 	);
 }
