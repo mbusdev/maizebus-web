@@ -6,6 +6,12 @@ This project uses GitHub Actions to deploy the frontend to GitHub Pages and the 
 
 The frontend is automatically deployed to GitHub Pages when changes are pushed to the `main` branch in the `client/` directory.
 
+The same workflow also builds the **floor plan tool** (git submodule
+`floorplantool/`, see the README) with `scripts/build-floorplantool.sh` and ships
+it inside the same Pages artifact at `/floorplantool/`. A submodule pointer bump
+on `main` triggers a redeploy; `workflow_dispatch` is the manual fallback. The
+checkout step uses `submodules: true` — keep it, or the tool build fails.
+
 ### Setup GitHub Pages
 
 1. Go to your repository settings

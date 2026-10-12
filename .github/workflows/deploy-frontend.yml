@@ -3,7 +3,13 @@ name: Deploy Frontend to GitHub Pages
 on:
   push:
     branches: [ main ]
-    paths: [ 'client/**' ]
+    paths:
+      - 'client/**'
+      # Floor plan tool (git submodule): a pointer bump redeploys it.
+      - 'floorplantool'
+      - '.gitmodules'
+      - 'scripts/build-floorplantool.sh'
+      - '.github/workflows/deploy-frontend.yml'
   workflow_dispatch:
 
 permissions:
@@ -22,13 +28,17 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        submodules: true
       
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '22.12'
         cache: 'npm'
-        cache-dependency-path: 'client/package-lock.json'
+        cache-dependency-path: |
+          client/package-lock.json
+          floorplantool/package-lock.json
         
     - name: Install dependencies
       run: |
@@ -39,6 +49,10 @@ jobs:
       run: |
         cd client
         VITE_API_URL=${{ secrets.EC2_API_URL || 'https://api.maizebus.com' }} npm run build
+
+    # Internal tool, served at /floorplantool/ (not linked from the site).
+    - name: Build floor plan tool
+      run: bash scripts/build-floorplantool.sh
         
     - name: Setup Pages
       uses: actions/configure-pages@v4

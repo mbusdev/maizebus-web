@@ -1,0 +1,3 @@
+[submodule "floorplantool"]
+	path = floorplantool
+	url = https://github.com/i-kumar/floorplandigitizer.git
