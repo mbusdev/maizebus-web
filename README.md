@@ -8,6 +8,8 @@ A full-stack web application for MaizeBus, built with React (Vite) frontend and 
 maizebus-web/
 ├── client/          # React frontend (Vite + TypeScript)
 ├── server/          # Node.js backend (Express + TypeScript)
+├── floorplantool/   # Floor Plan Digitizer — git submodule (internal tool, see below)
+├── scripts/         # build-floorplantool.sh (CI glue for the tool)
 ├── package.json     # Root package.json with workspace configuration
 └── README.md
 ```
@@ -96,6 +98,37 @@ EMAIL_TO=contact@maizebus.com
    ```bash
    npm run start
    ```
+
+## Floor plan tool (internal, unlisted)
+
+The [Floor Plan Digitizer](https://github.com/i-kumar/floorplandigitizer) is
+deployed alongside the site at **https://www.maizebus.com/floorplantool/**. It
+is deliberately not linked from the navbar or anywhere else on the site —
+share the URL directly.
+
+It lives in its own repository and is pulled in here as a git submodule
+(`floorplantool/`). The frontend deploy workflow builds it separately
+(`scripts/build-floorplantool.sh`, Vite base `/floorplantool/`) and copies the
+output into `client/dist/floorplantool/` before uploading to GitHub Pages. The
+site's React app never imports it, so the two apps share no dependencies.
+
+```bash
+# Fresh clone: fetch the submodule too
+git clone --recurse-submodules https://github.com/mbusdev/maizebus-web.git
+# ...or, in an existing clone
+git submodule update --init
+
+# Ship a newer version of the tool: move the pointer to its latest main and push
+git submodule update --remote floorplantool
+git add floorplantool && git commit -m "Update floor plan tool" && git push
+
+# Build the full site locally (client first — it wipes client/dist)
+cd client && npm ci && npm run build && cd ..
+bash scripts/build-floorplantool.sh
+```
+
+Develop the tool in its own repo (`cd floorplantool && npm run dev`, or clone
+it separately); the submodule here only pins which commit is deployed.
 
 ## License
 

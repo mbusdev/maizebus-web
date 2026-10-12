@@ -13,6 +13,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      with:
+        submodules: true
       
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -30,6 +32,9 @@ jobs:
     - name: Build client
       run: |
         cd client && npm run build
+
+    - name: Build floor plan tool
+      run: bash scripts/build-floorplantool.sh
         
     - name: Build server
       run: |
