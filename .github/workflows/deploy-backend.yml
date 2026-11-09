@@ -126,6 +126,8 @@ jobs:
           Environment=EMAIL_TO=${{ secrets.EMAIL_TO }}
           Environment=EMAIL_HOST=${{ secrets.EMAIL_HOST }}
           Environment=EMAIL_PORT=${{ secrets.EMAIL_PORT }}
+          Environment=CLICK_LOG_PATH=/home/ubuntu/maizebus-backend/poster-clicks.jsonl
+          Environment=STATS_KEY=${{ secrets.STATS_KEY }}
           
           [Install]
           WantedBy=multi-user.target

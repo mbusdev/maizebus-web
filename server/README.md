@@ -216,6 +216,29 @@ Handle membership application submissions.
 }
 ```
 
+### Poster Tracking Links
+
+#### `GET /go/:slug`
+Redirect target for poster QR codes. Logs one JSON line (timestamp, slug, user agent, referrer, IP) to `CLICK_LOG_PATH`, then `302`-redirects to `POSTER_REDIRECT_URL/?src=<slug>` (default `https://www.maizebus.com`). Slugs are numbers counting from 0; see [`POSTERS.md`](../POSTERS.md) for which number is on which poster. Any slug matching `[A-Za-z0-9_-]{1,32}` is accepted without registration. `stats` is reserved.
+
+Example: a poster QR code points at `https://api.maizebus.com/go/0`.
+
+#### `GET /go/stats?key=<STATS_KEY>`
+Per-slug click counts. Also accepts `Authorization: Bearer <STATS_KEY>`. Returns `503` if `STATS_KEY` is unset, `401` on a bad key.
+
+**Response:**
+```json
+{
+  "total": 5,
+  "slugs": {
+    "0": { "count": 2, "first": "2026-11-09T03:40:55.104Z", "last": "2026-11-09T03:40:55.134Z" },
+    "1": { "count": 3, "first": "2026-11-09T03:40:55.116Z", "last": "2026-11-09T03:41:10.001Z" }
+  },
+  "redirectBase": "https://www.maizebus.com",
+  "logPath": "/home/ubuntu/maizebus-backend/poster-clicks.jsonl"
+}
+```
+
 ## 🔧 CORS Configuration
 
 The server is configured to accept requests from:
