@@ -8,6 +8,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
+import posterLinks from './posterLinks';
+
 const app = express();
 const PORT = parseInt(process.env.PORT || '3001');
 
@@ -106,6 +108,9 @@ if (emailConfigured) {
 app.get('/health', (req, res) => {
   res.json({ status: 'OK', message: 'MaizeBus Backend is running' });
 });
+
+// Poster QR tracking links: /go/<slug> logs the hit and redirects to the main site.
+app.use('/go', posterLinks);
 
 app.post('/api/join', async (req, res) => {
   try {

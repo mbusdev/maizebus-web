@@ -105,3 +105,6 @@ server/uploads/
 
 # Vite
 client/dist/
+
+# Poster click log (dev default; prod path is set via CLICK_LOG_PATH)
+server/poster-clicks.jsonl

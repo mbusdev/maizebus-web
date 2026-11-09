@@ -33,6 +33,9 @@ Add these secrets to your GitHub repository (Settings > Secrets and variables > 
 - `EC2_SSH_KEY`: Your private SSH key for EC2 access
 - `EC2_PORT`: SSH port (default: 22)
 
+#### Poster Tracking Secrets
+- `STATS_KEY`: Secret for reading poster QR click counts at `GET /go/stats?key=...`. Generate with `openssl rand -hex 24`. Stats are disabled if unset.
+
 ### EC2 Instance Setup
 
 1. **Launch an EC2 instance** (Ubuntu 24.04 recommended)
@@ -191,3 +194,6 @@ sudo journalctl -u maizebus-backend -f
 - `PORT`: Server port (default: 3001)
 - `NODE_ENV`: Environment (production)
 - `FRONTEND_URL`: Frontend URL for CORS
+- `CLICK_LOG_PATH`: Where poster QR clicks are appended (JSON lines). The deploy workflow sets this to `/home/ubuntu/maizebus-backend/poster-clicks.jsonl`, outside `current/`, so the log survives redeploys
+- `STATS_KEY`: Secret for `GET /go/stats`
+- `POSTER_REDIRECT_URL`: Where `/go/<slug>` redirects (default `https://www.maizebus.com`)
